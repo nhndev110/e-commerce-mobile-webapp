@@ -1,0 +1,1 @@
+<script src="https://unpkg.com/jquery@3.6.1/dist/jquery.min.js"></script>
