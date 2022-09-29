@@ -12,16 +12,16 @@ function totalPriceCalculate() {
 }
 
 function innerHtmlEmpty() {
-    let nodeContent = document.getElementById('content')
-    let html = `
+    let nodeContent = $('main')
+    let htmlEmpty = `
         <div id="empty-cart">
             <div style="text-align: center; color: red;">
                 <h3>Danh sách giỏ hàng đang trống</h3>
-                <a href="./products.php">Mua sản phẩm</a>
+                <a href="./index.php?page=products">Mua sản phẩm</a>
             </div>
         </div>
     `
-    nodeContent.innerHTML = html
+    nodeContent.html(htmlEmpty)
 }
 
 $('.btn-update-quantity').click(function () {

@@ -6,7 +6,7 @@
         <ul class="nav nav-left">
             <li><a class="set-home" href="./index.php">Trang Chủ</a></li>
             <li><a class="set-intro" href="##">Giới Thiệu</a></li>
-            <li><a class="set-products" href="./products.php">Sản Phẩm</a></li>
+            <li><a class="set-products" href="./index.php?page=products">Sản Phẩm</a></li>
             <li><a class="set-news" href="##">Tin Tức</a></li>
         </ul>
         <ul class="nav nav-right">
@@ -21,7 +21,7 @@
                 </li>
             <?php } else { ?>
                 <li>
-                    <a href="./view-cart.php">
+                    <a href="./index.php?page=cart">
                         <div class="container-nav-icon cart-header">
                             <ion-icon class="nav-icon" name="bag-handle-outline"></ion-icon>
                             <div id="products-in-cart"><?= (!empty($_SESSION['quantity_product_in_cart'])) ? $_SESSION['quantity_product_in_cart'] : 0 ?></div>
@@ -29,14 +29,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./user.php" class="set-user" title="<?php echo $_SESSION['name'] ?>">
+                    <a href="./index.php?page=user" class="set-user" title="<?php echo $_SESSION['name'] ?>">
                         <div class="container-nav-icon">
                             <ion-icon class="nav-icon" name="person-circle-outline"></ion-icon>
                             <ion-icon name="caret-down-outline"></ion-icon>
                         </div>
                     </a>
                     <ul class="subnav">
-                        <li><a href="./user.php"><?= $_SESSION['name'] ?></a></li>
+                        <li><a href="./index.php?page=user"><?= $_SESSION['name'] ?></a></li>
                         <hr>
                         <li><a href="./signout.php">item1</a></li>
                         <li><a href="./signout.php">item2</a></li>

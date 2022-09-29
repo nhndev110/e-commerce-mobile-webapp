@@ -33,3 +33,13 @@ h3 {
     border: 1px solid var(--color-opacity);
     border-radius: 6px;
 }
+
+.box-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-btn button + button {
+    margin-left: 8px;
+}

@@ -1,27 +1,27 @@
-#content #info-cart h2 {
+#info-cart h2 {
     text-align: center;
     margin-bottom: 16px;
 }
 
-#content #info-cart table {
+#info-cart table {
     margin-bottom: 16px;
 }
 
-#content .order-form {
+.order-form {
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#content .order-form .pay-form label {
+.order-form .pay-form label {
     min-width: 200px;
     display: inline-block;
     margin-bottom: 4px;
     font-weight: 600;
 }
 
-#content .order-form .pay-form form button {
+.order-form .pay-form form button {
     float: right;
 }
 
