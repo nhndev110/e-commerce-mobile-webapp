@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && isset($_SESSION['name']) && isset($_SESSION['level'])) {
-  header('location: ./root');
+$check_login = !empty($_SESSION['id']) && !empty($_SESSION['name']) && !empty($_SESSION['level']);
+if ($check_login) {
+  header('location: ./root/');
 }
 ?>
 <!DOCTYPE html>
@@ -13,19 +14,16 @@ if (isset($_SESSION['id']) && isset($_SESSION['name']) && isset($_SESSION['level
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./assets/css/login.css">
   <script defer src="https://unpkg.com/jquery@3.6.1/dist/jquery.min.js"></script>
+  <script defer type="module" src="./assets/js/login.js"></script>
   <title>Đăng Nhập || Admin</title>
 </head>
 
 <body>
   <div id="signin">
     <div class="signin__header">
-      <img class="signin__img" src="./assets/images/expert-team.gif" alt="">
-      <h1 id="signin__heading">ADMIN LOGIN</h1>
+      <img class="signin__img" src="./assets/images/expert-team.gif" title="ADMIN LOGIN" alt="ADMIN LOGIN">
+      <h1 id="signin__heading" title="ADMIN LOGIN">ADMIN LOGIN</h1>
     </div>
-    <?php if (isset($_SESSION['error'])) { ?>
-      <span style="color: red;"><?php echo $_SESSION['error'] ?></span>
-      <?php unset($_SESSION['error']) ?>
-    <?php } ?>
     <form id="signin__form" action="process_login_admin.php" method="post">
       <div class="form__group">
         <input required class="form__input" type="email" name="email" placeholder="Tên Đăng Nhập">
@@ -38,8 +36,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['name']) && isset($_SESSION['level
       </div>
     </form>
   </div>
-
-  <script defer type="module" src="./assets/js/login.js"></script>
 </body>
 
 </html>

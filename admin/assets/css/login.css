@@ -41,7 +41,10 @@ body {
 
 #signin__heading {
   font-size: 3rem;
-  color: #ff5e62;
+  background: -webkit-linear-gradient(45deg, #ff9966, #ff5e62);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .form__group {
@@ -85,8 +88,14 @@ body {
 .form__submit {
   color: #fff;
   font-size: 1.8rem;
-  padding: 1.5rem;
-  background-image: linear-gradient(90deg, #ff9966 0%, #ff5e62 100%);
-  cursor: pointer;
+  padding: 1.2rem;
+  background-image: linear-gradient(90deg, #ff9966, #ff5e62);
   border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  opacity: 0.8;
+}
+
+.form__submit:hover {
+  opacity: 1;
 }

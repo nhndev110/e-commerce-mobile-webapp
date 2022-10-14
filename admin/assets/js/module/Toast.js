@@ -1,44 +1,51 @@
-import { setAttributes } from './App.js'
-
-// Declaration Toast
-const containerToast = document.querySelector('.page-body-wrapper')
-const nodeToast = document.createElement('div')
-nodeToast.className = 'toast-container top-0 end-0 p-3'
-containerToast.appendChild(nodeToast)
-
 // Create Toast Message
-export default function Toast(obj) {
-  if (nodeToast) {
-    const nodeChildToast = document.createElement('div')
-    nodeChildToast.style.transition = 'all linear 0.3s'
-    const iconsToast = {
+export default function Toast({
+  title = '',
+  msg = '',
+  type = 'info',
+  duration = 3000,
+}) {
+  const main = document.getElementById('toast-container')
+  if (main) {
+    const toast = document.createElement('div')
+    const icons = {
       success: '<ion-icon name="checkmark-circle-outline"></ion-icon>',
-      error: '<ion-icon name="alert-circle-outline"></ion-icon>',
-      info: '<ion-icon name="information-circle-outline"></ion-icon>',
+      info: '<ion-icon name="alert-circle-outline"></ion-icon>',
+      warning: '<ion-icon name="information-circle-outline"></ion-icon>',
+      error: '<ion-icon name="information-circle-outline"></ion-icon>',
     }
-    const delay = (obj.duration / 1000).toFixed(2)
-    setAttributes(nodeChildToast, {
-      class: 'toast show',
-      role: 'alert',
-      'aria-live': 'assertive',
-      'aria-atomic': 'true',
-    })
-    nodeChildToast.style.animation = `fadeInRight 0.3s ease-out, fadeOutRight 0.3s ease-out ${delay}s forwards`
-    nodeChildToast.innerHTML = `
-      <div class="toast-header toast-${obj.status}">
-          <div class="icon-toast fs-6 me-2">
-              ${iconsToast[obj.status]}
-          </div>
-          <strong class="me-auto fs-6">${obj.title}</strong>
-          <small>Ngay Bây Giờ</small>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+    const icon = icons[type]
+    const delay = (duration / 1000).toFixed(2)
+
+    // ======= Auto Remove =======
+    const autoRemoveId = setTimeout(() => {
+      main.removeChild(toast)
+    }, duration + 600)
+
+    // ======= User Remove =======
+    toast.onclick = (e) => {
+      if (e.target.closest('.toast__close')) {
+        main.removeChild(toast)
+        clearTimeout(autoRemoveId)
+      }
+    }
+
+    toast.classList.add('toast', `toast--${type}`)
+    toast.style.animation = `slideInLeft .3s ease-in-out, faceOut .6s ease-in-out ${delay}s forwards`
+    toast.innerHTML = `
+      <div class="toast__header">
+        <div class="toast__icon">
+          ${icon}
+        </div>
+        <div class="toast__close">
+          <ion-icon name="close-outline"></ion-icon>
+        </div>
       </div>
-      <div class="toast-body">
-          ${obj.content}
+      <div class="toast__body">
+        <h4 class="toast__title">${title}</h4>
+        <p class="toast__msg">${msg}</p>
       </div>
     `
-
-    nodeToast.appendChild(nodeChildToast)
-    setTimeout(() => nodeToast.removeChild(nodeChildToast), obj.duration + 600)
+    main.appendChild(toast)
   }
 }
