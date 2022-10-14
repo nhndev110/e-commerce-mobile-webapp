@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-$check_login = !empty($_SESSION['id']) && !empty($_SESSION['name']) && !empty($_SESSION['level']);
-if ($check_login) {
+if (!empty($_SESSION['id']) && !empty($_SESSION['name']) && !empty($_SESSION['level'])) {
   header('location: ./root/');
 }
 ?>
@@ -29,7 +28,7 @@ if ($check_login) {
         <input required class="form__input" type="email" name="email" placeholder="Tên Đăng Nhập">
       </div>
       <div class="form__group">
-        <input required class="form__input" type="password" name="password" placeholder="Mật Khẩu" autocomplete="on">
+        <input class="form__input" type="password" name="password" placeholder="Mật Khẩu" autocomplete="on">
       </div>
       <div class="form__group">
         <button type="submit" class="form__submit">Đăng Nhập</button>
