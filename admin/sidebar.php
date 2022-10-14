@@ -32,6 +32,12 @@
                     <span class="text-category">Quản lí đơn hàng</span>
                 </a>
             </li>
+            <li class="item-category">
+                <a href="../config-products/index.php" class="category-link" id="orders-btn">
+                    <ion-icon class="icon-category" name="bag-handle-outline"></ion-icon>
+                    <span class="text-category">Quản lí cấu hình</span>
+                </a>
+            </li>
         </ul>
 
         <ul class="user-sidebar">

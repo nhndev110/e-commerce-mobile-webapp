@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(45deg, #e1eec3, #f05053);
+  padding: 10px;
+}
+
+#signin {
+  width: 100%;
+  max-width: 40rem;
+  background-color: white;
+  border-radius: 10px;
+  padding: 3.5rem 4rem;
+}
+
+.signin__header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}
+
+.signin__img {
+  width: 30%;
+}
+
+#signin__heading {
+  font-size: 3rem;
+  color: #ff5e62;
+}
+
+.form__group {
+  margin-bottom: 1.6rem;
+}
+
+.form__submit,
+.form__input {
+  font-family: Helvetica, Arial, sans-serif;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+.form__input {
+  color: #333;
+  padding: 1.5rem;
+  border-bottom: 2px solid #ffd6be;
+  font-size: 1.5rem;
+  transition: 0.3s;
+  background-color: #fff;
+}
+
+.form__input:-webkit-autofill {
+  box-shadow: 0 0 0 50px #fff inset;
+  -webkit-box-shadow: 0 0 0 50px #fff inset;
+  -webkit-text-fill-color: #333;
+}
+
+.form__input:focus {
+  border-bottom: 2px solid #ffa977;
+  background-color: #fff;
+}
+
+.form__input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 50px #fff inset;
+  -webkit-box-shadow: 0 0 0 50px #fff inset;
+  -webkit-text-fill-color: #333;
+}
+
+.form__submit {
+  color: #fff;
+  font-size: 1.8rem;
+  padding: 1.5rem;
+  background-image: linear-gradient(90deg, #ff9966 0%, #ff5e62 100%);
+  cursor: pointer;
+  border-radius: 10px;
+}
