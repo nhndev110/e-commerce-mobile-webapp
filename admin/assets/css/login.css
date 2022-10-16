@@ -76,7 +76,10 @@ body {
 
 .form__input:focus {
   border-bottom: 2px solid #ffa977;
-  background-color: #fff;
+}
+
+.active-input {
+  border-bottom: 2px solid #ffa977 !important;
 }
 
 .form__input:-webkit-autofill:focus {

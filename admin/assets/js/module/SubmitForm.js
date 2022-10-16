@@ -1,14 +1,15 @@
-"use strict";
-import { Toast } from "./App.js";
+'use strict'
+import { Toast } from './App.js'
 
 export default function SubmitForm({
-  url = "",
-  type = "POST",
-  dataType = "html",
+  url = '',
+  type = 'POST',
+  dataType = 'html',
   data = {},
-  toastTitle = "",
-  toastContent = "",
-  contentType = "application/x-www-form-urlencoded; charset=UTF-8",
+  titleSuccess = '',
+  contentSuccess = '',
+  titleError = '',
+  contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
   processData = true,
   fn = () => {},
 }) {
@@ -22,31 +23,31 @@ export default function SubmitForm({
     success(response) {
       if (response == 1) {
         Toast({
-          title: toastTitle,
-          status: "success",
-          content: toastContent,
+          title: titleSuccess,
+          type: 'success',
+          msg: contentSuccess,
           duration: 3000,
-        });
-        fn(1);
+        })
+        fn(1)
       } else if (response == 2) {
         Toast({
-          title: toastTitle,
-          status: "success",
-          content: toastContent,
+          title: titleSuccess,
+          type: 'success',
+          msg: contentSuccess,
           duration: 3000,
-        });
-        fn(2);
+        })
+        fn(2)
       } else {
         Toast({
-          title: "Lỗi",
-          status: "error",
-          content: response,
+          title: titleError,
+          type: 'error',
+          msg: response,
           duration: 5000,
-        });
+        })
       }
     },
     error() {
-      console.log("error: SubmitForm");
+      console.log('error: SubmitForm')
     },
-  });
+  })
 }
