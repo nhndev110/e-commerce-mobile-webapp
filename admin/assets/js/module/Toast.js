@@ -12,7 +12,7 @@ export default function Toast({
       success: 'checkmark-circle-outline',
       info: 'alert-circle-outline',
       warning: 'information-circle-outline',
-      error: 'information-circle-outline',
+      error: 'alert-circle-outline',
     }
     const icon = icons[type]
     const delay = (duration / 1000).toFixed(2)
@@ -31,18 +31,18 @@ export default function Toast({
     }
 
     toast.classList.add('toast', `toast--${type}`)
-    toast.style.animation = `slideInLeft .3s ease-in-out, faceOut .6s ease-in-out ${delay}s forwards`
+    toast.style.animation = `fadeInRight .3s ease-in-out, fadeOutRight .6s ease-in-out ${delay}s forwards`
     toast.innerHTML = `
       <div class="toast__header">
         <div class="toast__icon">
           <ion-icon name="${icon}"></ion-icon>
         </div>
+        <h4 class="toast__title">${title}</h4>
         <div class="toast__close">
           <ion-icon name="close-outline"></ion-icon>
         </div>
       </div>
       <div class="toast__body">
-        <h4 class="toast__title">${title}</h4>
         <p class="toast__msg">${msg}</p>
       </div>
     `

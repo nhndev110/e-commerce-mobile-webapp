@@ -19,9 +19,9 @@ try {
     $_SESSION['id'] = $result['id'];
     $_SESSION['name'] = $result['name'];
     $_SESSION['level'] = $result['level'];
-    echo 1;
+    echo json_encode(["login" => true]);
   } else {
-    echo -1;
+    echo json_encode(["login" => false]);
   }
 } catch (Exception $e) {
   echo $e->getMessage();

@@ -64,15 +64,12 @@
 
 .toast__icon,
 .toast__close {
+  display: flex;
   padding: 0 16px;
 }
 
 .toast__icon {
   font-size: 24px;
-}
-
-.toast__body {
-  flex-grow: 1;
 }
 
 .toast__title {
@@ -82,20 +79,26 @@
   margin-right: auto;
 }
 
-.toast__msg {
-  font-size: 15px;
-  color: #777;
-  margin-top: 6px;
-  line-height: 1.5;
-}
-
 .toast__close {
-  font-size: 20px;
-  color: rgba(0, 0, 0, 0.3);
+  font-size: 24px;
+  color: #000;
+  opacity: 0.6;
   cursor: pointer;
   transition: 0.2s ease;
 }
 
 .toast__close:hover {
-  opacity: 0.8;
+  opacity: 1;
+}
+
+.toast__body {
+  padding-left: 16px;
+  flex-grow: 1;
+  margin-top: 6px;
+}
+
+.toast__msg {
+  font-size: 15px;
+  color: #777;
+  line-height: 1.5;
 }

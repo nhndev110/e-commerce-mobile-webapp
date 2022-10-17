@@ -15,6 +15,31 @@ nodeInput.forEach((item) => {
 $('#signin__form').submit(function (e) {
   e.preventDefault()
 
+  $('head').append(
+    `<style>
+      body::after {
+        content: url(./assets/images/logo.gif);
+        position: absolute;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(0.4);
+        filter: drop-shadow(12px 12px 6px #333);
+      }
+
+      #wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    </style>`
+  )
+
   const emailInput = $('input[name="email"]').val()
   const passwordInput = $('input[name="password"]').val()
 
@@ -23,17 +48,26 @@ $('#signin__form').submit(function (e) {
     type: 'POST',
     data: { email: emailInput, password: passwordInput },
     dataType: 'JSON',
-    success: function (response) {
-      if (response === 1) {
-        window.location.href = './root/'
-      } else {
-        Toast({
-          title: 'Thất Bại',
-          msg: 'Đăng không thành công',
-          type: 'error',
-          duration: 3000,
-        })
-      }
+    success(response) {
+      response['login']
+        ? (window.location.href = './root/')
+        : Toast({
+            title: 'Thất Bại',
+            msg: 'Mật khẩu hoặc email không chính xác',
+            type: 'error',
+            duration: 5000,
+          })
+    },
+    error(xhr) {
+      Toast({
+        title: 'Thất Bại',
+        msg: xhr.responseText,
+        type: 'error',
+        duration: 5000,
+      })
+    },
+    complete() {
+      $('style').remove()
     },
   })
 })
