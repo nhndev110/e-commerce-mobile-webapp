@@ -1,4 +1,4 @@
-<?php require "../check_admin_login.php" ?>
+<?php require "../check-admin-login.php" ?>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -68,16 +68,16 @@
 											<kbd class="status-current">
 												<?php switch ($each['status']) {
 													case 1:
-														echo "Đã Duyệt";
+														echo "Duyệt";
 														break;
 													case 2:
-														echo "Đã Hủy";
+														echo "Hủy";
 														break;
 													case 0:
-														echo "Đang Chờ";
+														echo "Chờ";
 														break;
 													default:
-														echo "Không Xác Định";
+														echo "Lỗi";
 												} ?>
 											</kbd>
 										</td>

@@ -20,12 +20,6 @@ body {
   padding: 10px;
 }
 
-body::after {
-}
-
-#wrapper::after {
-}
-
 #signin {
   width: 100%;
   max-width: 40rem;

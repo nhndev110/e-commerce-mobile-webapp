@@ -33,19 +33,19 @@ export default function Toast({
     toast.classList.add('toast', `toast--${type}`)
     toast.style.animation = `fadeInRight .3s ease-in-out, fadeOutRight .6s ease-in-out ${delay}s forwards`
     toast.innerHTML = `
-      <div class="toast__header">
-        <div class="toast__icon">
-          <ion-icon name="${icon}"></ion-icon>
-        </div>
-        <h4 class="toast__title">${title}</h4>
-        <div class="toast__close">
-          <ion-icon name="close-outline"></ion-icon>
-        </div>
-      </div>
-      <div class="toast__body">
-        <p class="toast__msg">${msg}</p>
-      </div>
-    `
+			<div class="toast__header">
+				<div class="toast__icon">
+					<ion-icon name="${icon}"></ion-icon>
+				</div>
+				<h4 class="toast__title">${title}</h4>
+				<div class="toast__close">
+					<ion-icon name="close-outline"></ion-icon>
+				</div>
+			</div>
+			<div class="toast__body">
+				<p class="toast__msg">${msg}</p>
+			</div>
+		`
     main.appendChild(toast)
   }
 }

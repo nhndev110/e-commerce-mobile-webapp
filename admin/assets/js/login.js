@@ -18,14 +18,13 @@ $('#signin__form').submit(function (e) {
   $('head').append(
     `<style>
       body::after {
-        content: url(./assets/images/logo.gif);
+        content: url(./assets/images/loading-gif.gif);
         position: absolute;
         z-index: 100;
         display: flex;
         justify-content: center;
         align-items: center;
         transform: scale(0.4);
-        filter: drop-shadow(12px 12px 6px #333);
       }
 
       #wrapper::after {
@@ -44,7 +43,7 @@ $('#signin__form').submit(function (e) {
   const passwordInput = $('input[name="password"]').val()
 
   $.ajax({
-    url: './process_login_admin.php',
+    url: './process-login-admin.php',
     type: 'POST',
     data: { email: emailInput, password: passwordInput },
     dataType: 'JSON',

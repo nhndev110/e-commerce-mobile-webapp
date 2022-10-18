@@ -1,4 +1,4 @@
-<?php require "../check_admin_login.php" ?>
+<?php require "../check-admin-login.php" ?>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -6,6 +6,7 @@
 <head>
     <?php require '../../header-tag.php' ?>
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/manufacturers.css">
     <title>Giao Diện Admin</title>
 </head>
 
@@ -24,14 +25,33 @@
             <?php require '../header.php' ?>
             <div id="content" class="container-fluid">
                 <div class="header-content">
-                    <h1 class="title-content">Quản Lý Tất Cả Nhà Sản Xuất</h1>
+                    <h1 class="title-content">Nhà Sản Xuất</h1>
                 </div>
                 <div id="main-content">
-                    <div class="mb-2">
-                        <a title="Thêm" href="../manufacturers/form_insert.php" class="btn btn-outline-dark">
-                            <ion-icon name="add-outline"></ion-icon>
-                            Thêm Mới
-                        </a>
+                    <div class="control">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a title="Thêm" href="../manufacturers/form_insert.php" class="">
+                                        Thêm
+                                    </a>
+                                </li>
+                                <li>
+                                    <a title="Thêm" href="../manufacturers/form_insert.php" class="">
+                                        Thêm
+                                    </a>
+                                </li>
+                                <li>
+                                    <a title="Thêm" href="../manufacturers/form_insert.php" class="">
+                                        Thêm
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="search">
+                            <label for="">Tìm kiếm:</label>
+                            <input type="search">
+                        </div>
                     </div>
                     <div class="table-content">
                         <table class="table table-bordered text-center align-middle overflow-hidden">
