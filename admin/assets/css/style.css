@@ -1,10 +1,16 @@
-@import url('../../../assets/css/style-global.css');
+@import url('../../assets/css/style-global.css');
 @import url('../css/variable.css');
 @import url('../css/header.css');
 @import url('../css/sidebar.css');
 
 html {
   overflow: hidden !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.table {
+  border: 1px solid #000;
+  width: 100%;
 }
 
 #wrapper {
@@ -33,7 +39,7 @@ html {
   transition: margin-left 0.2s ease;
 }
 
-#content {
+#main {
   margin-top: var(--header-height);
   height: calc(100vh - var(--header-height));
   background-color: #f4f6f9;
@@ -41,19 +47,31 @@ html {
   overflow-x: hidden;
 }
 
-#content .header-content {
+#main .header-content {
   height: var(--content-header-height);
   display: flex;
   align-items: center;
 }
 
-.header-content .title-content {
+#title {
   font-size: 24px;
-  margin: 0;
+  margin-top: 16px;
 }
 
-#content #main-content {
+.control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.control__link ul li {
+  display: inline-block;
+}
+
+#content {
   height: var(--main-content-height);
+  margin-top: 16px;
 }
 
 .toast-success {
@@ -71,15 +89,15 @@ html {
   color: #fff;
 }
 
-#content::-webkit-scrollbar-track {
+#main::-webkit-scrollbar-track {
   background-color: #aaa;
 }
 
-#content::-webkit-scrollbar {
+#main::-webkit-scrollbar {
   width: 6px;
 }
 
-#content::-webkit-scrollbar-thumb {
+#main::-webkit-scrollbar-thumb {
   background-color: #333;
   border-radius: 6px;
 }

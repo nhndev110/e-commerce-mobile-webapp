@@ -34,8 +34,8 @@
 .logo-sidebar {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: var(--header-height);
-  padding: 12px 0 12px 16px;
   border-bottom: 1px solid #565e6d;
   border-right: 1px solid #565e6d;
 }
@@ -47,8 +47,8 @@
 .title-logo {
   display: inline-block;
   font-size: 22px;
-  margin: 0;
-  font-weight: 400;
+  padding-left: 8px;
+  font-weight: 500;
 }
 
 /* ======== CONTENT SIDEBAR ======== */
