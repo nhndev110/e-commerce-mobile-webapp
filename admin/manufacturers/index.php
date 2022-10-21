@@ -23,64 +23,74 @@
 			<?php require '../header.php' ?>
 			<main id="main">
 				<div class="container">
-					<h1 id="title">Nhà Sản Xuất</h1>
-					<div class="control">
-						<nav class="control__link">
-							<ul>
-								<li>
-									<a title="Thêm" href="../manufacturers/form_insert.php" class="">Thêm</a>
-								</li>
-								<li>
-									<a title="Thêm" href="../manufacturers/form_insert.php" class="">Thêm</a>
-								</li>
-								<li>
-									<a title="Thêm" href="../manufacturers/form_insert.php" class="">Thêm</a>
-								</li>
-							</ul>
-						</nav>
-						<div class="control__search">
-							<label for="">Tìm kiếm:</label>
-							<input type="search">
-						</div>
+					<div class="content-header">
+						<h1 id="title">Nhà Sản Xuất</h1>
 					</div>
-					<div id="content">
+					<section class="content">
+						<div class="control">
+							<nav class="control__feature">
+								<ul>
+									<li>
+										<div class="control__checkbox">
+											<input type="checkbox" name="" id="">
+										</div>
+									</li>
+									<li>
+										<div class="control__icon">
+											<ion-icon name="reload-outline"></ion-icon>
+										</div>
+									</li>
+									<li>
+										<div class="control__icon">
+											<ion-icon name="add-outline"></ion-icon>
+										</div>
+									</li>
+									<li>
+										<div class="control__icon">
+											<ion-icon name="trash-outline"></ion-icon>
+										</div>
+									</li>
+								</ul>
+							</nav>
+							<div class="control__search">
+								<label for="">Tìm kiếm:</label>
+								<input type="search" name="search">
+							</div>
+						</div>
 						<div class="table-content">
 							<table class="table">
-								<thead>
+								<tr class="row-bg-black">
+									<th>#</th>
+									<th>Mã</th>
+									<th>Tên</th>
+									<th>Địa chỉ</th>
+									<th>SĐT</th>
+									<th>Sửa</th>
+									<th>Xóa</th>
+								</tr>
+								<?php foreach ($result as $each) { ?>
 									<tr>
-										<th>Mã</th>
-										<th>Tên</th>
-										<th>Địa chỉ</th>
-										<th>SĐT</th>
-										<th>Sửa</th>
-										<th>Xóa</th>
+										<td class="col-center"><input type="checkbox" name="" id=""></td>
+										<td class="col-center"><?= $each['id'] ?></td>
+										<td class="col-center"><?= $each['name'] ?></td>
+										<td><?= $each['address'] ?></td>
+										<td class="col-center"><?= $each['phone'] ?></td>
+										<td class="col-center">
+											<a title="Chỉnh Sửa" href="../manufacturers/form_update.php?id=<?= $each['id'] ?>">
+												<ion-icon name="create-outline"></ion-icon>
+											</a>
+										</td>
+										<td class="col-center">
+											<button title="Xóa" data-style="delete-table" data-id="<?= $each['id'] ?>">
+												<ion-icon name="trash-outline"></ion-icon>
+											</button>
+										</td>
 									</tr>
-								</thead>
-								<tbody>
-									<?php foreach ($result as $each) { ?>
-										<tr>
-											<td><?= $each['id'] ?></td>
-											<td><?= $each['name'] ?></td>
-											<td><?= $each['address'] ?></td>
-											<td><?= $each['phone'] ?></td>
-											<td>
-												<a title="Chỉnh Sửa" href="../manufacturers/form_update.php?id=<?= $each['id'] ?>">
-													<ion-icon name="create-outline"></ion-icon>
-												</a>
-											</td>
-											<td>
-												<button title="Xóa" data-style="delete-table" data-id="<?= $each['id'] ?>">
-													<ion-icon name="trash-outline"></ion-icon>
-												</button>
-											</td>
-										</tr>
-									<?php } ?>
-								</tbody>
+								<?php } ?>
 							</table>
 						</div>
-					</div>
+					</section>
 				</div>
-
 			</main>
 		</div>
 	</div>
