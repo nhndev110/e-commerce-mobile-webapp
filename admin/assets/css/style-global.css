@@ -1,4 +1,5 @@
 /* =========== RESET CSS =========== */
+
 html,
 body,
 div,
@@ -123,9 +124,17 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
 a {
   text-decoration: none;
+}
+ion-icon {
+  pointer-events: none !important;
+}
+
+/* ============= CSS GLOBAL ============= */
+
+html {
+  font-family: var(--global-font-text);
 }
 
 .container {

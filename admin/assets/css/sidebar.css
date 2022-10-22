@@ -22,7 +22,7 @@
   border-radius: 50%;
   transition: all 0.2s;
   cursor: pointer;
-  background-color: #212429;
+  background-color: var(--primary-color);
   border: 1px solid #565e6d;
 }
 
@@ -62,12 +62,12 @@
 
 #sidebar::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: #212429;
+  background-color: var(--primary-color);
 }
 
 #sidebar::-webkit-scrollbar {
   width: 4px;
-  background-color: #212429;
+  background-color: var(--primary-color);
 }
 
 #sidebar::-webkit-scrollbar-thumb {

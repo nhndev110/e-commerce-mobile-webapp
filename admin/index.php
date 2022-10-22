@@ -15,7 +15,7 @@ if (!empty($_SESSION['id']) && !empty($_SESSION['name']) && !empty($_SESSION['le
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	<script defer src="https://unpkg.com/jquery@3.6.1/dist/jquery.min.js"></script>
 	<link rel="stylesheet" href="../assets/css/style-global.css">
-	<link rel="stylesheet" href="./assets/css/toast.css">
+	<link rel="stylesheet" href="./assets/css/libary/toast.css">
 	<link rel="stylesheet" href="./assets/css/login.css">
 	<script defer type="module" src="./assets/js/login.js"></script>
 	<title>Đăng Nhập || Admin</title>
