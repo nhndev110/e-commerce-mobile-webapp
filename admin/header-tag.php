@@ -13,7 +13,7 @@
 <meta property="og:url" content="<?= $canonical_path ?>" />
 <meta property="og:title" content="nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng" />
 <meta property="og:description" content="Hệ thống 100 cửa hàng bán lẻ điện thoại, máy tính laptop, smartwatch, smarthome, thiết bị IT, phụ kiện chính hãng - Giá tốt, trả góp 0%, giao miễn phí." />
-<meta property="og:image" content="./assets/img/logo-apple.png" />
+<meta property="og:image" content="../assets/images/logo.png" />
 <meta property="og:image:width" content="307" />
 <meta property="og:image:height" content="307" />
 <meta property="og:image:alt" content="nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng" />
@@ -21,7 +21,8 @@
 <meta property="og:type" content="website" />
 <!--  -->
 <meta rel="canonical" content="<?= $canonical_path ?>" />
-<link rel="icon" type="image/x-icon" href="./assets/img/logo-apple.png" />
+<link rel="icon" type="image/x-icon" href="../assets/images/logo.png" />
 <!--  -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script defer src="https://unpkg.com/jquery@3.6.1/dist/jquery.min.js"></script>

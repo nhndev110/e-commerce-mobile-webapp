@@ -4,7 +4,6 @@
 
 <head>
 	<?php require '../header-tag.php' ?>
-	<link rel="stylesheet" href="../assets/css/style.css">
 	<link rel="stylesheet" href="../assets/css/manufacturers.css">
 	<title>Giao Diện Admin</title>
 </head>
@@ -60,8 +59,8 @@
 						<div class="table-content">
 							<table class="table">
 								<thead>
-									<tr class="row-bg-black">
-										<th>#</th>
+									<tr class="table__thead--bg-primary">
+										<th>Chọn</th>
 										<th>Mã</th>
 										<th>Tên</th>
 										<th>Địa chỉ</th>
@@ -70,37 +69,39 @@
 										<th>Xóa</th>
 									</tr>
 								</thead>
-								<?php foreach ($result as $each) { ?>
-									<tr>
-										<td class="col-center">
-											<label class="table-col" for="table-col-<?= $each['id'] ?>">
-												<input type="checkbox" name="" id="table-col-<?= $each['id'] ?>">
-											</label>
-										</td>
-										<td class="col-center">
-											<?= $each['id'] ?>
-										</td>
-										<td class="col-center">
-											<?= $each['name'] ?>
-										</td>
-										<td class="vertical-align">
-											<?= $each['address'] ?>
-										</td>
-										<td class="col-center">
-											<?= $each['phone'] ?>
-										</td>
-										<td class="col-center">
-											<a title="Chỉnh Sửa" href="../manufacturers/form_update.php?id=<?= $each['id'] ?>">
-												<ion-icon name="create-outline"></ion-icon>
-											</a>
-										</td>
-										<td class="col-center">
-											<button title="Xóa" data-style="delete-table" data-id="<?= $each['id'] ?>">
-												<ion-icon name="trash-outline"></ion-icon>
-											</button>
-										</td>
-									</tr>
-								<?php } ?>
+								<tbody>
+									<?php foreach ($result as $each) { ?>
+										<tr>
+											<td class="table__row--center">
+												<label class="table__col flex-center" for="table-col-<?= $each['id'] ?>">
+													<input type="checkbox" name="" id="table-col-<?= $each['id'] ?>">
+												</label>
+											</td>
+											<td class="table__row--center">
+												<?= $each['id'] ?>
+											</td>
+											<td class="table__row--center">
+												<?= $each['name'] ?>
+											</td>
+											<td class="vertical-align">
+												<?= $each['address'] ?>
+											</td>
+											<td class="table__row--center">
+												<?= $each['phone'] ?>
+											</td>
+											<td class="table__row--center">
+												<a class="table__col flex-center" title="Chỉnh Sửa" href="../manufacturers/form_update.php?id=<?= $each['id'] ?>">
+													<ion-icon name="color-wand"></ion-icon>
+												</a>
+											</td>
+											<td class="table__row--center">
+												<button class="table__col flex-center" title="Xóa" data-style="delete-table" data-id="<?= $each['id'] ?>">
+													<ion-icon name="trash-outline"></ion-icon>
+												</button>
+											</td>
+										</tr>
+									<?php } ?>
+								</tbody>
 							</table>
 						</div>
 					</section>

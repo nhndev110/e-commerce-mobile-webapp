@@ -1,7 +1,7 @@
 <header class="container-fluid">
     <nav class="nav-header container">
         <a href="./index.php" class="logo-header">
-            <img class="img-logo" src="./assets/img/logo-apple.png" alt="nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng" title="nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng">
+            <img class="img-logo" src="./assets/img/logo.png" alt="nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng" title="nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng">
         </a>
         <ul class="nav nav-left">
             <li><a class="set-home" href="./index.php">Trang Chủ</a></li>

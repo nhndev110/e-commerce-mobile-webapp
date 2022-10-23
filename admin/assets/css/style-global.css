@@ -1,5 +1,4 @@
 /* =========== RESET CSS =========== */
-
 html,
 body,
 div,
@@ -130,9 +129,16 @@ a {
 ion-icon {
   pointer-events: none !important;
 }
+button,
+input {
+  border: none;
+  outline: none;
+}
+input {
+  margin: 0;
+}
 
 /* ============= CSS GLOBAL ============= */
-
 html {
   font-family: var(--global-font-text);
 }
@@ -141,6 +147,20 @@ html {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.vertical-align {
+  vertical-align: middle;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ======== ANIMATION ======== */
