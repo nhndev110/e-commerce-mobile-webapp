@@ -4,7 +4,7 @@
 <html lang="vi">
 
 <head>
-    <?php require '../../header-tag.php' ?>
+    <?php require '../header-tag.php' ?>
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>Giao Diện Admin</title>
 </head>
@@ -19,7 +19,7 @@
             <div id="content" class="container-fluid"></div>
         </div>
     </div>
-    <?php require '../../footer-tag.php' ?>
+
     <script type="module" src="../assets/js/index.js"></script>
 </body>
 

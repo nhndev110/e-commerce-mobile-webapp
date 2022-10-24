@@ -5,34 +5,39 @@ export default function Toast({
   type = 'info',
   duration = 3000,
 }) {
-  const main = document.getElementById('toast-container')
-  if (main) {
-    const toast = document.createElement('div')
-    const icons = {
-      success: 'checkmark-circle-outline',
-      info: 'alert-circle-outline',
-      warning: 'information-circle-outline',
-      error: 'alert-circle-outline',
-    }
-    const icon = icons[type]
-    const delay = (duration / 1000).toFixed(2)
+  let main = document.getElementById('toast-container')
+  if (!main) {
+    main = document.createElement('div')
+    main.id = 'toast-container'
 
-    // ======= Auto Remove =======
-    const autoRemoveId = setTimeout(() => {
+    document.body.appendChild(main)
+  }
+  const toast = document.createElement('div')
+  const icons = {
+    success: 'checkmark-circle-outline',
+    info: 'alert-circle-outline',
+    warning: 'information-circle-outline',
+    error: 'alert-circle-outline',
+  }
+  const icon = icons[type]
+  const delay = (duration / 1000).toFixed(2)
+
+  // ======= Auto Remove =======
+  const autoRemoveId = setTimeout(() => {
+    main.removeChild(toast)
+  }, duration + 600)
+
+  // ======= User Remove =======
+  toast.onclick = (e) => {
+    if (e.target.closest('.toast__close')) {
       main.removeChild(toast)
-    }, duration + 600)
-
-    // ======= User Remove =======
-    toast.onclick = (e) => {
-      if (e.target.closest('.toast__close')) {
-        main.removeChild(toast)
-        clearTimeout(autoRemoveId)
-      }
+      clearTimeout(autoRemoveId)
     }
+  }
 
-    toast.classList.add('toast', `toast--${type}`)
-    toast.style.animation = `fadeInRight .3s ease-in-out, fadeOutRight .6s ease-in-out ${delay}s forwards`
-    toast.innerHTML = `
+  toast.classList.add('toast', `toast--${type}`)
+  toast.style.animation = `fadeInRight .3s ease-in-out, fadeOutRight .6s ease-in-out ${delay}s forwards`
+  toast.innerHTML = `
 			<div class="toast__header">
 				<div class="toast__icon">
 					<ion-icon name="${icon}"></ion-icon>
@@ -46,6 +51,5 @@ export default function Toast({
 				<p class="toast__msg">${msg}</p>
 			</div>
 		`
-    main.appendChild(toast)
-  }
+  main.appendChild(toast)
 }

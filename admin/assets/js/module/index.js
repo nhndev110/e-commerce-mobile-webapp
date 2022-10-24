@@ -1,5 +1,4 @@
 'use strict'
-
 import Sidebar from './Sidebar.js'
 import Toast from './Toast.js'
 import SubmitForm from './SubmitForm.js'

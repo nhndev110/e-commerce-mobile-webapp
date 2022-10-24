@@ -2,6 +2,7 @@
   position: fixed;
   top: 22px;
   right: 22px;
+  z-index: 1000;
 }
 
 .toast {

@@ -5,15 +5,17 @@
 <head>
 	<?php require '../header-tag.php' ?>
 	<link rel="stylesheet" href="../assets/css/manufacturers.css">
+	<script defer type="module" src="../assets/js/index.js"></script>
+	<script defer type="module" src="../assets/js/manufacturers.js"></script>
 	<title>Giao Diện Admin</title>
 </head>
 
 <body>
 	<?php
-	require "../connect.php";
-	$sql = "select * from manufacturers";
-	$result = mysqli_query($connect, $sql);
-	?>
+  require "../connect.php";
+  $sql = "select * from manufacturers";
+  $result = mysqli_query($connect, $sql);
+  ?>
 	<div id="wrapper">
 		<div class="sidebar-offcanvas">
 			<?php require '../sidebar.php' ?>
@@ -36,17 +38,17 @@
 									</li>
 									<li>
 										<div title="Thêm" class="control__icon">
-											<ion-icon name="add-circle"></ion-icon>
+											<ion-icon name="create-outline"></ion-icon>
 										</div>
 									</li>
 									<li>
-										<div title="Cập Nhật" class="control__icon">
-											<ion-icon name="sync-circle"></ion-icon>
+										<div title="Tải Lại" class="control__icon">
+											<ion-icon name="reload-outline"></ion-icon>
 										</div>
 									</li>
 									<li>
 										<div title="Xóa Mục Đã Chọn" class="control__icon">
-											<ion-icon name="trash-bin"></ion-icon>
+											<ion-icon name="trash-outline"></ion-icon>
 										</div>
 									</li>
 								</ul>
@@ -71,35 +73,37 @@
 								</thead>
 								<tbody>
 									<?php foreach ($result as $each) { ?>
-										<tr>
-											<td class="table__row--center">
-												<label class="table__col flex-center" for="table-col-<?= $each['id'] ?>">
-													<input type="checkbox" name="" id="table-col-<?= $each['id'] ?>">
-												</label>
-											</td>
-											<td class="table__row--center">
-												<?= $each['id'] ?>
-											</td>
-											<td class="table__row--center">
-												<?= $each['name'] ?>
-											</td>
-											<td class="vertical-align">
-												<?= $each['address'] ?>
-											</td>
-											<td class="table__row--center">
-												<?= $each['phone'] ?>
-											</td>
-											<td class="table__row--center">
-												<a class="table__col flex-center" title="Chỉnh Sửa" href="../manufacturers/form_update.php?id=<?= $each['id'] ?>">
-													<ion-icon name="color-wand"></ion-icon>
-												</a>
-											</td>
-											<td class="table__row--center">
-												<button class="table__col flex-center" title="Xóa" data-style="delete-table" data-id="<?= $each['id'] ?>">
-													<ion-icon name="trash-outline"></ion-icon>
-												</button>
-											</td>
-										</tr>
+									<tr>
+										<td class="table__row--center">
+											<label class="table__col flex-center" for="table-col-<?= $each['id'] ?>">
+												<input type="checkbox" name="" id="table-col-<?= $each['id'] ?>">
+											</label>
+										</td>
+										<td class="table__row--center">
+											<?= $each['id'] ?>
+										</td>
+										<td class="table__row--center">
+											<?= $each['name'] ?>
+										</td>
+										<td class="vertical-align">
+											<?= $each['address'] ?>
+										</td>
+										<td class="table__row--center">
+											<?= $each['phone'] ?>
+										</td>
+										<td class="table__row--center">
+											<a class="table__col flex-center" title="Chỉnh Sửa"
+												href="../manufacturers/form_update.php?id=<?= $each['id'] ?>">
+												<ion-icon name="color-wand"></ion-icon>
+											</a>
+										</td>
+										<td class="table__row--center">
+											<button class="table__col btn-delete flex-center" title="Xóa" data-type="table"
+												data-id="<?= $each['id'] ?>">
+												<ion-icon name="trash-outline"></ion-icon>
+											</button>
+										</td>
+									</tr>
 									<?php } ?>
 								</tbody>
 							</table>
@@ -109,9 +113,6 @@
 			</main>
 		</div>
 	</div>
-
-	<script type="module" src="../assets/js/index.js"></script>
-	<script type="module" src="../assets/js/manufacturers.js"></script>
 </body>
 
 <?php mysqli_close($connect) ?>

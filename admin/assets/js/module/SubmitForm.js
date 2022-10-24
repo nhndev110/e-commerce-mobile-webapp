@@ -1,14 +1,15 @@
 'use strict'
-import { Toast } from './App.js'
+import { Toast } from './index.js'
 
 export default function SubmitForm({
   url = '',
   type = 'POST',
   dataType = 'html',
   data = {},
-  titleSuccess = '',
-  contentSuccess = '',
-  titleError = '',
+  titleSuccess = 'Thành Công',
+  contentSuccess = '...',
+  titleError = 'Thất Bại',
+  contentError = '...',
   contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
   processData = true,
   fn = () => {},
@@ -46,8 +47,13 @@ export default function SubmitForm({
         })
       }
     },
-    error() {
-      console.log('error: SubmitForm')
+    error(xhr) {
+      Toast({
+        title: xhr.statusText,
+        type: 'error',
+        msg: xhr.responseText,
+        duration: 5000,
+      })
     },
   })
 }

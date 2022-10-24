@@ -1,4 +1,4 @@
-"use strict";
-import { Sidebar } from "./module/App.js";
+'use strict'
+import { Sidebar } from './module/index.js'
 
-Sidebar();
+Sidebar()

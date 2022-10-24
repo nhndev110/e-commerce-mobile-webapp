@@ -24,7 +24,7 @@ $('#signin__form').submit(function (e) {
         display: flex;
         justify-content: center;
         align-items: center;
-        transform: scale(0.4);
+        transform: scale(0.2);
       }
 
       #wrapper::after {

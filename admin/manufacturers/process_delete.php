@@ -1,5 +1,5 @@
 <?php
-require "../check_super_admin_login.php";
+require "../check-super-admin-login.php";
 
 $id = $_POST['id'];
 
