@@ -54,8 +54,7 @@
 								</ul>
 							</nav>
 							<div class="control__search">
-								<label for="">Tìm kiếm:</label>
-								<input type="search" name="search">
+								<input type="search" name="search" placeholder="Tìm kiếm">
 							</div>
 						</div>
 						<div class="table-content">
@@ -76,7 +75,7 @@
 									<tr>
 										<td class="table__row--center">
 											<label class="table__col flex-center" for="table-col-<?= $each['id'] ?>">
-												<input type="checkbox" name="" id="table-col-<?= $each['id'] ?>">
+												<input type="checkbox" name="" class="table__col--checkbox" id="table-col-<?= $each['id'] ?>">
 											</label>
 										</td>
 										<td class="table__row--center">

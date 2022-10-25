@@ -1,6 +1,20 @@
 'use strict'
 import { SubmitForm } from './module/index.js'
 
+const controlCheckbox = document.querySelector('#control__checkbox--all')
+const checkboxCol = document.querySelectorAll('.table__col--checkbox')
+
+// Checkbox All Checked
+controlCheckbox.onchange = (e) =>
+  checkboxCol.forEach((e) => (e.checked = controlCheckbox.checked))
+
+checkboxCol.forEach((e) => {
+  _this = this
+  e.onchange = (e) => {
+    _this.forEach((e) => {})
+  }
+})
+
 $(function () {})
 
 $('.btn-submit').on('click', function (e) {

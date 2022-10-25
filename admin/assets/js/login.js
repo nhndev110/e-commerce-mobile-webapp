@@ -1,5 +1,5 @@
 'use strict'
-import { Toast } from './module/App.js'
+import { Toast } from './module/index.js'
 
 const nodeInput = document.querySelectorAll('.form__input')
 nodeInput.forEach((item) => {
@@ -11,6 +11,8 @@ nodeInput.forEach((item) => {
     }
   })
 })
+
+$(function () {})
 
 $('#signin__form').submit(function (e) {
   e.preventDefault()
@@ -70,5 +72,3 @@ $('#signin__form').submit(function (e) {
     },
   })
 })
-
-$(function () {})
