@@ -47,7 +47,7 @@
 										</div>
 									</li>
 									<li>
-										<div title="Xóa Mục Đã Chọn" class="control__icon">
+										<div title="Xóa Mục Đã Chọn" class="control__icon btn-delete" data-type="control">
 											<ion-icon name="trash-outline"></ion-icon>
 										</div>
 									</li>

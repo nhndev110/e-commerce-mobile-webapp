@@ -2,16 +2,26 @@
 import { SubmitForm } from './module/index.js'
 
 const controlCheckbox = document.querySelector('#control__checkbox--all')
-const checkboxCol = document.querySelectorAll('.table__col--checkbox')
+const checkboxCols = document.querySelectorAll('.table__col--checkbox')
 
 // Checkbox All Checked
 controlCheckbox.onchange = (e) =>
-  checkboxCol.forEach((e) => (e.checked = controlCheckbox.checked))
+  checkboxCols.forEach((e) => (e.checked = controlCheckbox.checked))
 
-checkboxCol.forEach((e) => {
-  _this = this
-  e.onchange = (e) => {
-    _this.forEach((e) => {})
+// Checkbox only one Checked
+checkboxCols.forEach((checkbox) => {
+  checkbox.onchange = () => {
+    let i = 0
+    while (checkboxCols[i]) {
+      if (checkboxCols[i].checked === false) {
+        controlCheckbox.checked = false
+        break
+      }
+      ++i
+    }
+    if (i === checkboxCols.length) {
+      controlCheckbox.checked = true
+    }
   }
 })
 
@@ -37,8 +47,8 @@ $('.btn-submit').on('click', function (e) {
 
 $('.btn-delete').on('click', function () {
   const btnType = $(this).data('type')
-  const btnId = $(this).data('id')
   if (btnType === 'form') {
+    const btnId = $(this).data('id')
     SubmitForm({
       url: '../manufacturers/process_delete.php',
       data: { id: btnId },
@@ -47,6 +57,7 @@ $('.btn-delete').on('click', function () {
       contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
     })
   } else if (btnType === 'table') {
+    const btnId = $(this).data('id')
     let isSuccess = (check) => {
       if (check === 1) {
         $(this).closest('tr').fadeOut()
@@ -61,5 +72,15 @@ $('.btn-delete').on('click', function () {
       contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
       fn: isSuccess,
     })
+  } else if (btnType === 'control') {
+    // const btnIds =
+    // SubmitForm({
+    //   url: '../manufacturers/process_delete.php',
+    //   data: { id: btnIds },
+    //   titleError: 'Thất Bại',
+    //   titleSuccess: 'Thành Công',
+    //   contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
+    //   fn: isSuccess,
+    // })
   }
 })
