@@ -8,7 +8,7 @@ export default function Loading({ urlImg }) {
     bottom: 0,
     left: 0,
     "z-index": 1000,
-    "background-color": "rgba(136, 136, 136, 0.507)",
+    "background-color": "rgba(0, 0, 0, 0.6)",
     "background-image": `url(${urlImg})`,
     "background-repeat": "no-repeat",
     "background-position": "center",
