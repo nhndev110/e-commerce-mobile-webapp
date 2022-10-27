@@ -5,7 +5,7 @@
 <head>
 	<?php require '../header-tag.php' ?>
 	<link rel="stylesheet" href="../assets/css/manufacturers.css">
-	<script defer type="module" src="../assets/js/index.js"></script>
+	<script defer type="module" src="../assets/js/App.js"></script>
 	<script defer type="module" src="../assets/js/manufacturers.js"></script>
 	<title>Giao Diện Admin</title>
 </head>
@@ -75,7 +75,8 @@
 									<tr>
 										<td class="table__row--center">
 											<label class="table__col flex-center" for="table-col-<?= $each['id'] ?>">
-												<input type="checkbox" name="" class="table__col--checkbox" id="table-col-<?= $each['id'] ?>">
+												<input data-id=<?= $each['id'] ?> type="checkbox" name="" class="table__col--checkbox"
+												id="table-col-<?= $each['id'] ?>">
 											</label>
 										</td>
 										<td class="table__row--center">

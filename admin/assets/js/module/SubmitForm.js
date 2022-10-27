@@ -1,16 +1,16 @@
-'use strict'
-import { Toast } from './index.js'
+"use strict";
+import { Toast } from "./index.js";
 
 export default function SubmitForm({
-  url = '',
-  type = 'POST',
-  dataType = 'html',
+  url = "",
+  type = "POST",
+  dataType = "html",
   data = {},
-  titleSuccess = 'Thành Công',
-  contentSuccess = '...',
-  titleError = 'Thất Bại',
-  contentError = '...',
-  contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
+  titleSuccess = "Thành Công",
+  contentSuccess = "...",
+  titleError = "Thất Bại",
+  contentError = "...",
+  contentType = "application/x-www-form-urlencoded; charset=UTF-8",
   processData = true,
   fn = () => {},
 }) {
@@ -22,38 +22,39 @@ export default function SubmitForm({
     contentType,
     processData,
     success(response) {
+      console.log(data);
       if (response == 1) {
         Toast({
           title: titleSuccess,
-          type: 'success',
+          type: "success",
           msg: contentSuccess,
           duration: 3000,
-        })
-        fn(1)
+        });
+        fn(1);
       } else if (response == 2) {
         Toast({
           title: titleSuccess,
-          type: 'success',
+          type: "success",
           msg: contentSuccess,
           duration: 3000,
-        })
-        fn(2)
+        });
+        fn(2);
       } else {
         Toast({
           title: titleError,
-          type: 'error',
+          type: "error",
           msg: response,
           duration: 5000,
-        })
+        });
       }
     },
     error(xhr) {
       Toast({
         title: xhr.statusText,
-        type: 'error',
+        type: "error",
         msg: xhr.responseText,
         duration: 5000,
-      })
+      });
     },
-  })
+  });
 }

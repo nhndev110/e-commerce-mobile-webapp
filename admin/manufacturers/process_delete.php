@@ -1,21 +1,19 @@
 <?php
 require "../check-super-admin-login.php";
 
-$id = $_POST['id'];
-echo json_encode($id);
-die();
+if (gettype($_POST['id']) === "array")
+	$ids = $_POST['id'];
+elseif (gettype($_POST['id']) === "string")
+	$ids = array($_POST['id']);
 
 require "../connect.php";
-// foreach ($variable as $key => $value) {
-//     # code...
-// }
-$sql = "delete from manufacturers
-where id = '$id'";
+$sql = "DELETE FROM manufacturers
+	WHERE id IN (" . implode(",", $ids) . ")";
 mysqli_query($connect, $sql);
 
 $error = mysqli_error($connect);
 if (empty($error)) {
-    echo 1;
+	echo 1;
 } else {
-    echo $error;
+	echo $error;
 }
