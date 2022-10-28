@@ -76,7 +76,7 @@ $('.btn-delete').on('click', function () {
     }
     SubmitForm({
       url: '../manufacturers/process_delete.php',
-      data: { id: btnId },
+      // data: { id: btnId },
       titleError: 'Thất Bại',
       titleSuccess: 'Thành Công',
       contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',

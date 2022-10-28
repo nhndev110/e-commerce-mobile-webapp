@@ -135,8 +135,12 @@ input {
   outline: none;
   cursor: pointer;
 }
-input {
+button {
+  cursor: pointer;
+}
+input[type*='search'] {
   margin: 0;
+  cursor: text;
 }
 
 /* ============= CSS GLOBAL ============= */

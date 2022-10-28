@@ -22,7 +22,8 @@ export default function SubmitForm({
     contentType,
     processData,
     success(response) {
-      if (response == 1) {
+      response = JSON.parse(response)
+      if (response.status == 200) {
         Toast({
           title: titleSuccess,
           type: 'success',
