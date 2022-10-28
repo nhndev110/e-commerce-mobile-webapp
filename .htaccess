@@ -1,1 +1,10 @@
+# RewriteEngine On
+
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# RewriteBase /
+# RewriteCond %{HTTP_HOST} !^nhndev110.epizy.com$ [NC]
+# RewriteRule ^(.*)$ http://nhndev110.epizy.com/$1 [L,R=301]
+
 Options -Indexes
