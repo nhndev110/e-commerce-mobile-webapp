@@ -7,7 +7,7 @@ export default function SubmitForm({
   data = {},
   contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
   processData = true,
-  fn = () => {},
+  handleData = () => {},
 }) {
   $.ajax({
     url,
@@ -18,36 +18,10 @@ export default function SubmitForm({
     processData,
     success(response) {
       response = JSON.parse(response)
-      if (response.status === 200) {
-        fn({
-          title: 'Thành Công',
-          msg: response.message,
-          type: response.statusTest,
-          duration: 3000,
-        })
-      } else if (response.status === 400) {
-        // Toast({
-        //   title: titleError,
-        //   type: response.statusTest,
-        //   msg: response.message,
-        //   duration: 3000,
-        // })
-      } else if (response.status === 500) {
-        // Toast({
-        //   title: titleError,
-        //   type: response.statusTest,
-        //   msg: response.message,
-        //   duration: 3000,
-        // })
-      }
+      handleData(response)
     },
     error(xhr) {
-      // Toast({
-      //   title: xhr.statusText,
-      //   type: 'error',
-      //   msg: xhr.responseText,
-      //   duration: 5000,
-      // })
+      handleData(xhr)
     },
   })
 }

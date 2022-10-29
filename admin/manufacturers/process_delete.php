@@ -21,15 +21,12 @@ try {
 
 
 	echo json_encode([
-		"status" => 200,
-		"statusTest" => "success",
+		"statusCode" => 200,
 		"message" => "Bạn đã xóa " . count($ids),
-		"check" => $ids,
 	]);
 } catch (Exception $e) {
 	echo json_encode([
-		"status" => $e->getCode(),
-		"statusTest" => "error",
+		"statusCode" => $e->getCode(),
 		"message" => $e->getMessage(),
 	]);
 }

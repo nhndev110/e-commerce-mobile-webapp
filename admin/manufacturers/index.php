@@ -42,7 +42,7 @@
 										</div>
 									</li>
 									<li>
-										<div title="Tải Lại" class="control__icon">
+										<div title="Tải Lại" class="control__icon btn-reload" data-type="control">
 											<ion-icon name="reload-outline"></ion-icon>
 										</div>
 									</li>
