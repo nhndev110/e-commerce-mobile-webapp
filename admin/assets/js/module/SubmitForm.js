@@ -1,15 +1,10 @@
 'use strict'
-import { Toast } from './index.js'
 
 export default function SubmitForm({
   url = '',
   type = 'POST',
   dataType = 'html',
   data = {},
-  titleSuccess = 'Thành Công',
-  contentSuccess = '...',
-  titleError = 'Thất Bại',
-  contentError = '...',
   contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
   processData = true,
   fn = () => {},
@@ -18,43 +13,41 @@ export default function SubmitForm({
     url,
     type,
     dataType,
-    data: data,
+    data,
     contentType,
     processData,
     success(response) {
       response = JSON.parse(response)
-      if (response.status == 200) {
-        Toast({
-          title: titleSuccess,
-          type: 'success',
-          msg: contentSuccess,
+      if (response.status === 200) {
+        fn({
+          title: 'Thành Công',
+          msg: response.message,
+          type: response.statusTest,
           duration: 3000,
         })
-        fn(1)
-      } else if (response == 2) {
-        Toast({
-          title: titleSuccess,
-          type: 'success',
-          msg: contentSuccess,
-          duration: 3000,
-        })
-        fn(2)
-      } else {
-        Toast({
-          title: titleError,
-          type: 'error',
-          msg: response,
-          duration: 5000,
-        })
+      } else if (response.status === 400) {
+        // Toast({
+        //   title: titleError,
+        //   type: response.statusTest,
+        //   msg: response.message,
+        //   duration: 3000,
+        // })
+      } else if (response.status === 500) {
+        // Toast({
+        //   title: titleError,
+        //   type: response.statusTest,
+        //   msg: response.message,
+        //   duration: 3000,
+        // })
       }
     },
     error(xhr) {
-      Toast({
-        title: xhr.statusText,
-        type: 'error',
-        msg: xhr.responseText,
-        duration: 5000,
-      })
+      // Toast({
+      //   title: xhr.statusText,
+      //   type: 'error',
+      //   msg: xhr.responseText,
+      //   duration: 5000,
+      // })
     },
   })
 }
