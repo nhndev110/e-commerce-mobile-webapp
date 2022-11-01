@@ -6,6 +6,7 @@ export default function SubmitForm({
   dataType = 'html',
   data = {},
   contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
+  cache = false,
   processData = true,
   handleData = () => {},
 }) {
@@ -14,6 +15,7 @@ export default function SubmitForm({
     type,
     dataType,
     data,
+    cache,
     contentType,
     processData,
     success(response) {

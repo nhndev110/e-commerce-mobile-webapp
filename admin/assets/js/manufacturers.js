@@ -31,6 +31,14 @@ const App = {
     })
 
     $('.btn-reload').onclick = function () {
+      Loading(
+        'table tbody',
+        '../assets/images/loading2.gif',
+        'white',
+        '200px',
+        'center 0'
+      )
+
       _this.render()
     }
 
@@ -159,14 +167,6 @@ const App = {
     })
   },
   render: function () {
-    Loading(
-      '.table tbody',
-      '../assets/images/loading2.gif',
-      'white',
-      '200px',
-      'center 0'
-    )
-
     const handleRender = data => {
       if (data.statusCode === 200) {
         const rowsData = data.data
@@ -209,14 +209,26 @@ const App = {
               </td>
             </tr>`
         })
-        $('tbody').innerHTML = htmlRows.join('')
+
+        let nodetbody = $('tbody')
+        !nodetbody && (nodetbody = document.createElement('tbody'))
+        nodetbody.innerHTML = htmlRows.join('')
+        $('table').appendChild(nodetbody)
+        $('.loading') && $('.loading').remove()
       }
-      $('.loading') && $('.loading').remove()
     }
 
     SubmitForm({ url: './process-reload.php', handleData: handleRender })
   },
   start: function () {
+    Loading(
+      'body',
+      '../assets/images/loading3.gif',
+      'blue',
+      '400px',
+      'center',
+      'none'
+    )
     this.render()
     this.handleEvent()
   },

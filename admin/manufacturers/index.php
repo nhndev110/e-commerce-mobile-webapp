@@ -70,7 +70,6 @@
 										<th>Xóa</th>
 									</tr>
 								</thead>
-								<tbody></tbody>
 							</table>
 						</div>
 					</section>
