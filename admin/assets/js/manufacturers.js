@@ -4,31 +4,96 @@ import { SubmitForm, Loading, Toast } from './module/index.js'
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
-const controlCheckbox = $('#control__checkbox--all')
-const checkboxRows = [...$$('.table__col--checkbox')]
+let controlCheckbox = null
+let checkboxRows = []
 
 const App = {
+  render: function () {
+    const handleRender = data => {
+      if (data.statusCode === 200) {
+        const rowsData = data.data
+        const htmlRows = rowsData.map(row => {
+          return `
+            <tr>
+              <td class="table__row--center">
+                <label class="table__col flex-center" for="table-col-${row['id']}">
+                  <input
+                    data-id=${row['id']}
+                    type="checkbox"
+                    name=""
+                    class="table__col--checkbox"
+                    id="table-col-${row['id']}"
+                  >
+                </label>
+              </td>
+              <td class="table__row--center">${row['id']}</td>
+              <td class="table__row--center">${row['name']}</td>
+              <td class="vertical-align">${row['address']}</td>
+              <td class="table__row--center">${row['phone']}</td>
+              <td class="table__row--center">
+                <a
+                  class="table__col flex-center"
+                  title="Chỉnh Sửa"
+                  href="../manufacturers/form_update.php?id=${row['id']}"
+                >
+                  <ion-icon name="color-wand"></ion-icon>
+                </a>
+              </td>
+              <td class="table__row--center">
+                <button
+                  class="table__col btn-delete flex-center"
+                  title="Xóa"
+                  data-type="table"
+                  data-id="${row['id']}"
+                >
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </td>
+            </tr>`
+        })
+
+        let nodetbody = $('tbody')
+        !nodetbody && (nodetbody = document.createElement('tbody'))
+        nodetbody.innerHTML = htmlRows.join('')
+        $('table').appendChild(nodetbody)
+
+        $('.loading') && $('.loading').remove()
+      }
+    }
+
+    SubmitForm({ url: './process-reload.php', handleData: handleRender })
+  },
   handleEvent: function () {
     const _this = this
+    let controlCheckbox = $('#control__checkbox--all')
+    let checkboxRows = [...$$('.table__col--checkbox')]
 
     // Checkbox All Checked
     controlCheckbox.onchange = () =>
       checkboxRows.forEach(e => (e.checked = controlCheckbox.checked))
 
     // Checkbox only one Checked
-    checkboxRows.forEach(checkboxRow => {
-      checkboxRow.onchange = () => {
-        let i = 0
-        while (checkboxRows[i]) {
-          if (checkboxRows[i].checked === false) {
-            controlCheckbox.checked = false
-            break
-          }
-          ++i
-        }
-        i === checkboxRows.length && (controlCheckbox.checked = true)
-      }
+    console.log(checkboxRows)
+    checkboxRows.forEach(element => {
+      console.log(element)
+      // element.onclick = function (e) {
+      //   console.log(e.target)
+      // }
     })
+
+    // checkboxRows.forEach(checkboxRow => {
+    //   checkboxRow.onchange = () => {
+    //     let i = 0
+    //     while (checkboxRows[i]) {
+    //       if (checkboxRows[i].checked === false) {
+    //         controlCheckbox.checked = false
+    //         break
+    //       }
+    //       ++i
+    //     }
+    //     i === checkboxRows.length && (controlCheckbox.checked = true)
+    //   }
+    // })
 
     $('.btn-reload').onclick = function () {
       Loading(
@@ -165,60 +230,6 @@ const App = {
         }
       }
     })
-  },
-  render: function () {
-    const handleRender = data => {
-      if (data.statusCode === 200) {
-        const rowsData = data.data
-        const htmlRows = rowsData.map(row => {
-          return `
-            <tr>
-              <td class="table__row--center">
-                <label class="table__col flex-center" for="table-col-${row['id']}">
-                  <input
-                    data-id=${row['id']}
-                    type="checkbox"
-                    name=""
-                    class="table__col--checkbox"
-                    id="table-col-${row['id']}"
-                  >
-                </label>
-              </td>
-              <td class="table__row--center">${row['id']}</td>
-              <td class="table__row--center">${row['name']}</td>
-              <td class="vertical-align">${row['address']}</td>
-              <td class="table__row--center">${row['phone']}</td>
-              <td class="table__row--center">
-                <a
-                  class="table__col flex-center"
-                  title="Chỉnh Sửa"
-                  href="../manufacturers/form_update.php?id=${row['id']}"
-                >
-                  <ion-icon name="color-wand"></ion-icon>
-                </a>
-              </td>
-              <td class="table__row--center">
-                <button
-                  class="table__col btn-delete flex-center"
-                  title="Xóa"
-                  data-type="table"
-                  data-id="${row['id']}"
-                >
-                  <ion-icon name="trash-outline"></ion-icon>
-                </button>
-              </td>
-            </tr>`
-        })
-
-        let nodetbody = $('tbody')
-        !nodetbody && (nodetbody = document.createElement('tbody'))
-        nodetbody.innerHTML = htmlRows.join('')
-        $('table').appendChild(nodetbody)
-        $('.loading') && $('.loading').remove()
-      }
-    }
-
-    SubmitForm({ url: './process-reload.php', handleData: handleRender })
   },
   start: function () {
     Loading(
