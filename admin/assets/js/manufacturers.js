@@ -4,111 +4,80 @@ import { SubmitForm, Loading, Toast } from './module/index.js'
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
-let controlCheckbox = null
-let checkboxRows = []
+const controlCheckbox = $('#control__checkbox--all')
+// let checkboxRows = [...$$('.table__col--checkbox')]
 
 const App = {
-  render: function () {
-    const handleRender = data => {
-      if (data.statusCode === 200) {
-        const rowsData = data.data
-        const htmlRows = rowsData.map(row => {
-          return `
-            <tr>
-              <td class="table__row--center">
-                <label class="table__col flex-center" for="table-col-${row['id']}">
-                  <input
-                    data-id=${row['id']}
-                    type="checkbox"
-                    name=""
-                    class="table__col--checkbox"
-                    id="table-col-${row['id']}"
-                  >
-                </label>
-              </td>
-              <td class="table__row--center">${row['id']}</td>
-              <td class="table__row--center">${row['name']}</td>
-              <td class="vertical-align">${row['address']}</td>
-              <td class="table__row--center">${row['phone']}</td>
-              <td class="table__row--center">
-                <a
-                  class="table__col flex-center"
-                  title="Chỉnh Sửa"
-                  href="../manufacturers/form_update.php?id=${row['id']}"
+  render: function (response) {
+    if (response.statusCode === 200) {
+      const htmlRows = response.data.map(row => {
+        return `
+          <tr>
+            <td class="table__row--center">
+              <label class="table__col flex-center" for="table-col-${row['id']}">
+                <input
+                  data-id=${row['id']}
+                  type="checkbox"
+                  name=""
+                  class="table__col--checkbox"
+                  id="table-col-${row['id']}"
                 >
-                  <ion-icon name="color-wand"></ion-icon>
-                </a>
-              </td>
-              <td class="table__row--center">
-                <button
-                  class="table__col btn-delete flex-center"
-                  title="Xóa"
-                  data-type="table"
-                  data-id="${row['id']}"
-                >
-                  <ion-icon name="trash-outline"></ion-icon>
-                </button>
-              </td>
-            </tr>`
-        })
-
-        let nodetbody = $('tbody')
-        !nodetbody && (nodetbody = document.createElement('tbody'))
-        nodetbody.innerHTML = htmlRows.join('')
-        $('table').appendChild(nodetbody)
-
-        $('.loading') && $('.loading').remove()
-      }
+              </label>
+            </td>
+            <td class="table__row--center">${row['id']}</td>
+            <td class="table__row--center">${row['name']}</td>
+            <td class="vertical-align">${row['address']}</td>
+            <td class="table__row--center">${row['phone']}</td>
+            <td class="table__row--center">
+              <a
+                class="table__col flex-center"
+                title="Chỉnh Sửa"
+                href="../manufacturers/form_update.php?id=${row['id']}"
+              >
+                <ion-icon name="color-wand"></ion-icon>
+              </a>
+            </td>
+            <td class="table__row--center">
+              <button
+                class="table__col btn-delete flex-center"
+                title="Xóa"
+                data-type="table"
+                data-id="${row['id']}"
+              >
+                <ion-icon name="trash-outline"></ion-icon>
+              </button>
+            </td>
+          </tr>`
+      })
+      $('tbody').innerHTML = htmlRows.join('')
+      this.handleEventAgain()
     }
-
-    SubmitForm({ url: './process-reload.php', handleData: handleRender })
   },
-  handleEvent: function () {
+  handleEventAgain: function () {
     const _this = this
-    let controlCheckbox = $('#control__checkbox--all')
+    // xóa rồi vẫn còn giữ nguyên số lượng
     let checkboxRows = [...$$('.table__col--checkbox')]
-
+    console.log(checkboxRows.length)
     // Checkbox All Checked
-    controlCheckbox.onchange = () =>
+    controlCheckbox.onchange = () => {
       checkboxRows.forEach(e => (e.checked = controlCheckbox.checked))
+    }
 
     // Checkbox only one Checked
-    console.log(checkboxRows)
     checkboxRows.forEach(element => {
-      console.log(element)
-      // element.onclick = function (e) {
-      //   console.log(e.target)
-      // }
+      element.onchange = e => {
+        let cntTrue = 0
+        checkboxRows.forEach(element => element.checked && ++cntTrue)
+        console.log('cnt:', cntTrue, 'length:', checkboxRows.length)
+        cntTrue == checkboxRows.length
+          ? (controlCheckbox.checked = true)
+          : (controlCheckbox.checked = false)
+      }
     })
-
-    // checkboxRows.forEach(checkboxRow => {
-    //   checkboxRow.onchange = () => {
-    //     let i = 0
-    //     while (checkboxRows[i]) {
-    //       if (checkboxRows[i].checked === false) {
-    //         controlCheckbox.checked = false
-    //         break
-    //       }
-    //       ++i
-    //     }
-    //     i === checkboxRows.length && (controlCheckbox.checked = true)
-    //   }
-    // })
-
-    $('.btn-reload').onclick = function () {
-      Loading(
-        'table tbody',
-        '../assets/images/loading2.gif',
-        'white',
-        '200px',
-        'center 0'
-      )
-
-      _this.render()
-    }
 
     $$('.btn-delete').forEach(element => {
       element.onclick = function () {
+        _this.handleEventAgain()
         const btnType = this.dataset.type
 
         if (btnType === 'form') {
@@ -231,16 +200,30 @@ const App = {
       }
     })
   },
+  handleEvent: function () {
+    this.handleEventAgain()
+
+    const _this = this
+
+    $('.btn-reload').onclick = function () {
+      Loading(
+        'table tbody',
+        '../assets/images/loading2.gif',
+        'white',
+        '200px',
+        'center 0'
+      )
+
+      const handleReload = data => {
+        _this.render(data)
+        controlCheckbox.checked = false
+        $('.loading') && $('.loading').remove()
+      }
+
+      SubmitForm({ url: './process-reload.php', handleData: handleReload })
+    }
+  },
   start: function () {
-    Loading(
-      'body',
-      '../assets/images/loading3.gif',
-      'blue',
-      '400px',
-      'center',
-      'none'
-    )
-    this.render()
     this.handleEvent()
   },
 }
