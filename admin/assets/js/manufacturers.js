@@ -5,7 +5,7 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 const controlCheckbox = $('#control__checkbox--all')
-// let checkboxRows = [...$$('.table__col--checkbox')]
+let checkboxRows = [...$$('.table__col--checkbox')]
 
 const App = {
   render: function (response) {
@@ -55,20 +55,53 @@ const App = {
   },
   handleEventAgain: function () {
     const _this = this
-    // xóa rồi vẫn còn giữ nguyên số lượng
-    let checkboxRows = [...$$('.table__col--checkbox')]
-    console.log(checkboxRows.length)
+    checkboxRows = [...$$('.table__col--checkbox')]
+
+    let checkboxCheckeds = {
+      ids: [],
+      elements: [],
+    }
+
     // Checkbox All Checked
-    controlCheckbox.onchange = () => {
-      checkboxRows.forEach(e => (e.checked = controlCheckbox.checked))
+    controlCheckbox.onchange = function () {
+      const _this = this
+      checkboxRows.forEach(element => {
+        element.checked = _this.checked
+
+        let idIdx = checkboxCheckeds.ids.indexOf(element.dataset.id)
+        let elementIdx = checkboxCheckeds.elements.indexOf(
+          element.closest('tr')
+        )
+        if (_this.checked === true) {
+          if (idIdx == -1 && elementIdx == -1) {
+            checkboxCheckeds.elements.push(element.closest('tr'))
+            checkboxCheckeds.ids.push(element.dataset.id)
+          }
+        } else {
+          checkboxCheckeds.elements.shift()
+          checkboxCheckeds.ids.shift()
+        }
+      })
     }
 
     // Checkbox only one Checked
     checkboxRows.forEach(element => {
       element.onchange = e => {
+        const _this = e.target
+        if (_this.checked === true) {
+          checkboxCheckeds.elements.push(_this.closest('tr'))
+          checkboxCheckeds.ids.push(_this.dataset.id)
+        } else {
+          let idIdx = checkboxCheckeds.ids.indexOf(_this.dataset.id)
+          let elementIdx = checkboxCheckeds.elements.indexOf(
+            _this.closest('tr')
+          )
+          checkboxCheckeds.ids.splice(idIdx, 1)
+          checkboxCheckeds.elements.splice(elementIdx, 1)
+        }
+
         let cntTrue = 0
         checkboxRows.forEach(element => element.checked && ++cntTrue)
-        console.log('cnt:', cntTrue, 'length:', checkboxRows.length)
         cntTrue == checkboxRows.length
           ? (controlCheckbox.checked = true)
           : (controlCheckbox.checked = false)
@@ -77,7 +110,6 @@ const App = {
 
     $$('.btn-delete').forEach(element => {
       element.onclick = function () {
-        _this.handleEventAgain()
         const btnType = this.dataset.type
 
         if (btnType === 'form') {
@@ -107,6 +139,7 @@ const App = {
                 duration: 3000,
               })
               this.closest('tr').remove()
+              _this.handleEventAgain()
             } else if (data.statusCode === 400) {
               Toast({
                 title: 'Lỗi',
@@ -147,16 +180,6 @@ const App = {
             'center 0'
           )
 
-          const checkboxRows = [...$$('.table__col--checkbox')]
-          let checkboxIds = []
-          let elementsChecker = []
-          checkboxRows.forEach(element => {
-            if (element.checked) {
-              elementsChecker.push(element.closest('tr'))
-              checkboxIds.push(element.dataset.id)
-            }
-          })
-
           const handleDelete = data => {
             if (data.statusCode === 200) {
               Toast({
@@ -165,7 +188,11 @@ const App = {
                 type: 'success',
                 duration: 3000,
               })
-              elementsChecker.forEach(e => e.remove())
+
+              checkboxCheckeds.elements.forEach(element => {
+                element.remove()
+              })
+              _this.handleEventAgain()
             } else if (data.statusCode === 400) {
               Toast({
                 title: 'Lỗi',
@@ -193,7 +220,7 @@ const App = {
 
           SubmitForm({
             url: '../manufacturers/process_delete.php',
-            data: { id: checkboxIds },
+            data: { id: checkboxCheckeds.ids },
             handleData: handleDelete,
           })
         }
@@ -207,7 +234,7 @@ const App = {
 
     $('.btn-reload').onclick = function () {
       Loading(
-        'table tbody',
+        '.table',
         '../assets/images/loading2.gif',
         'white',
         '200px',

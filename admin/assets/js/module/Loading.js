@@ -39,11 +39,7 @@ export default function Loading(
     bottom: 0,
     left: 0,
     zIndex: 1000,
-    backgroundColor: listBackground[backgroundColor],
-    backgroundImage: `url(${urlImg})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: backgroundPosition,
-    backgroundSize: backgroundSize,
+    background: `${listBackground[backgroundColor]} url(${urlImg}) no-repeat ${backgroundPosition} / ${backgroundSize}`,
     borderRadius: borderRadius,
   })
 
