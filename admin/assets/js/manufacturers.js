@@ -110,6 +110,14 @@ const App = {
 
     $$('.btn-delete').forEach(element => {
       element.onclick = function () {
+        Loading(
+          '.table tbody',
+          '../assets/images/loading2.gif',
+          'white',
+          '200px',
+          'center 0'
+        )
+
         const btnType = this.dataset.type
 
         if (btnType === 'form') {
@@ -122,14 +130,6 @@ const App = {
             contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
           })
         } else if (btnType === 'table') {
-          Loading(
-            '.table tbody',
-            '../assets/images/loading2.gif',
-            'white',
-            '200px',
-            'center 0'
-          )
-
           const handleDelete = data => {
             if (data.statusCode === 200) {
               Toast({
@@ -172,14 +172,6 @@ const App = {
             handleData: handleDelete,
           })
         } else if (btnType === 'control') {
-          Loading(
-            '.table tbody',
-            '../assets/images/loading2.gif',
-            'white',
-            '200px',
-            'center 0'
-          )
-
           const handleDelete = data => {
             if (data.statusCode === 200) {
               Toast({

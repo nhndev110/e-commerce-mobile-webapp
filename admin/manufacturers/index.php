@@ -37,19 +37,19 @@
 										</label>
 									</li>
 									<li>
-										<div title="Thêm" class="control__icon">
+										<button title="Thêm" class="control__icon">
 											<ion-icon name="create-outline"></ion-icon>
-										</div>
+										</button>
 									</li>
 									<li>
-										<div title="Tải Lại" class="control__icon btn-reload" data-type="control">
+										<button title="Tải Lại" class="control__icon btn-reload" data-type="control">
 											<ion-icon name="reload-outline"></ion-icon>
-										</div>
+										</button>
 									</li>
 									<li>
-										<div title="Xóa Mục Đã Chọn" class="control__icon btn-delete" data-type="control">
+										<button title="Xóa Mục Đã Chọn" class="control__icon btn-delete" data-type="control">
 											<ion-icon name="trash-outline"></ion-icon>
-										</div>
+										</button>
 									</li>
 								</ul>
 							</nav>
@@ -111,6 +111,50 @@
 					</section>
 				</div>
 			</main>
+		</div>
+		<div class="modal-container">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3>FORM INSERT</h3>
+					<ion-icon name="close-outline"></ion-icon>
+				</div>
+				<div class="modal-body">
+					<form id="form-update">
+						<div>
+							<label>Tên</label>
+							<div>
+								<input placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name">
+							</div>
+						</div>
+						<div>
+							<label>Địa chỉ</label>
+							<div>
+								<textarea placeholder="Nhập Địa Chỉ Nhà Sản Xuất" name="address" cols="40" rows="4"></textarea>
+							</div>
+						</div>
+						<div>
+							<label>Số Điện Thoại</label>
+							<div>
+								<input placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone">
+							</div>
+						</div>
+						<div>
+							<label>Link Ảnh</label>
+							<div>
+								<input placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image">
+							</div>
+						</div>
+						<div class="">
+							<button type="button" class="btn-submit" data-style="create">
+								Thêm
+							</button>
+							<button type="reset" class="">
+								Nhập Lại
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
