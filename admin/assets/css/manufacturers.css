@@ -4,6 +4,9 @@
 @import url('./libary/control.css');
 @import url('./libary/toast.css');
 @import url('./libary/modal.css');
+@import url('./libary/form.css');
+@import url('./libary/button.css');
+@import url('./libary/layout.css');
 
 /* ================== Main ================== */
 .control__search input {
@@ -17,4 +20,44 @@
 
 .table-content {
   margin-top: 12px;
+}
+
+.show-info {
+  /* height: 100%; */
+}
+
+.show-info-content {
+  height: 100%;
+  border-radius: 8px;
+  background-color: #212429;
+  padding: 8px;
+}
+
+.show-info-box-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  width: 120px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.show-info-img {
+  height: 100%;
+}
+
+.show-info-body {
+  text-align: center;
+}
+
+.show-info-name {
+}
+
+.show-info-address {
+}
+
+.show-info-phone {
 }

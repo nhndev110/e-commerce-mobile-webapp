@@ -119,40 +119,49 @@
 					<ion-icon name="close-outline"></ion-icon>
 				</div>
 				<div class="modal-body">
-					<form id="form-update">
-						<div>
-							<label>Tên</label>
-							<div>
-								<input placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name">
+					<div class="modal-content-body row">
+						<form id="form-update" class="w-60">
+							<div class="form-group">
+								<label class="form-label">Tên</label>
+								<input class="form-input" placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name">
+							</div>
+							<div class="form-group">
+								<label class="form-label">Địa chỉ</label>
+								<textarea class="form-input" placeholder="Nhập Địa Chỉ Nhà Sản Xuất" name="address" cols="40"
+									rows="4"></textarea>
+							</div>
+							<div class="form-group">
+								<label class="form-label">Số Điện Thoại</label>
+								<input class="form-input" placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone">
+							</div>
+							<div class="form-group">
+								<label class="form-label">Link Ảnh</label>
+								<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image">
+							</div>
+							<div class="form-right">
+								<button type="submit" class="btn btn-dark btn-submit" data-style="create">
+									Thêm
+								</button>
+								<button type="reset" class="btn btn-outline-dark">
+									Nhập Lại
+								</button>
+							</div>
+						</form>
+						<div class="show-info flex-1">
+							<div class="show-info-content">
+								<div class="show-info-box-img">
+									<img class="show-info-img"
+										src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Apple-logo.png/640px-Apple-logo.png"
+										alt="">
+								</div>
+								<div class="show-info-body pt-16">
+									<h4 class="show-info-name pb-8">apple</h4>
+									<p class="show-info-address pb-8">121 Kim Phung</p>
+									<span class="show-info-phone">0935769706</span>
+								</div>
 							</div>
 						</div>
-						<div>
-							<label>Địa chỉ</label>
-							<div>
-								<textarea placeholder="Nhập Địa Chỉ Nhà Sản Xuất" name="address" cols="40" rows="4"></textarea>
-							</div>
-						</div>
-						<div>
-							<label>Số Điện Thoại</label>
-							<div>
-								<input placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone">
-							</div>
-						</div>
-						<div>
-							<label>Link Ảnh</label>
-							<div>
-								<input placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image">
-							</div>
-						</div>
-						<div class="">
-							<button type="button" class="btn-submit" data-style="create">
-								Thêm
-							</button>
-							<button type="reset" class="">
-								Nhập Lại
-							</button>
-						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>

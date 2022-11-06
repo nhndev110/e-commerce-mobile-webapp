@@ -129,18 +129,22 @@ a {
 ion-icon {
   pointer-events: none !important;
 }
-button,
-input {
+input,
+textarea,
+button {
+  font-family: var(--global-font-text);
   border: none;
   outline: none;
-  cursor: pointer;
 }
 button {
   cursor: pointer;
 }
+input,
+textarea {
+  cursor: text;
+}
 input[type*='search'] {
   margin: 0;
-  cursor: text;
 }
 
 /* ============= CSS GLOBAL ============= */

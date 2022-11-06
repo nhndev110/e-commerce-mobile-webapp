@@ -2,7 +2,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 1000;
+  z-index: 10000;
   transform: translate(-50%, -50%);
   display: inline-block;
   width: 100%;
@@ -11,7 +11,7 @@
   max-height: 50%;
   background-color: #fff;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 16px;
 }
 
@@ -28,5 +28,9 @@
 }
 
 .modal-body {
-  flex: 1;
+  height: 85%;
+}
+
+.modal-content-body {
+  height: 100%;
 }
