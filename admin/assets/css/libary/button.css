@@ -1,8 +1,11 @@
 .btn {
+  --border-weight: 1px;
   text-decoration: none;
-  padding: 8px;
+  padding: 8px 14px;
   border-radius: 6px;
   font-size: 14px;
+  font-weight: 500;
+  box-sizing: content-box;
 }
 
 .btn + .btn {
@@ -10,11 +13,18 @@
 }
 
 .btn.btn-dark {
+  border: var(--border-weight) solid #212429;
   background-color: #212429;
   color: #fff;
 }
 
 .btn.btn-outline-dark {
-  border: 1px solid #212429;
-  background-color: transparent;
+  border: var(--border-weight) solid #212429;
+  background-color: #eee;
+}
+
+.btn.btn-outline-gray {
+  color: #212429;
+  border: var(--border-weight) solid rgb(200, 200, 200);
+  background-color: #fff;
 }

@@ -112,55 +112,45 @@
 				</div>
 			</main>
 		</div>
-		<div class="modal-container">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h3>FORM INSERT</h3>
-					<ion-icon name="close-outline"></ion-icon>
-				</div>
-				<div class="modal-body">
-					<div class="modal-content-body row">
-						<form id="form-update" class="w-60">
-							<div class="form-group">
-								<label class="form-label">Tên</label>
-								<input class="form-input" placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Địa chỉ</label>
-								<textarea class="form-input" placeholder="Nhập Địa Chỉ Nhà Sản Xuất" name="address" cols="40"
-									rows="4"></textarea>
-							</div>
-							<div class="form-group">
-								<label class="form-label">Số Điện Thoại</label>
-								<input class="form-input" placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Link Ảnh</label>
-								<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image">
-							</div>
-							<div class="form-right">
-								<button type="submit" class="btn btn-dark btn-submit" data-style="create">
-									Thêm
-								</button>
-								<button type="reset" class="btn btn-outline-dark">
-									Nhập Lại
-								</button>
-							</div>
-						</form>
-						<div class="show-info flex-1">
-							<div class="show-info-content">
-								<div class="show-info-box-img">
-									<img class="show-info-img"
-										src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Apple-logo.png/640px-Apple-logo.png"
-										alt="">
+		<div class="modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title">FORM INSERT</h3>
+						<button class="btn-close">
+							<ion-icon name="close-outline"></ion-icon>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="modal-content-body">
+							<form id="form-update">
+								<div class="form-group">
+									<label class="form-label">Tên:</label>
+									<input class="form-input" placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name">
 								</div>
-								<div class="show-info-body pt-16">
-									<h4 class="show-info-name pb-8">apple</h4>
-									<p class="show-info-address pb-8">121 Kim Phung</p>
-									<span class="show-info-phone">0935769706</span>
+								<div class="form-group">
+									<label class="form-label">Địa chỉ:</label>
+									<textarea class="form-input" placeholder="Nhập Địa Chỉ Nhà Sản Xuất" name="address" cols="40"
+										rows="4"></textarea>
 								</div>
-							</div>
+								<div class="form-group">
+									<label class="form-label">Số Điện Thoại:</label>
+									<input class="form-input" placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Link Ảnh:</label>
+									<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image">
+								</div>
+							</form>
 						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-outline-gray">
+							Nhập Lại
+						</button>
+						<button type="submit" class="btn btn-dark btn-submit" data-style="create">
+							Thêm
+						</button>
 					</div>
 				</div>
 			</div>

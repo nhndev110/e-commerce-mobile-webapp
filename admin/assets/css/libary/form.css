@@ -10,16 +10,17 @@
 
 .form-label {
   width: 140px;
-  max-width: 150px;
+  max-width: 140px;
   font-size: 16px;
+  font-weight: 500;
 }
 
 .form-input {
   flex: 1;
-  border: 1px solid #333;
   padding: 8px;
   font-size: 14px;
   border-radius: 8px;
+  box-sizing: content-box;
 }
 .form-right {
   margin-top: 16px;
