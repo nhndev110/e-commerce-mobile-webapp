@@ -126,7 +126,8 @@
 							<form id="form-update">
 								<div class="form-group">
 									<label class="form-label">Tên:</label>
-									<input class="form-input" placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name">
+									<input class="form-input" placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name"
+										autocomplete="off">
 								</div>
 								<div class="form-group">
 									<label class="form-label">Địa chỉ:</label>
@@ -135,11 +136,13 @@
 								</div>
 								<div class="form-group">
 									<label class="form-label">Số Điện Thoại:</label>
-									<input class="form-input" placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone">
+									<input class="form-input" placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone"
+										autocomplete="off">
 								</div>
 								<div class="form-group">
 									<label class="form-label">Link Ảnh:</label>
-									<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image">
+									<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image"
+										autocomplete="off">
 								</div>
 							</form>
 						</div>

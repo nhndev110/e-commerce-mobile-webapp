@@ -13,18 +13,18 @@
 }
 
 .btn.btn-dark {
-  border: var(--border-weight) solid #212429;
-  background-color: #212429;
+  border: var(--border-weight) solid var(--primary-color);
+  background-color: var(--primary-color);
   color: #fff;
 }
 
 .btn.btn-outline-dark {
-  border: var(--border-weight) solid #212429;
+  border: var(--border-weight) solid var(--primary-color);
   background-color: #eee;
 }
 
 .btn.btn-outline-gray {
-  color: #212429;
+  color: var(--primary-color);
   border: var(--border-weight) solid rgb(200, 200, 200);
   background-color: #fff;
 }

@@ -17,7 +17,7 @@
 }
 
 .form-group .form-label {
-  color: #333;
+  color: var(--primary-color);
 }
 .form-group .form-input {
   color: #000;
