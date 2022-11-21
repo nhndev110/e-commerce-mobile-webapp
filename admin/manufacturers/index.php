@@ -126,16 +126,21 @@
 							<form id="form-update">
 								<div class="form-group">
 									<label class="form-label">Tên:</label>
+<<<<<<< HEAD
 									<input class="form-input" placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name"
 										autocomplete="off">
+=======
+									<input class="form-input" autocomplete="off" placeholder="Tên Nhà Sản Xuất" type="text" name="name">
+>>>>>>> 4f1d037deee6dce27b39efdec2f6534ac57ae62a
 								</div>
 								<div class="form-group">
 									<label class="form-label">Địa chỉ:</label>
-									<textarea class="form-input" placeholder="Nhập Địa Chỉ Nhà Sản Xuất" name="address" cols="40"
+									<textarea class="form-input" placeholder="Địa Chỉ Nhà Sản Xuất" name="address" cols="40"
 										rows="4"></textarea>
 								</div>
 								<div class="form-group">
 									<label class="form-label">Số Điện Thoại:</label>
+<<<<<<< HEAD
 									<input class="form-input" placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone"
 										autocomplete="off">
 								</div>
@@ -143,6 +148,15 @@
 									<label class="form-label">Link Ảnh:</label>
 									<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image"
 										autocomplete="off">
+=======
+									<input class="form-input" autocomplete="off" placeholder="Số Điện Thoại Nhà Sản Xuất" type="tel"
+										name="phone">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Link Ảnh:</label>
+									<input class="form-input" autocomplete="off" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất"
+										type="text" name="image">
+>>>>>>> 4f1d037deee6dce27b39efdec2f6534ac57ae62a
 								</div>
 							</form>
 						</div>

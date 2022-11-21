@@ -1,6 +1,6 @@
 /* ================== Libary ================== */
 @import url('./style.css');
-@import url('./libary/my-libary.css');
+@import url('./libary/index.css');
 
 /* ================== Main ================== */
 .control__search input {

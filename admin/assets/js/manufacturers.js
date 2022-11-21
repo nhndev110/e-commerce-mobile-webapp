@@ -1,5 +1,5 @@
 'use strict'
-import { SubmitForm, Loading, Toast } from './module/index.js'
+import { SubmitForm, Loading, Toast, Modal, Animation } from './module/index.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -244,6 +244,7 @@ const App = {
   },
   start: function () {
     this.handleEvent()
+    Modal()
   },
 }
 
