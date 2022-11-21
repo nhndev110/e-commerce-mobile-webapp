@@ -126,20 +126,22 @@
 							<form id="form-update">
 								<div class="form-group">
 									<label class="form-label">Tên:</label>
-									<input class="form-input" placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name">
+									<input class="form-input" autocomplete="off" placeholder="Tên Nhà Sản Xuất" type="text" name="name">
 								</div>
 								<div class="form-group">
 									<label class="form-label">Địa chỉ:</label>
-									<textarea class="form-input" placeholder="Nhập Địa Chỉ Nhà Sản Xuất" name="address" cols="40"
+									<textarea class="form-input" placeholder="Địa Chỉ Nhà Sản Xuất" name="address" cols="40"
 										rows="4"></textarea>
 								</div>
 								<div class="form-group">
 									<label class="form-label">Số Điện Thoại:</label>
-									<input class="form-input" placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone">
+									<input class="form-input" autocomplete="off" placeholder="Số Điện Thoại Nhà Sản Xuất" type="tel"
+										name="phone">
 								</div>
 								<div class="form-group">
 									<label class="form-label">Link Ảnh:</label>
-									<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image">
+									<input class="form-input" autocomplete="off" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất"
+										type="text" name="image">
 								</div>
 							</form>
 						</div>
