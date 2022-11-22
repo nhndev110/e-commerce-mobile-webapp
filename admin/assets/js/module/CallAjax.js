@@ -1,6 +1,6 @@
 'use strict'
 
-export default function SubmitForm({
+export default function CallAjax({
   url = '',
   type = 'POST',
   dataType = 'html',
@@ -19,7 +19,6 @@ export default function SubmitForm({
     contentType,
     processData,
     success(response) {
-      response = JSON.parse(response)
       handleData(response)
     },
     error(xhr) {

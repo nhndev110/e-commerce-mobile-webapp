@@ -1,5 +1,5 @@
 'use strict'
-import { SubmitForm, Loading, Toast, Modal } from './module/index.js'
+import { CallAjax, Loading, Toast, Modal } from './module/index.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -122,15 +122,16 @@ const App = {
 
         if (btnType === 'form') {
           const btnId = this.dataset.id
-          SubmitForm({
-            url: '../manufacturers/process_delete.php',
+          CallAjax({
+            url: '../manufacturers/process-delete.php',
             data: { id: btnId },
             titleError: 'Thất Bại',
             titleSuccess: 'Thành Công',
             contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
           })
         } else if (btnType === 'table') {
-          const handleDelete = data => {
+          const handleDelete = response => {
+            const data = JSON.parse(response)
             if (data.statusCode === 200) {
               Toast({
                 title: 'Thành Công',
@@ -166,13 +167,14 @@ const App = {
           }
 
           const btnId = this.dataset.id
-          SubmitForm({
-            url: '../manufacturers/process_delete.php',
+          CallAjax({
+            url: '../manufacturers/process-delete.php',
             data: { id: btnId },
             handleData: handleDelete,
           })
         } else if (btnType === 'control') {
-          const handleDelete = data => {
+          const handleDelete = response => {
+            const data = JSON.parse(response)
             if (data.statusCode === 200) {
               Toast({
                 title: 'Thành Công',
@@ -210,8 +212,8 @@ const App = {
             $('.loading') && $('.loading').remove()
           }
 
-          SubmitForm({
-            url: '../manufacturers/process_delete.php',
+          CallAjax({
+            url: '../manufacturers/process-delete.php',
             data: { id: checkboxCheckeds.ids },
             handleData: handleDelete,
           })
@@ -224,7 +226,7 @@ const App = {
 
     const _this = this
 
-    $('.btn-reload').onclick = function () {
+    $('.control__icon.btn-reload').onclick = function () {
       Loading(
         '.table',
         '../assets/images/loading2.gif',
@@ -233,18 +235,44 @@ const App = {
         'center 0'
       )
 
-      const handleReload = data => {
+      const handleReload = response => {
+        const data = JSON.parse(response)
         _this.render(data)
         controlCheckbox.checked = false
         $('.loading') && $('.loading').remove()
       }
 
-      SubmitForm({ url: './process-reload.php', handleData: handleReload })
+      CallAjax({
+        url: '../manufacturers/load-data.php',
+        handleData: handleReload,
+      })
+    }
+
+    $('.control__icon.btn-add').onclick = function () {
+      const handleDataInsert = () => {
+        $('.btn-submit').onclick = function () {
+          // CallAjax({
+          //   url: '../manufacturers/process-insert.php',
+
+          // })
+          $$('.form-insert .form-input').forEach(e => {
+            console.log(e.value)
+          })
+        }
+      }
+
+      const handleModal = htmls => {
+        Modal({ data: htmls, handleDataModal: handleDataInsert })
+      }
+
+      CallAjax({
+        url: '../manufacturers/form-insert.php',
+        handleData: handleModal,
+      })
     }
   },
   start: function () {
     this.handleEvent()
-    Modal()
   },
 }
 

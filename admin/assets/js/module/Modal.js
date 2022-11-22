@@ -1,7 +1,16 @@
 const $ = document.querySelector.bind(document)
 
-export default function Modal() {
-  $('.btn-close').onclick = function (e) {
-    e.target.closest('.modal').remove()
+export default function Modal({ data, handleDataModal = () => {} }) {
+  if (!$('.modal-container')) {
+    let nodeModal = document.createElement('div')
+    nodeModal.className = 'modal-container'
+    nodeModal.innerHTML = data
+    $('#wrapper').appendChild(nodeModal)
+
+    handleDataModal()
+
+    $('.btn-close').onclick = function (e) {
+      e.target.closest('.modal-container').remove()
+    }
   }
 }

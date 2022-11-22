@@ -37,7 +37,7 @@
 										</label>
 									</li>
 									<li>
-										<button title="Thêm" class="control__icon">
+										<button title="Thêm" class="control__icon btn-add">
 											<ion-icon name="create-outline"></ion-icon>
 										</button>
 									</li>
@@ -92,10 +92,10 @@
 											<?= $each['phone'] ?>
 										</td>
 										<td class="table__row--center">
-											<a class="table__col flex-center" title="Chỉnh Sửa"
+											<button class="table__col flex-center" title="Chỉnh Sửa"
 												href="../manufacturers/form_update.php?id=<?= $each['id'] ?>">
 												<ion-icon name="color-wand"></ion-icon>
-											</a>
+											</button>
 										</td>
 										<td class="table__row--center">
 											<button class="table__col btn-delete flex-center" title="Xóa" data-type="table"
@@ -112,52 +112,7 @@
 				</div>
 			</main>
 		</div>
-		<div class="modal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">FORM INSERT</h3>
-						<button class="btn-close">
-							<ion-icon name="close-outline"></ion-icon>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="modal-content-body">
-							<form id="form-update">
-								<div class="form-group">
-									<label class="form-label">Tên:</label>
-									<input class="form-input" placeholder="Nhập Tên Nhà Sản Xuất" type="text" name="name"
-										autocomplete="off">
-								</div>
-								<div class="form-group">
-									<label class="form-label">Địa chỉ:</label>
-									<textarea class="form-input" placeholder="Địa Chỉ Nhà Sản Xuất" name="address" cols="40"
-										rows="4"></textarea>
-								</div>
-								<div class="form-group">
-									<label class="form-label">Số Điện Thoại:</label>
-									<input class="form-input" placeholder="Nhập Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone"
-										autocomplete="off">
-								</div>
-								<div class="form-group">
-									<label class="form-label">Link Ảnh:</label>
-									<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image"
-										autocomplete="off">
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="reset" class="btn btn-outline-gray">
-							Nhập Lại
-						</button>
-						<button type="submit" class="btn btn-dark btn-submit" data-style="create">
-							Thêm
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<?php // require './form-insert.php' ?>
 	</div>
 </body>
 

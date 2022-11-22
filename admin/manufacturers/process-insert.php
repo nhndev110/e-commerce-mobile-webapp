@@ -1,5 +1,5 @@
 <?php
-require "../check_super_admin_login.php";
+require "../check-super-admin-login.php";
 
 if (empty($_POST['name']) || empty($_POST['address']) || empty($_POST['phone']) || empty($_POST['image'])) {
     echo "Vui lòng nhập đầy đủ các thông tin";
