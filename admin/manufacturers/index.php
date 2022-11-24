@@ -112,7 +112,6 @@
 				</div>
 			</main>
 		</div>
-		<?php // require './form-insert.php' ?>
 	</div>
 </body>
 

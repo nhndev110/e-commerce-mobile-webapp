@@ -249,25 +249,76 @@ const App = {
     }
 
     $('.control__icon.btn-add').onclick = function () {
+      const handleDataResponse = response => {
+        const data = JSON.parse(response)
+        switch (data.statusCode) {
+          case 200:
+            Toast({
+              title: 'Thành Công',
+              msg: data.message,
+              type: 'success',
+              duration: 3000,
+            })
+            _this.handleEventAgain()
+            break
+          case 400:
+            Toast({
+              title: 'Lỗi',
+              msg: data.message,
+              type: 'error',
+              duration: 5000,
+            })
+            break
+          case 500:
+            Toast({
+              title: 'Lỗi',
+              msg: data.message,
+              type: 'info',
+              duration: 5000,
+            })
+            break
+          default:
+            Toast({
+              title: data.statusText,
+              type: 'error',
+              msg: data.responseText,
+              duration: 5000,
+            })
+            break
+        }
+        $('.loading') && $('.loading').remove()
+      }
+
       const handleDataInsert = () => {
         $('.btn-submit').onclick = function () {
-          // CallAjax({
-          //   url: '../manufacturers/process-insert.php',
+          Loading(
+            '#wrapper',
+            '../assets/images/loading2.gif',
+            'white',
+            '200px',
+            'center 0'
+          )
 
-          // })
+          let formData = {}
           $$('.form-insert .form-input').forEach(e => {
-            console.log(e.value)
+            formData[e.name] = e.value
+          })
+
+          CallAjax({
+            url: '../manufacturers/process-insert.php',
+            data: formData,
+            handleData: handleDataResponse,
           })
         }
       }
 
-      const handleModal = htmls => {
-        Modal({ data: htmls, handleDataModal: handleDataInsert })
+      const handleDataModal = htmls => {
+        Modal({ data: htmls, handleModal: handleDataInsert })
       }
 
       CallAjax({
         url: '../manufacturers/form-insert.php',
-        handleData: handleModal,
+        handleData: handleDataModal,
       })
     }
   },

@@ -19,7 +19,6 @@ try {
 	if (!empty($error))
 		throw new Exception($error, 500);
 
-
 	echo json_encode([
 		"statusCode" => 200,
 		"message" => "Bạn đã xóa " . count($ids),
