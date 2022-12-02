@@ -112,6 +112,7 @@
 				</div>
 			</main>
 		</div>
+		<?php include './form-insert.php' ?>
 	</div>
 </body>
 

@@ -1,3 +1,4 @@
+'use strict'
 const $ = document.querySelector.bind(document)
 
 export default function Modal({ data, handleModal = () => {} }) {
