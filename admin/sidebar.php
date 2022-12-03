@@ -1,7 +1,7 @@
 <ion-icon class="icon-shrink" name="chevron-back-outline"></ion-icon>
 
 <a class="logo-sidebar" href="">
-	<img class="image-logo" src="../assets/images/expert-team.gif" alt="logo-admin.png" title="logo">
+	<img class="image-logo" src="../assets/img/expert-team.gif" alt="logo-admin.png" title="logo">
 	<h3 class="title-logo">Admin</h3>
 </a>
 
@@ -11,7 +11,9 @@
 			<li class="item-category">
 				<a href="" class="category-link">
 					<ion-icon class="icon-category" name="person-circle-outline"></ion-icon>
-					<span class="text-category"><?= $_SESSION['name'] ?></span>
+					<span class="text-category">
+						<?= $_SESSION['name'] ?>
+					</span>
 				</a>
 			</li>
 		</ul>

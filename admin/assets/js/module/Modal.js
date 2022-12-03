@@ -11,7 +11,7 @@ export default function Modal({ data, handleModal = () => {} }) {
     handleModal()
 
     $('.modal .btn-close').onclick = function (e) {
-      e.target.closest('.modal-container').remove()
+      e.target.closest('.modal-container').style.display = 'none'
     }
   }
 }

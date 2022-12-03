@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <script type="module" src="../assets/js/index.js"></script>
+    <script type="module" src="../assets/js/App.js"></script>
 </body>
 
 </html>

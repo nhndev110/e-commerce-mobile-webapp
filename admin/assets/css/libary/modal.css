@@ -1,3 +1,7 @@
+.modal-container {
+  display: none;
+}
+
 .modal {
   --modal-padding: 16px;
   position: fixed;

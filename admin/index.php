@@ -18,6 +18,7 @@ if (!empty($_SESSION['id']) && !empty($_SESSION['name']) && !empty($_SESSION['le
 	<link rel="stylesheet" href="./assets/css/libary/toast.css">
 	<link rel="stylesheet" href="./assets/css/login.css">
 	<script defer type="module" src="./assets/js/login.js"></script>
+	<link rel="icon" type="image/x-icon" href="../assets/img/logo.png" />
 	<title>Đăng Nhập || Admin</title>
 </head>
 
@@ -26,7 +27,7 @@ if (!empty($_SESSION['id']) && !empty($_SESSION['name']) && !empty($_SESSION['le
 		<div id="toast-container"></div>
 		<div id="signin">
 			<div class="signin__header">
-				<img class="signin__img" src="./assets/images/expert-team.gif" title="ADMIN LOGIN" alt="ADMIN LOGIN">
+				<img class="signin__img" src="./assets/img/expert-team.gif" title="ADMIN LOGIN" alt="ADMIN LOGIN">
 				<h1 id="signin__heading" title="ADMIN LOGIN">ADMIN LOGIN</h1>
 			</div>
 			<form id="signin__form" action="process_login_admin.php" method="post">
