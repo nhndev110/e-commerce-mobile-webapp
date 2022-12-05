@@ -1,9 +1,9 @@
 .modal-container {
+  --modal-padding: 16px;
   display: none;
 }
 
 .modal {
-  --modal-padding: 16px;
   position: fixed;
   top: 0;
   left: 0;

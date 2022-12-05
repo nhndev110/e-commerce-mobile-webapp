@@ -1,5 +1,11 @@
 'use strict'
-import { CallAjax, Loading, Toast, Modal } from './module/index.js'
+import {
+  CallAjax,
+  Loading,
+  Toast,
+  Modal,
+  StatusNotification,
+} from './module/index.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -108,11 +114,12 @@ const App = {
       }
     })
 
+    // ============== Xử lí khi ở trong form vẫn chưa xong ==============
     $$('.btn-delete').forEach(element => {
       element.onclick = function () {
         Loading(
           '.table tbody',
-          '../assets/images/loading2.gif',
+          '../assets/img/loading2.gif',
           'white',
           '200px',
           'center 0'
@@ -131,39 +138,7 @@ const App = {
           })
         } else if (btnType === 'table') {
           const handleDelete = response => {
-            const data = JSON.parse(response)
-            if (data.statusCode === 200) {
-              Toast({
-                title: 'Thành Công',
-                msg: data.message + ' nhà sản xuất',
-                type: 'success',
-                duration: 3000,
-              })
-              this.closest('tr').remove()
-              _this.handleEventAgain()
-            } else if (data.statusCode === 400) {
-              Toast({
-                title: 'Lỗi',
-                msg: data.message,
-                type: 'error',
-                duration: 5000,
-              })
-            } else if (data.statusCode === 500) {
-              Toast({
-                title: 'Lỗi',
-                msg: data.message,
-                type: 'info',
-                duration: 5000,
-              })
-            } else {
-              Toast({
-                title: data.statusText,
-                type: 'error',
-                msg: data.responseText,
-                duration: 5000,
-              })
-            }
-            $('.loading') && $('.loading').remove()
+            StatusNotification({ response: JSON.parse(response) })
           }
 
           const btnId = this.dataset.id
@@ -229,7 +204,7 @@ const App = {
     $('.control__icon.btn-reload').onclick = function () {
       Loading(
         '.table',
-        '../assets/images/loading2.gif',
+        '../assets/img/loading2.gif',
         'white',
         '200px',
         'center 0'
@@ -248,52 +223,19 @@ const App = {
       })
     }
 
+    // ============== Xử lí handleDataResponse Chưa xong ==============
     $('.control__icon.btn-add').onclick = function () {
+      $('.modal-container').style.display = 'block'
+
       const handleDataResponse = response => {
-        const data = JSON.parse(response)
-        switch (data.statusCode) {
-          case 200:
-            Toast({
-              title: 'Thành Công',
-              msg: data.message,
-              type: 'success',
-              duration: 3000,
-            })
-            _this.handleEventAgain()
-            break
-          case 400:
-            Toast({
-              title: 'Lỗi',
-              msg: data.message,
-              type: 'error',
-              duration: 5000,
-            })
-            break
-          case 500:
-            Toast({
-              title: 'Lỗi',
-              msg: data.message,
-              type: 'info',
-              duration: 5000,
-            })
-            break
-          default:
-            Toast({
-              title: data.statusText,
-              type: 'error',
-              msg: data.responseText,
-              duration: 5000,
-            })
-            break
-        }
         $('.loading') && $('.loading').remove()
       }
 
-      const handleDataInsert = () => {
+      const handleModal = () => {
         $('.btn-submit').onclick = function () {
           Loading(
             '#wrapper',
-            '../assets/images/loading2.gif',
+            '../assets/img/loading2.gif',
             'white',
             '200px',
             'center 0'
@@ -312,14 +254,7 @@ const App = {
         }
       }
 
-      const handleDataModal = htmls => {
-        Modal({ data: htmls, handleModal: handleDataInsert })
-      }
-
-      CallAjax({
-        url: '../manufacturers/form-insert.php',
-        handleData: handleDataModal,
-      })
+      Modal({ handleModal: handleModal })
     }
   },
   start: function () {
