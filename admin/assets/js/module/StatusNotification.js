@@ -1,14 +1,19 @@
 import Toast from './Toast.js'
 
-export default function StatusNotification(response) {
+export default function StatusNotification({
+  response = {},
+  handleSuccess = () => {},
+  subMessage = '',
+}) {
   switch (response.statusCode) {
     case 200:
       Toast({
         title: 'Thành Công',
-        msg: response.message,
+        msg: `${response.message} ${subMessage}`,
         type: 'success',
         duration: 3000,
       })
+      handleSuccess()
       break
     case 400:
       Toast({
@@ -34,5 +39,4 @@ export default function StatusNotification(response) {
         duration: 5000,
       })
   }
-  $('.loading') && $('.loading').remove()
 }

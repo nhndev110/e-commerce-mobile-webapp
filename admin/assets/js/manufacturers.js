@@ -1,11 +1,5 @@
 'use strict'
-import {
-  CallAjax,
-  Loading,
-  Toast,
-  Modal,
-  StatusNotification,
-} from './module/index.js'
+import { CallAjax, Loading, Modal, StatusNotification } from './module/index.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -121,77 +115,83 @@ const App = {
           '.table tbody',
           '../assets/img/loading2.gif',
           'white',
-          '200px',
+          '100px',
           'center 0'
         )
 
         const btnType = this.dataset.type
 
-        if (btnType === 'form') {
-          const btnId = this.dataset.id
-          CallAjax({
-            url: '../manufacturers/process-delete.php',
-            data: { id: btnId },
-            titleError: 'Thất Bại',
-            titleSuccess: 'Thành Công',
-            contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
-          })
-        } else if (btnType === 'table') {
-          const handleDelete = response => {
-            StatusNotification({ response: JSON.parse(response) })
+        switch (btnType) {
+          case 'form': {
+            const btnId = this.dataset.id
+
+            CallAjax({
+              url: '../manufacturers/process-delete.php',
+              data: { id: btnId },
+              titleError: 'Thất Bại',
+              titleSuccess: 'Thành Công',
+              contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
+            })
+            break
           }
+          case 'table': {
+            // Get id of button
+            const btnId = this.dataset.id
 
-          const btnId = this.dataset.id
-          CallAjax({
-            url: '../manufacturers/process-delete.php',
-            data: { id: btnId },
-            handleData: handleDelete,
-          })
-        } else if (btnType === 'control') {
-          const handleDelete = response => {
-            const data = JSON.parse(response)
-            if (data.statusCode === 200) {
-              Toast({
-                title: 'Thành Công',
-                msg: data.message + ' nhà sản xuất',
-                type: 'success',
-                duration: 3000,
+            // Handle when success delete
+            const handleSuccess = () => this.closest('tr').remove()
+
+            // Show notification when success delete
+            const handleDelete = response => {
+              StatusNotification({
+                response: JSON.parse(response),
+                handleSuccess,
+                subMessage: 'nhà sản xuất',
               })
+              $('.loading') && $('.loading').remove()
+            }
 
+            // Call ajax do get response data (status code & status message)
+            if (confirm('Bạn có chắc muốn xóa nhà sản xuất này không ???'))
+              CallAjax({
+                url: '../manufacturers/process-delete.php',
+                data: { id: btnId },
+                handleData: handleDelete,
+              })
+            else $('.loading') && $('.loading').remove()
+            break
+          }
+          case 'control': {
+            // Handle when success delete
+            const handleSuccess = () => {
               checkboxCheckeds.elements.forEach(element => {
                 element.remove()
               })
               _this.handleEventAgain()
-            } else if (data.statusCode === 400) {
-              Toast({
-                title: 'Lỗi',
-                msg: data.message,
-                type: 'error',
-                duration: 5000,
-              })
-            } else if (data.statusCode === 500) {
-              Toast({
-                title: 'Lỗi',
-                msg: data.message,
-                type: 'info',
-                duration: 5000,
-              })
-            } else {
-              Toast({
-                title: data.statusText,
-                type: 'error',
-                msg: data.responseText,
-                duration: 5000,
-              })
             }
-            $('.loading') && $('.loading').remove()
+
+            // Show notification when success delete
+            const handleDelete = response => {
+              StatusNotification({
+                response: JSON.parse(response),
+                handleSuccess,
+                subMessage: 'nhà sản xuất',
+              })
+              $('.loading') && $('.loading').remove()
+            }
+
+            // Call ajax do get response data (status code & status message)
+            CallAjax({
+              url: '../manufacturers/process-delete.php',
+              data: { id: checkboxCheckeds.ids },
+              handleData: handleDelete,
+            })
+            break
           }
 
-          CallAjax({
-            url: '../manufacturers/process-delete.php',
-            data: { id: checkboxCheckeds.ids },
-            handleData: handleDelete,
-          })
+          default:
+            alert('Error: NOT FIND TYPE OF BUTTON DELETE')
+            $('.loading') && $('.loading').remove()
         }
       }
     })
@@ -206,7 +206,7 @@ const App = {
         '.table',
         '../assets/img/loading2.gif',
         'white',
-        '200px',
+        '100px',
         'center 0'
       )
 
@@ -254,7 +254,7 @@ const App = {
         }
       }
 
-      Modal({ handleModal: handleModal })
+      Modal({ handleModal })
     }
   },
   start: function () {
