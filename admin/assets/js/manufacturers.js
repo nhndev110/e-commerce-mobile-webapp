@@ -152,7 +152,7 @@ const App = {
             }
 
             // Call ajax do get response data (status code & status message)
-            if (confirm('Bạn có chắc muốn xóa nhà sản xuất này không ???'))
+            if (confirm('Bạn muốn xóa nhà sản xuất này ???'))
               CallAjax({
                 url: '../manufacturers/process-delete.php',
                 data: { id: btnId },
@@ -180,12 +180,26 @@ const App = {
               $('.loading') && $('.loading').remove()
             }
 
-            // Call ajax do get response data (status code & status message)
-            CallAjax({
-              url: '../manufacturers/process-delete.php',
-              data: { id: checkboxCheckeds.ids },
-              handleData: handleDelete,
-            })
+            // Check valid call ajax do get response data
+            // (status code & status message)
+            if (
+              typeof checkboxCheckeds.ids.length === 'number' &&
+              checkboxCheckeds.ids.length > 0 &&
+              confirm('Bạn muốn xóa những nhà sản xuất bạn đã chọn ???')
+            ) {
+              CallAjax({
+                url: '../manufacturers/process-delete.php',
+                data: { id: checkboxCheckeds.ids },
+                handleData: handleDelete,
+              })
+            } else {
+              if (typeof checkboxCheckeds.ids.length !== 'number')
+                alert('Error: datatype invalid !!')
+              if (checkboxCheckeds.ids.length <= 0)
+                alert('Bạn chưa chọn nhà sản xuất nào !!!')
+              $('.loading') && $('.loading').remove()
+            }
+
             break
           }
 
@@ -223,38 +237,48 @@ const App = {
       })
     }
 
-    // ============== Xử lí handleDataResponse Chưa xong ==============
     $('.control__icon.btn-add').onclick = function () {
       $('.modal-container').style.display = 'block'
 
-      const handleDataResponse = response => {
-        $('.loading') && $('.loading').remove()
+      const handleResponse = response => {
+        StatusNotification({ response: JSON.parse(response) })
+
+        // $$('.form-insert .form-input').forEach(e => (e.value = null))
+
+        // $('.modal-container').style.display = 'none'
+
+        // $('.loading') && $('.loading').remove()
       }
 
-      const handleModal = () => {
-        $('.btn-submit').onclick = function () {
+      const handleDataModal = () => {
+        $('.btn-submit').onclick = () => {
           Loading(
             '#wrapper',
             '../assets/img/loading2.gif',
-            'white',
-            '200px',
-            'center 0'
+            'black',
+            '100px',
+            'center',
+            '0'
           )
 
           let formData = {}
-          $$('.form-insert .form-input').forEach(e => {
-            formData[e.name] = e.value
-          })
+          $$('.form-insert .form-input').forEach(
+            e => (formData[e.name] = e.value)
+          )
 
           CallAjax({
             url: '../manufacturers/process-insert.php',
             data: formData,
-            handleData: handleDataResponse,
+            handleData: handleResponse,
           })
+        }
+
+        $('.btn-reset').onclick = () => {
+          $$('.form-insert .form-input').forEach(e => (e.value = null))
         }
       }
 
-      Modal({ handleModal })
+      Modal({ handleModal: handleDataModal })
     }
   },
   start: function () {

@@ -137,12 +137,9 @@ button {
   border: none;
   outline: none;
 }
-button {
+button,
+input[type*='checkbox'] {
   cursor: pointer;
-}
-input,
-textarea {
-  cursor: text;
 }
 input[type*='search'] {
   margin: 0;

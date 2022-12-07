@@ -34,7 +34,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-outline-gray">
+					<button type="button" class="btn btn-outline-gray btn-reset">
 						Nhập Lại
 					</button>
 					<button type="button" class="btn btn-dark btn-submit" data-style="create">

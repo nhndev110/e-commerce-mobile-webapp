@@ -21,7 +21,7 @@ try {
 
   echo json_encode([
     "statusCode" => 200,
-    "message" => "Bạn đã thêm 1 nhà sản xuất",
+    "message" => "Bạn đã thêm 1",
   ]);
 } catch (Exception $e) {
   echo json_encode([
