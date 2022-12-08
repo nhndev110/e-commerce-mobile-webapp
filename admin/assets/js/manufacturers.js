@@ -1,4 +1,5 @@
 'use strict'
+
 import { CallAjax, Loading, Modal, StatusNotification } from './module/index.js'
 
 const $ = document.querySelector.bind(document)
@@ -53,16 +54,8 @@ const App = {
       this.handleEventAgain()
     }
   },
-  handleEventAgain: function () {
-    const _this = this
-    checkboxRows = [...$$('.table__col--checkbox')]
-
-    let checkboxCheckeds = {
-      ids: [],
-      elements: [],
-    }
-
-    // Checkbox All Checked
+  // Checkbox All Checked
+  handleCheckedAll: function () {
     controlCheckbox.onchange = function () {
       const _this = this
       checkboxRows.forEach(element => {
@@ -83,31 +76,8 @@ const App = {
         }
       })
     }
-
-    // Checkbox only one Checked
-    checkboxRows.forEach(element => {
-      element.onchange = e => {
-        const _this = e.target
-        if (_this.checked === true) {
-          checkboxCheckeds.elements.push(_this.closest('tr'))
-          checkboxCheckeds.ids.push(_this.dataset.id)
-        } else {
-          let idIdx = checkboxCheckeds.ids.indexOf(_this.dataset.id)
-          let elementIdx = checkboxCheckeds.elements.indexOf(
-            _this.closest('tr')
-          )
-          checkboxCheckeds.ids.splice(idIdx, 1)
-          checkboxCheckeds.elements.splice(elementIdx, 1)
-        }
-
-        let cntTrue = 0
-        checkboxRows.forEach(element => element.checked && ++cntTrue)
-        cntTrue == checkboxRows.length
-          ? (controlCheckbox.checked = true)
-          : (controlCheckbox.checked = false)
-      }
-    })
-
+  },
+  handleDelete: function () {
     // ============== Xử lí khi ở trong form vẫn chưa xong ==============
     $$('.btn-delete').forEach(element => {
       element.onclick = function () {
@@ -208,6 +178,39 @@ const App = {
             alert('Error: NOT FIND TYPE OF BUTTON DELETE')
             $('.loading') && $('.loading').remove()
         }
+      }
+    })
+  },
+  handleEventAgain: function () {
+    const _this = this
+    checkboxRows = [...$$('.table__col--checkbox')]
+
+    let checkboxCheckeds = {
+      ids: [],
+      elements: [],
+    }
+
+    // Checkbox only one Checked
+    checkboxRows.forEach(element => {
+      element.onchange = e => {
+        const _this = e.target
+        if (_this.checked === true) {
+          checkboxCheckeds.elements.push(_this.closest('tr'))
+          checkboxCheckeds.ids.push(_this.dataset.id)
+        } else {
+          let idIdx = checkboxCheckeds.ids.indexOf(_this.dataset.id)
+          let elementIdx = checkboxCheckeds.elements.indexOf(
+            _this.closest('tr')
+          )
+          checkboxCheckeds.ids.splice(idIdx, 1)
+          checkboxCheckeds.elements.splice(elementIdx, 1)
+        }
+
+        let cntTrue = 0
+        checkboxRows.forEach(element => element.checked && ++cntTrue)
+        cntTrue == checkboxRows.length
+          ? (controlCheckbox.checked = true)
+          : (controlCheckbox.checked = false)
       }
     })
   },
