@@ -17,7 +17,7 @@ $(function () {})
 $('#signin__form').submit(function (e) {
   e.preventDefault()
 
-  Loading('body', './assets/images/loading1.gif', 'black', '300px', 'center')
+  Loading('body', './assets/img/loading6.gif', 'white', '300px', 'center', '0')
 
   const emailInput = $('input[name="email"]').val()
   const passwordInput = $('input[name="password"]').val()

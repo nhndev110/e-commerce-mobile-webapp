@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+unset($_SESSION['id']);
+unset($_SESSION['name']);
+unset($_SESSION['level']);
+
 if (!empty($_SESSION['id']) && !empty($_SESSION['name']) && !empty($_SESSION['level'])) {
 	header('location: ./root/');
 }

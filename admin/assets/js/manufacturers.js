@@ -116,7 +116,8 @@ const App = {
           '../assets/img/loading2.gif',
           'white',
           '100px',
-          'center 0'
+          'center 0',
+          '16'
         )
 
         const btnType = this.dataset.type
@@ -221,7 +222,8 @@ const App = {
         '../assets/img/loading2.gif',
         'white',
         '100px',
-        'center 0'
+        'center 0',
+        '16'
       )
 
       const handleReload = response => {
@@ -240,14 +242,52 @@ const App = {
     $('.control__icon.btn-add').onclick = function () {
       $('.modal-container').style.display = 'block'
 
+      let formData = {}
+
+      const handleSuccess = () => {
+        const htmlRows = document.createElement('tr')
+        htmlRows.innerHTML = `
+          <td class="table__row--center">
+            <label class="table__col flex-center" for="table-col-${formData['idInsert']}">
+              <input data-id="${formData['idInsert']}" type="checkbox" name="" class="table__col--checkbox" id="table-col-${formData['idInsert']}">
+            </label>
+          </td>
+          <td class="table__row--center">${formData['idInsert']}</td>
+          <td class="table__row--center">${formData['name']}</td>
+          <td class="vertical-align">${formData['address']}</td>
+          <td class="table__row--center">${formData['phone']}</td>
+          <td class="table__row--center">
+            <button class="table__col flex-center" title="Chỉnh Sửa" href="../manufacturers/form_update.php?id=${formData['idInsert']}">
+              <ion-icon name="color-wand" role="img" class="md hydrated" aria-label="color wand"></ion-icon>
+            </button>
+          </td>
+          <td class="table__row--center">
+            <button class="table__col btn-delete flex-center" title="Xóa" data-type="table" data-id="${formData['idInsert']}">
+              <ion-icon name="trash-outline" role="img" class="md hydrated" aria-label="trash outline"></ion-icon>
+            </button>
+          </td>
+        `
+
+        $('.table tbody').appendChild(htmlRows)
+
+        $$('.form-insert .form-input').forEach(e => (e.value = null))
+
+        $('.modal-container').style.display = 'none'
+
+        _this.handleEventAgain()
+      }
+
       const handleResponse = response => {
-        StatusNotification({ response: JSON.parse(response) })
+        response = JSON.parse(response)
+        Object.assign(formData, { idInsert: response.idInsert })
 
-        // $$('.form-insert .form-input').forEach(e => (e.value = null))
+        StatusNotification({
+          response,
+          handleSuccess,
+          subMessage: 'nhà sản xuất',
+        })
 
-        // $('.modal-container').style.display = 'none'
-
-        // $('.loading') && $('.loading').remove()
+        $('.loading') && $('.loading').remove()
       }
 
       const handleDataModal = () => {
@@ -257,11 +297,9 @@ const App = {
             '../assets/img/loading2.gif',
             'black',
             '100px',
-            'center',
-            '0'
+            'center'
           )
 
-          let formData = {}
           $$('.form-insert .form-input').forEach(
             e => (formData[e.name] = e.value)
           )

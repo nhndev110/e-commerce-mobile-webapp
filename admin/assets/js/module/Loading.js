@@ -17,7 +17,7 @@ export default function Loading(
   backgroundColor,
   backgroundSize,
   backgroundPosition,
-  borderRadius = '16px'
+  borderRadius = '0'
 ) {
   let nodeLoading = $('.loading')
   !nodeLoading &&
@@ -26,7 +26,7 @@ export default function Loading(
 
   const listBackground = {
     black: 'rgba(0, 0, 0, 0.4)',
-    white: 'rgba(255, 255, 255, 0.6)',
+    white: 'rgba(255, 255, 255, 0.5)',
     blue: '#ECF8FE',
   }
 
@@ -37,9 +37,9 @@ export default function Loading(
     right: 0,
     bottom: 0,
     left: 0,
-    zIndex: 1000,
+    zIndex: 10000,
     background: `${listBackground[backgroundColor]} url(${urlImg}) no-repeat ${backgroundPosition} / ${backgroundSize}`,
-    borderRadius: borderRadius,
+    borderRadius: `${borderRadius}px`,
   })
 
   $(selectors).style.position = 'relative'

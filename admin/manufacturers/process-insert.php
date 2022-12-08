@@ -22,6 +22,7 @@ try {
   echo json_encode([
     "statusCode" => 200,
     "message" => "Bạn đã thêm 1",
+    "idInsert" => mysqli_insert_id($connect)
   ]);
 } catch (Exception $e) {
   echo json_encode([
