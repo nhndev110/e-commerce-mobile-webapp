@@ -6,23 +6,32 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 const controlCheckbox = $('#control__checkbox--all')
+const tbody = $('.table tbody')
+const reloadBtn = $('.control__icon.btn-reload')
+const createBtn = $('.control__icon.btn-create')
+const modalContainer = $('.modal-container')
+
 let checkboxRows = [...$$('.table__col--checkbox')]
 
 const App = {
+  manufacturers: {},
+  fetchManufacturers: function () {
+    const handleData = response => {
+      // this.render(JSON.parse(response))
+      this.manufacturers = response
+      console.log(this.manufacturers)
+    }
+
+    CallAjax({ url: './load-data.php', handleData })
+  },
   render: function (response) {
     if (response.statusCode === 200) {
-      const htmlRows = response.data.map(row => {
-        return `
+      const htmlRows = response.data.map(
+        row => `
           <tr>
             <td class="table__row--center">
               <label class="table__col flex-center" for="table-col-${row['id']}">
-                <input
-                  data-id=${row['id']}
-                  type="checkbox"
-                  name=""
-                  class="table__col--checkbox"
-                  id="table-col-${row['id']}"
-                >
+                <input data-id=${row['id']} type="checkbox" name="" class="table__col--checkbox" id="table-col-${row['id']}">
               </label>
             </td>
             <td class="table__row--center">${row['id']}</td>
@@ -30,28 +39,19 @@ const App = {
             <td class="vertical-align">${row['address']}</td>
             <td class="table__row--center">${row['phone']}</td>
             <td class="table__row--center">
-              <a
-                class="table__col flex-center"
-                title="Chỉnh Sửa"
-                href="../manufacturers/form_update.php?id=${row['id']}"
-              >
+              <button class="table__col flex-center" title="Chỉnh Sửa" data-id="${row['id']}">
                 <ion-icon name="color-wand"></ion-icon>
-              </a>
+              </button>
             </td>
             <td class="table__row--center">
-              <button
-                class="table__col btn-delete flex-center"
-                title="Xóa"
-                data-type="table"
-                data-id="${row['id']}"
-              >
+              <button class="table__col btn-delete flex-center" title="Xóa" data-type="table" data-id="${row['id']}">
                 <ion-icon name="trash-outline"></ion-icon>
               </button>
             </td>
-          </tr>`
-      })
-      $('tbody').innerHTML = htmlRows.join('')
-      this.handleEventAgain()
+          </tr>
+        `
+      )
+      tbody.innerHTML = htmlRows.join('')
     }
   },
   // Checkbox All Checked
@@ -219,7 +219,7 @@ const App = {
 
     const _this = this
 
-    $('.control__icon.btn-reload').onclick = function () {
+    reloadBtn.onclick = function () {
       Loading(
         '.table',
         '../assets/img/loading2.gif',
@@ -242,8 +242,8 @@ const App = {
       })
     }
 
-    $('.control__icon.btn-add').onclick = function () {
-      $('.modal-container').style.display = 'block'
+    createBtn.onclick = function () {
+      modalContainer.style.display = 'block'
 
       let formData = {}
 
@@ -271,11 +271,11 @@ const App = {
           </td>
         `
 
-        $('.table tbody').appendChild(htmlRows)
+        tbody.appendChild(htmlRows)
 
         $$('.form-insert .form-input').forEach(e => (e.value = null))
 
-        $('.modal-container').style.display = 'none'
+        modalContainer.style.display = 'none'
 
         _this.handleEventAgain()
       }
@@ -323,6 +323,8 @@ const App = {
     }
   },
   start: function () {
+    this.fetchManufacturers()
+
     this.handleEvent()
   },
 }
