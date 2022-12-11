@@ -3,7 +3,18 @@
 @import url('./libary/index.css');
 
 /* ================== Main ================== */
-.control__search input {
+#content-header {
+  margin-top: 16px;
+}
+#content-body {
+  margin-top: 16px;
+}
+h1 {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+.control-search input {
   width: 250px;
   height: 30px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
@@ -11,11 +22,9 @@
   padding: 12px;
   border-radius: 12px;
 }
-
-.table-content {
+#section-table {
   margin-top: 12px;
 }
-
 .form-group .form-label {
   color: var(--primary-color);
 }

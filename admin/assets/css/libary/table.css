@@ -36,17 +36,17 @@
   padding: 12px;
 }
 
-.table .table__thead--bg-primary {
+.table .table-bg-primary {
   background-color: var(--primary-color);
   color: #fff;
 }
 
-.table .table__row--center {
+.table .table-row-center {
   text-align: center;
   vertical-align: middle;
 }
 
-.table .table__col {
+.table .table-col {
   font-size: 18px;
   color: #333;
   background-color: rgba(0, 0, 0, 0.1);
@@ -57,7 +57,7 @@
   cursor: pointer;
 }
 
-.table .table__col:hover {
+.table .table-col:hover {
   color: #fff;
   background-color: var(--primary-color);
 }
