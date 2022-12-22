@@ -12,22 +12,15 @@ const controlDelete = $('.control-btn.btn-delete')
 const tbody = $('.table tbody')
 const modalContainer = $('.modal-container')
 
-fetch('./load-data.php')
-  .then(response => response.json())
-  .then(data => (App.manufacturers = data))
-  .then(() => App.start())
-
 const App = {
-  manufacturers: {},
+  // manufacturers: {},
   checkboxTable: [],
-  fetchManufacturers: function () {
-    //   const handleData = response => {
-    //     this.manufacturers = JSON.parse(response)
-    //     this.render(this.manufacturers)
-    //   }
-    //   CallAjax({ url: './load-data.php', handleData })
+  getManufacturers(cb = () => {}) {
+    fetch('./load-data.php')
+      .then(res => res.json())
+      .then(cb)
   },
-  render: function (data) {
+  renderManufacturers(data) {
     if (data.statusCode === 200) {
       const htmlRows = data.data.map(
         row => `
@@ -58,7 +51,7 @@ const App = {
     }
   },
   // Checkbox All Checked
-  handleCheckbox: function () {
+  handleCheckbox() {
     // this.checkboxTable = [...$$('.table-col-checkbox')]
     // let checkboxCheckeds = {
     //   ids: [],
@@ -87,20 +80,18 @@ const App = {
     //   }
     // })
   },
-  handleDeleteBtn: function () {
+  handleDeleteBtn() {
     const _this = this
 
     controlDelete.onclick = function () {
       const handleSuccess = () => {
-        checkboxCheckeds.elements.forEach(element => {
-          element.remove()
-        })
+        checkboxCheckeds.elements.forEach(element => element.remove())
       }
 
       // Show notification when success delete
-      const handleDelete = response => {
+      const handleDelete = res => {
         StatusNotification({
-          response: JSON.parse(response),
+          response: JSON.parse(res),
           handleSuccess,
           subMessage: 'nhà sản xuất',
         })
@@ -128,73 +119,73 @@ const App = {
       }
     }
 
-    $$('.btn-delete').forEach(element => {
-      element.onclick = function () {
-        Loading(
-          '.table tbody',
-          '../assets/img/loading2.gif',
-          'white',
-          '100px',
-          'center 0',
-          '16'
-        )
+    // $$('.btn-delete').forEach(element => {
+    //   element.onclick = function () {
+    //     Loading(
+    //       '.table tbody',
+    //       '../assets/img/loading2.gif',
+    //       'white',
+    //       '100px',
+    //       'center 0',
+    //       '16'
+    //     )
 
-        const btnType = this.dataset.type
+    //     const btnType = this.dataset.type
 
-        switch (btnType) {
-          case 'form': {
-            const btnId = this.dataset.id
+    //     switch (btnType) {
+    //       case 'form': {
+    //         const btnId = this.dataset.id
 
-            CallAjax({
-              url: '../manufacturers/process-delete.php',
-              data: { id: btnId },
-              titleError: 'Thất Bại',
-              titleSuccess: 'Thành Công',
-              contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
-            })
-            break
-          }
-          case 'table': {
-            // Get id of button
-            const btnId = this.dataset.id
+    //         CallAjax({
+    //           url: '../manufacturers/process-delete.php',
+    //           data: { id: btnId },
+    //           titleError: 'Thất Bại',
+    //           titleSuccess: 'Thành Công',
+    //           contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
+    //         })
+    //         break
+    //       }
+    //       case 'table': {
+    //         // Get id of button
+    //         const btnId = this.dataset.id
 
-            // Handle when success delete
-            const handleSuccess = () => this.closest('tr').remove()
+    //         // Handle when success delete
+    //         const handleSuccess = () => this.closest('tr').remove()
 
-            // Show notification when success delete
-            const handleDelete = response => {
-              StatusNotification({
-                response: JSON.parse(response),
-                handleSuccess,
-                subMessage: 'nhà sản xuất',
-              })
-              $('.loading') && $('.loading').remove()
-            }
+    //         // Show notification when success delete
+    //         const handleDelete = response => {
+    //           StatusNotification({
+    //             response: JSON.parse(response),
+    //             handleSuccess,
+    //             subMessage: 'nhà sản xuất',
+    //           })
+    //           $('.loading') && $('.loading').remove()
+    //         }
 
-            // Call ajax do get response data (status code & status message)
-            if (confirm('Bạn muốn xóa nhà sản xuất này ???'))
-              CallAjax({
-                url: '../manufacturers/process-delete.php',
-                data: { id: btnId },
-                handleData: handleDelete,
-              })
-            else $('.loading') && $('.loading').remove()
-            break
-          }
-          case 'control': {
-            // Handle when success delete
+    //         // Call ajax do get response data (status code & status message)
+    //         if (confirm('Bạn muốn xóa nhà sản xuất này ???'))
+    //           CallAjax({
+    //             url: '../manufacturers/process-delete.php',
+    //             data: { id: btnId },
+    //             handleData: handleDelete,
+    //           })
+    //         else $('.loading') && $('.loading').remove()
+    //         break
+    //       }
+    //       case 'control': {
+    //         // Handle when success delete
 
-            break
-          }
+    //         break
+    //       }
 
-          default:
-            alert('Error: NOT FIND TYPE OF BUTTON DELETE')
-            $('.loading') && $('.loading').remove()
-        }
-      }
-    })
+    //       default:
+    //         alert('Error: NOT FIND TYPE OF BUTTON DELETE')
+    //         $('.loading') && $('.loading').remove()
+    //     }
+    //   }
+    // })
   },
-  handleEvent: function () {
+  handleEvent() {
     const _this = this
     this.checkboxTable = [...$$('.table-col-checkbox')]
 
@@ -241,13 +232,19 @@ const App = {
         handleData: handleReload,
       })
     }
-
+  },
+  handleCreateManufacturer() {
     controlCreate.onclick = function () {
       modalContainer.style.display = 'block'
 
+      const _this = this
+      const formInput = $$('.form-insert .form-input')
+
       let formData = {}
 
+      // Xử lí sau khi thêm nhà sản xuất thành công
       const handleSuccess = () => {
+        // Thêm 1 phần tử vào bảng
         const htmlRows = document.createElement('tr')
         htmlRows.innerHTML = `
           <td class="table-row-center">
@@ -270,18 +267,22 @@ const App = {
             </button>
           </td>
         `
-
         tbody.appendChild(htmlRows)
 
-        $$('.form-insert .form-input').forEach(e => (e.value = null))
+        // Trả lại giá trị rỗng cho tất cả các ô input
+        formInput.forEach(e => (e.value = null))
 
+        // Ẩn form thêm
         modalContainer.style.display = 'none'
 
-        _this.handleEventAgain()
+        // _this.handleEventAgain()
       }
 
+      // Xử lí giá trị trả về
       const handleResponse = response => {
         response = JSON.parse(response)
+
+        // Thêm vào dữ liệu trả về phần id của nhà sản xuất sau khi thêm
         Object.assign(formData, { idInsert: response.idInsert })
 
         StatusNotification({
@@ -293,6 +294,7 @@ const App = {
         $('.loading') && $('.loading').remove()
       }
 
+      // Gửi dữ liệu của các ô input để thêm nhà sản xuất
       const handleDataModal = () => {
         $('.btn-submit').onclick = () => {
           Loading(
@@ -303,9 +305,7 @@ const App = {
             'center'
           )
 
-          $$('.form-insert .form-input').forEach(
-            e => (formData[e.name] = e.value)
-          )
+          formInput.forEach(e => (formData[e.name] = e.value))
 
           CallAjax({
             url: '../manufacturers/process-insert.php',
@@ -313,23 +313,26 @@ const App = {
             handleData: handleResponse,
           })
         }
-
-        $('.btn-reset').onclick = () => {
-          $$('.form-insert .form-input').forEach(e => (e.value = null))
-        }
       }
+
+      $('.btn-reset').onclick = () => formInput.forEach(e => (e.value = null))
 
       Modal({ handleModal: handleDataModal })
     }
   },
-  start: function () {
-    // this.fetchManufacturers()
-    // this.handleCheckbox()
-    // this.handleEvent()
+  start() {
+    const _this = this
 
-    this.render(this.manufacturers)
-    this.handleEvent()
+    _this.getManufacturers(_this.renderManufacturers)
+
+    _this.handleEvent()
+
+    _this.handleCreateManufacturer()
+
+    _this.handleDeleteBtn()
+
+    _this.handleCheckbox()
   },
 }
 
-// App.start()
+App.start()

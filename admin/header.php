@@ -1,4 +1,4 @@
-<header>
+<header id="top-header">
 	<nav class="nav-header">
 		<ul>
 			<li><a href="">Item 1</a></li>
