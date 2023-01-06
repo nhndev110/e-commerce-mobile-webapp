@@ -1,9 +1,9 @@
-<?php require "../check-admin-login.php" ?>
+<?php require "../check-admin-login.php"; ?>
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
-	<?php require '../header-tag.php' ?>
+	<?php require '../header-tag.php'; ?>
 	<link rel="stylesheet" href="../assets/css/manufacturers.css">
 	<script defer type="module" src="../assets/js/app.js"></script>
 	<script defer type="module" src="../assets/js/manufacturers.js"></script>
@@ -12,16 +12,16 @@
 
 <body>
 	<?php
-  require "../connect.php";
-  $sql = "select * from manufacturers";
-  $result = mysqli_query($connect, $sql);
-  ?>
+	require_once "../connect.php";
+	$sql    = "select * from manufacturers";
+	$result = mysqli_query($connect, $sql);
+	?>
 	<div id="wrapper">
 		<div class="sidebar-offcanvas">
-			<?php require '../sidebar.php' ?>
+			<?php require '../sidebar.php'; ?>
 		</div>
 		<div class="page-body-wrapper">
-			<?php require '../header.php' ?>
+			<?php require '../header.php'; ?>
 			<main id="main">
 				<div class="container">
 					<div id="content-header">
@@ -77,10 +77,10 @@
 				</div>
 			</main>
 		</div>
-		<?php include './form-insert.php' ?>
+		<?php include './form-insert.php'; ?>
 	</div>
 </body>
 
-<?php mysqli_close($connect) ?>
+<?php mysqli_close($connect); ?>
 
 </html>
