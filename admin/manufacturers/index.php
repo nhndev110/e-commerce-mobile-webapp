@@ -11,11 +11,6 @@
 </head>
 
 <body>
-	<?php
-	require_once "../connect.php";
-	$sql    = "select * from manufacturers";
-	$result = mysqli_query($connect, $sql);
-	?>
 	<div id="wrapper">
 		<div class="sidebar-offcanvas">
 			<?php require '../sidebar.php'; ?>
@@ -80,7 +75,5 @@
 		<?php include './form-insert.php'; ?>
 	</div>
 </body>
-
-<?php mysqli_close($connect); ?>
 
 </html>
