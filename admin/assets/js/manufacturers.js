@@ -13,14 +13,13 @@ const tbody = $('.table tbody')
 const modalContainer = $('.modal-container')
 
 const App = {
-  checkboxTable: [],
   // Lấy dữ liệu các nhà sản xuất
   async getManufacturers() {
     const response = await fetch('./load-data.php')
     return response.json()
   },
   // Đổ dữ liệu ra bảng
-  async renderManufacturers() {
+  async renderManufacturers(handleData = () => {}) {
     const res = await this.getManufacturers()
     if (res.statusCode === 200) {
       const htmlRows = res.data.map(
@@ -49,17 +48,17 @@ const App = {
         `
       )
       tbody.innerHTML = htmlRows.join('')
+      const checkboxTable = $$('.table-col-checkbox')
+      handleData([...checkboxTable])
     }
   },
   // xử lí các checkbox
-  handleCheckbox() {
+  handleCheckbox(checkboxTable) {
     // this.checkboxTable = [...$$('.table-col-checkbox')]
     // let checkboxCheckeds = {
     //   ids: [],
     //   elements: [],
     // }
-
-    let checkboxTable = [...$$('.table-col-checkbox')]
 
     // checked tất cả các checkbox
     controlCheckbox.onchange = e => {
@@ -175,15 +174,13 @@ const App = {
         // Trả lại giá trị rỗng cho tất cả các ô input
         formInput.forEach(e => (e.value = null))
 
-        // Ẩn form thêm
+        // Ẩn modal thêm nhà sản xuất
         modalContainer.style.display = 'none'
-
-        // _this.handleEventAgain()
       }
 
       // Xử lí giá trị trả về
       const handleResponse = response => {
-        response = JSON.parse(response)
+        console.log(response)
 
         // Thêm vào dữ liệu trả về phần id của nhà sản xuất sau khi thêm
         Object.assign(formData, { idInsert: response.idInsert })
@@ -209,11 +206,12 @@ const App = {
           )
 
           formInput.forEach(e => (formData[e.name] = e.value))
+          console.log(formData)
 
           FetchAPI({
             url: '../manufacturers/process-insert.php',
             data: formData,
-            handleData: handleResponse,
+            handleResponse,
           })
         }
       }
@@ -332,17 +330,15 @@ const App = {
   start() {
     const _this = this
 
-    // _this.getManufacturers()
+    _this.renderManufacturers(_this.handleCheckbox)
 
-    _this.renderManufacturers()
-
-    // _this.handleEvent()
+    _this.handleEvent()
 
     _this.handleCreateManufacturer()
 
     _this.handleReloadManufacturer()
 
-    // _this.handleDeleteBtn()
+    _this.handleDeleteBtn()
 
     // _this.handleCheckbox()
   },
