@@ -1,6 +1,6 @@
 'use strict'
 
-import { CallAjax, Loading, Modal, StatusNotification } from './module/index.js'
+import { FetchAPI, Loading, Modal, StatusNotification } from './module/index.js'
 
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
@@ -123,15 +123,16 @@ const App = {
         '16'
       )
 
-      const handleReload = response => {
-        const data = JSON.parse(response)
-        _this.renderManufacturers(data)
+      const handleReload = res => {
+        if (res.statusCode === 200) {
+          _this.renderManufacturers(res)
+        }
         $('.loading') && $('.loading').remove()
       }
 
-      CallAjax({
+      FetchAPI({
         url: '../manufacturers/load-data.php',
-        handleData: handleReload,
+        handleResponse: handleReload,
       })
     }
   },
@@ -209,7 +210,7 @@ const App = {
 
           formInput.forEach(e => (formData[e.name] = e.value))
 
-          CallAjax({
+          FetchAPI({
             url: '../manufacturers/process-insert.php',
             data: formData,
             handleData: handleResponse,
@@ -248,7 +249,7 @@ const App = {
         checkboxCheckeds.ids.length > 0 &&
         confirm('Bạn muốn xóa những nhà sản xuất bạn đã chọn ???')
       ) {
-        CallAjax({
+        FetchAPI({
           url: '../manufacturers/process-delete.php',
           data: { id: checkboxCheckeds.ids },
           handleData: handleDelete,
@@ -279,7 +280,7 @@ const App = {
     //       case 'form': {
     //         const btnId = this.dataset.id
 
-    //         CallAjax({
+    //         FetchAPI({
     //           url: '../manufacturers/process-delete.php',
     //           data: { id: btnId },
     //           titleError: 'Thất Bại',
@@ -307,7 +308,7 @@ const App = {
 
     //         // Call ajax do get response data (status code & status message)
     //         if (confirm('Bạn muốn xóa nhà sản xuất này ???'))
-    //           CallAjax({
+    //           FetchAPI({
     //             url: '../manufacturers/process-delete.php',
     //             data: { id: btnId },
     //             handleData: handleDelete,
@@ -337,9 +338,9 @@ const App = {
 
     // _this.handleEvent()
 
-    // _this.handleCreateManufacturer()
+    _this.handleCreateManufacturer()
 
-    // _this.handleReloadManufacturer()
+    _this.handleReloadManufacturer()
 
     // _this.handleDeleteBtn()
 
