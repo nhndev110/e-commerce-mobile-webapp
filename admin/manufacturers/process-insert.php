@@ -5,13 +5,14 @@ try {
   // if (empty($_POST['name']) || empty($_POST['address']) || empty($_POST['phone']) || empty($_POST['image']))
   //   throw new Exception("Vui lòng nhập đầy đủ các thông tin", 400);
 
+  echo $_POST['name'];
+  die();
+
   $name = $_POST['name'];
   $address = $_POST['address'];
   $phone = $_POST['phone'];
   $image = $_POST['image'];
 
-  echo $_POST['name'];
-  die();
 
   require '../connect.php';
   $sql = "insert into manufacturers (name, address, phone, image)

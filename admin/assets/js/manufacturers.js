@@ -180,8 +180,6 @@ const App = {
 
       // Xử lí giá trị trả về
       const handleResponse = response => {
-        console.log(response)
-
         // Thêm vào dữ liệu trả về phần id của nhà sản xuất sau khi thêm
         Object.assign(formData, { idInsert: response.idInsert })
 
@@ -206,7 +204,6 @@ const App = {
           )
 
           formInput.forEach(e => (formData[e.name] = e.value))
-          console.log(formData)
 
           FetchAPI({
             url: '../manufacturers/process-insert.php',

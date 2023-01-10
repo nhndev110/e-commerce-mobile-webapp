@@ -40,12 +40,15 @@ export default function FetchAPI({
   fetch(url, {
     method,
     headers: {
-      contentType,
+      'Content-Type': contentType,
     },
     cache,
     body: JSON.stringify(data),
   })
-    .then(res => res.json())
+    .then(res => {
+      console.log(data)
+      return res.json()
+    })
     .then(handleResponse)
     .catch(handleResponse)
 }
