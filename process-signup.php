@@ -12,8 +12,8 @@ $arr_result = mysqli_query($connect, $sql);
 $num_row = mysqli_fetch_array($arr_result)['count(*)'];
 
 if ($num_row > 0) {
-    echo -1;
-    exit();
+  echo -1;
+  exit();
 }
 
 $sql = "insert into customers (name, email, password, phone_number, address)
