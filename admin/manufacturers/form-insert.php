@@ -17,18 +17,15 @@
 							</div>
 							<div class="form-group">
 								<label class="form-label">Địa chỉ:</label>
-								<textarea class="form-input" placeholder="Địa Chỉ Nhà Sản Xuất" name="address" cols="40"
-									rows="4"></textarea>
+								<textarea class="form-input" placeholder="Địa Chỉ Nhà Sản Xuất" name="address" cols="40" rows="4"></textarea>
 							</div>
 							<div class="form-group">
 								<label class="form-label">Số Điện Thoại:</label>
-								<input class="form-input" placeholder="Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone"
-									autocomplete="off">
+								<input class="form-input" placeholder="Số Điện Thoại Nhà Sản Xuất" type="tel" name="phone" autocomplete="off">
 							</div>
 							<div class="form-group">
 								<label class="form-label">Link Ảnh:</label>
-								<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image"
-									autocomplete="off">
+								<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image" autocomplete="off">
 							</div>
 						</form>
 					</div>

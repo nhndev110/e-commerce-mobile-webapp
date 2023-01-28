@@ -1,22 +1,22 @@
-<?php require "../check-admin-login.php"; ?>
+<?php require_once "../check-admin-login.php" ?>
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
-	<?php require '../header-tag.php'; ?>
-	<link rel="stylesheet" href="../assets/css/manufacturers.css">
-	<script defer type="module" src="../assets/js/app.js"></script>
-	<script defer type="module" src="../assets/js/manufacturers.js"></script>
+	<?php require_once '../header-tag.php' ?>
+	<link rel="stylesheet" href="../assets/css/manufacturers.css?<?= time() ?>">
+	<script defer type="module" src="../assets/js/app.js?<?= time() ?>"></script>
+	<script defer type="module" src="../assets/js/manufacturers.js?<?= time() ?>"></script>
 	<title>Giao Diện Admin</title>
 </head>
 
 <body>
 	<div id="wrapper">
 		<div class="sidebar-offcanvas">
-			<?php require '../sidebar.php'; ?>
+			<?php require_once '../sidebar.php'; ?>
 		</div>
 		<div class="page-body-wrapper">
-			<?php require '../header.php'; ?>
+			<?php require_once '../header.php'; ?>
 			<main id="main">
 				<div class="container">
 					<div id="content-header">

@@ -55,8 +55,6 @@ const App = {
             )
             tbody.innerHTML = html.join('')
             resolve()
-          } else {
-            reject()
           }
         })
         .catch(err => {})
@@ -135,18 +133,12 @@ const App = {
       _this.renderManufacturers().then(() => {
         $('.loading') && $('.loading').remove()
       })
-
-      // FetchAPI({
-      //   url: '../manufacturers/load-data.php',
-      //   handleResponse: handleReload,
-      // })
     }
   },
   handleCreateManufacturer() {
-    controlCreate.onclick = function () {
+    controlCreate.onclick = e => {
       modalContainer.style.display = 'block'
 
-      const _this = this
       const formInput = $$('.form-insert .form-input')
 
       let formData = {}
@@ -154,8 +146,8 @@ const App = {
       // Xử lí sau khi thêm nhà sản xuất thành công
       const handleSuccess = () => {
         // Thêm 1 phần tử vào bảng
-        const htmlRows = document.createElement('tr')
-        htmlRows.innerHTML = `
+        const html = document.createElement('tr')
+        html.innerHTML = `
           <td class="table-row-center">
             <label class="table-col flex-center" for="table-col-${formData['idInsert']}">
               <input data-id="${formData['idInsert']}" type="checkbox" name="" class="table-col-checkbox" id="table-col-${formData['idInsert']}">
@@ -176,7 +168,7 @@ const App = {
             </button>
           </td>
         `
-        tbody.appendChild(htmlRows)
+        tbody.appendChild(html)
 
         // Trả lại giá trị rỗng cho tất cả các ô input
         formInput.forEach(e => (e.value = null))
@@ -213,7 +205,7 @@ const App = {
           formInput.forEach(e => (formData[e.name] = e.value))
 
           FetchAPI({
-            url: '../manufacturers/process-insert.php',
+            url: './process-insert.php',
             data: formData,
             handleResponse,
           })
@@ -340,7 +332,7 @@ const App = {
 
     // _this.handleEvent()
 
-    // _this.handleCreateManufacturer()
+    _this.handleCreateManufacturer()
 
     _this.handleReloadManufacturer()
 
