@@ -1,8 +1,8 @@
 <?php
 
-try {
-	session_start();
+session_start();
 
+try {
 	if (empty($_SESSION['name']) || empty($_SESSION['id'])) {
 		throw new Exception('-2');
 	}
@@ -10,6 +10,7 @@ try {
 	if (empty($_POST['id'])) {
 		throw new Exception('-1');
 	}
+
 	$id = $_POST['id'];
 
 	if (empty($_SESSION['cart'][$id])) {

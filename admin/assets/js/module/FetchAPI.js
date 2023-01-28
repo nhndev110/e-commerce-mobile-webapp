@@ -46,7 +46,6 @@ export default function FetchAPI({
     body: JSON.stringify(data),
   })
     .then(res => {
-      console.log(data)
       return res.json()
     })
     .then(handleResponse)

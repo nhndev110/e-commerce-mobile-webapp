@@ -14,43 +14,53 @@ const modalContainer = $('.modal-container')
 
 const App = {
   // Lấy dữ liệu các nhà sản xuất
-  async getManufacturers() {
-    const response = await fetch('./load-data.php')
-    return response.json()
+  getManufacturers() {
+    return new Promise((resolve, reject) => {
+      fetch('./load-data.php')
+        .then(res => res.json())
+        .then(data => resolve(data))
+        .catch(err => reject(err))
+    })
   },
   // Đổ dữ liệu ra bảng
-  async renderManufacturers(handleData = () => {}) {
-    const res = await this.getManufacturers()
-    if (res.statusCode === 200) {
-      const htmlRows = res.data.map(
-        row => `
-          <tr>
-            <td class="table-row-center">
-              <label class="table-col flex-center" for="table-col-${row['id']}">
-                <input data-id=${row['id']} type="checkbox" name="" class="table-col-checkbox" id="table-col-${row['id']}">
-              </label>
-            </td>
-            <td class="table-row-center">${row['id']}</td>
-            <td class="table-row-center">${row['name']}</td>
-            <td class="vertical-align">${row['address']}</td>
-            <td class="table-row-center">${row['phone']}</td>
-            <td class="table-row-center">
-              <button class="table-col flex-center" title="Chỉnh Sửa" data-id="${row['id']}">
-                <ion-icon name="color-wand"></ion-icon>
-              </button>
-            </td>
-            <td class="table-row-center">
-              <button class="table-col btn-delete flex-center" title="Xóa" data-type="table" data-id="${row['id']}">
-                <ion-icon name="trash-outline"></ion-icon>
-              </button>
-            </td>
-          </tr>
-        `
-      )
-      tbody.innerHTML = htmlRows.join('')
-      const checkboxTable = $$('.table-col-checkbox')
-      handleData([...checkboxTable])
-    }
+  renderManufacturers() {
+    return new Promise((resolve, reject) => {
+      this.getManufacturers()
+        .then(res => {
+          if (res.status === 'success') {
+            const html = res.data.map(
+              row => `
+                  <tr>
+                    <td class="table-row-center">
+                      <label class="table-col flex-center" for="table-col-${row['id']}">
+                        <input data-id=${row['id']} type="checkbox" name="" class="table-col-checkbox" id="table-col-${row['id']}">
+                      </label>
+                    </td>
+                    <td class="table-row-center">${row['id']}</td>
+                    <td class="table-row-center">${row['name']}</td>
+                    <td class="vertical-align">${row['address']}</td>
+                    <td class="table-row-center">${row['phone']}</td>
+                    <td class="table-row-center">
+                      <button class="table-col flex-center" title="Chỉnh Sửa" data-id="${row['id']}">
+                        <ion-icon name="color-wand"></ion-icon>
+                      </button>
+                    </td>
+                    <td class="table-row-center">
+                      <button class="table-col btn-delete flex-center" title="Xóa" data-type="table" data-id="${row['id']}">
+                        <ion-icon name="trash-outline"></ion-icon>
+                      </button>
+                    </td>
+                  </tr>
+                `
+            )
+            tbody.innerHTML = html.join('')
+            resolve()
+          } else {
+            reject()
+          }
+        })
+        .catch(err => {})
+    })
   },
   // xử lí các checkbox
   handleCheckbox(checkboxTable) {
@@ -112,7 +122,7 @@ const App = {
   handleReloadManufacturer() {
     const _this = this
 
-    controlReload.onclick = function () {
+    controlReload.onclick = () => {
       Loading(
         '.table',
         '../assets/img/loading2.gif',
@@ -122,17 +132,14 @@ const App = {
         '16'
       )
 
-      const handleReload = res => {
-        if (res.statusCode === 200) {
-          _this.renderManufacturers(res)
-        }
+      _this.renderManufacturers().then(() => {
         $('.loading') && $('.loading').remove()
-      }
-
-      FetchAPI({
-        url: '../manufacturers/load-data.php',
-        handleResponse: handleReload,
       })
+
+      // FetchAPI({
+      //   url: '../manufacturers/load-data.php',
+      //   handleResponse: handleReload,
+      // })
     }
   },
   handleCreateManufacturer() {
@@ -327,15 +334,17 @@ const App = {
   start() {
     const _this = this
 
-    _this.renderManufacturers(_this.handleCheckbox)
+    _this.renderManufacturers()
 
-    _this.handleEvent()
+    // _this.renderManufacturers(_this.handleCheckbox)
 
-    _this.handleCreateManufacturer()
+    // _this.handleEvent()
+
+    // _this.handleCreateManufacturer()
 
     _this.handleReloadManufacturer()
 
-    _this.handleDeleteBtn()
+    // _this.handleDeleteBtn()
 
     // _this.handleCheckbox()
   },
