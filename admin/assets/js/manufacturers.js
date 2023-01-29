@@ -149,21 +149,21 @@ const App = {
         const html = document.createElement('tr')
         html.innerHTML = `
           <td class="table-row-center">
-            <label class="table-col flex-center" for="table-col-${formData['idInsert']}">
-              <input data-id="${formData['idInsert']}" type="checkbox" name="" class="table-col-checkbox" id="table-col-${formData['idInsert']}">
+            <label class="table-col flex-center" for="table-col-${formData['id']}">
+              <input data-id="${formData['id']}" type="checkbox" name="" class="table-col-checkbox" id="table-col-${formData['id']}">
             </label>
           </td>
-          <td class="table-row-center">${formData['idInsert']}</td>
+          <td class="table-row-center">${formData['id']}</td>
           <td class="table-row-center">${formData['name']}</td>
           <td class="vertical-align">${formData['address']}</td>
           <td class="table-row-center">${formData['phone']}</td>
           <td class="table-row-center">
-            <button class="table-col flex-center" title="Chỉnh Sửa" href="../manufacturers/form_update.php?id=${formData['idInsert']}">
+            <button class="table-col flex-center" title="Chỉnh Sửa" href="../manufacturers/form_update.php?id=${formData['id']}">
               <ion-icon name="color-wand" role="img" class="md hydrated" aria-label="color wand"></ion-icon>
             </button>
           </td>
           <td class="table-row-center">
-            <button class="table-col btn-delete flex-center" title="Xóa" data-type="table" data-id="${formData['idInsert']}">
+            <button class="table-col btn-delete flex-center" title="Xóa" data-type="table" data-id="${formData['id']}">
               <ion-icon name="trash-outline" role="img" class="md hydrated" aria-label="trash outline"></ion-icon>
             </button>
           </td>
@@ -180,7 +180,7 @@ const App = {
       // Xử lí giá trị trả về
       const handleResponse = response => {
         // Thêm vào dữ liệu trả về phần id của nhà sản xuất sau khi thêm
-        Object.assign(formData, { idInsert: response.idInsert })
+        formData['id'] = response.data?.id || null
 
         StatusNotification({
           response,
@@ -205,10 +205,11 @@ const App = {
           formInput.forEach(e => (formData[e.name] = e.value))
 
           FetchAPI({
-            url: './process-insert.php',
+            url: './process-insertttt.php',
             data: formData,
-            handleResponse,
           })
+            .then(handleResponse)
+            .catch(err => console.log(err))
         }
       }
 
@@ -327,8 +328,6 @@ const App = {
     const _this = this
 
     _this.renderManufacturers()
-
-    // _this.renderManufacturers(_this.handleCheckbox)
 
     // _this.handleEvent()
 

@@ -17,6 +17,7 @@ foreach ($manufacturers as $manufacturer) {
 }
 
 echo json_encode([
-  'data' => $result,
   'status' => 'success',
+  "statusCode" => 200,
+  'data' => $result,
 ]);

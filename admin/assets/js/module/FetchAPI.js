@@ -7,20 +7,24 @@ export default function FetchAPI({
   // contentType = 'application/json',
   contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
   cache = 'no-cache',
-  handleResponse = () => {},
 }) {
-  fetch(url, {
-    method,
-    mode: 'cors',
-    headers: {
-      'Content-Type': contentType,
-    },
-    // body: JSON.stringify(data),
-    body: new URLSearchParams(data),
-  })
-    .then(res => {
-      return res.json()
+  return new Promise((resolve, reject) => {
+    fetch(url, {
+      method,
+      mode: 'cors',
+      headers: {
+        'Content-Type': contentType,
+      },
+      // body: JSON.stringify(data),
+      body: new URLSearchParams(data),
     })
-    .then(handleResponse)
-    .catch(handleResponse)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.statusText)
+        }
+        return res.json()
+      })
+      .then(data => resolve(data))
+      .catch(err => reject(err))
+  })
 }
