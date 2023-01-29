@@ -12,8 +12,8 @@ try {
   $image = $_POST['image'];
 
   require_once '../connect.php';
-  $sql = "insert into manufacturers (name, address, phone, image)
-    value ('$name', '$address', '$phone', '$image')";
+  $sql = "INSERT INTO manufacturers (name, address, phone, image)
+    VALUE ('$name', '$address', '$phone', '$image')";
   mysqli_query($connect, $sql);
 
   $error = mysqli_error($connect);

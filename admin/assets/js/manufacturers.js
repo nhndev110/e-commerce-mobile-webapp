@@ -205,7 +205,7 @@ const App = {
           formInput.forEach(e => (formData[e.name] = e.value))
 
           FetchAPI({
-            url: './process-insertttt.php',
+            url: './process-insert.php',
             data: formData,
           })
             .then(handleResponse)
