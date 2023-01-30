@@ -4,9 +4,7 @@ export default function FetchAPI({
   url = '',
   method = 'POST',
   data = {},
-  // contentType = 'application/json',
   contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
-  cache = 'no-cache',
 }) {
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -15,7 +13,6 @@ export default function FetchAPI({
       headers: {
         'Content-Type': contentType,
       },
-      // body: JSON.stringify(data),
       body: new URLSearchParams(data),
     })
       .then(res => {

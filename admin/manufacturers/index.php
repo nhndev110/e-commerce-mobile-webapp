@@ -13,10 +13,10 @@
 <body>
 	<div id="wrapper">
 		<div class="sidebar-offcanvas">
-			<?php require_once '../sidebar.php'; ?>
+			<?php require_once '../sidebar.php' ?>
 		</div>
 		<div class="page-body-wrapper">
-			<?php require_once '../header.php'; ?>
+			<?php require_once '../header.php' ?>
 			<main id="main">
 				<div class="container">
 					<div id="content-header">
@@ -72,7 +72,7 @@
 				</div>
 			</main>
 		</div>
-		<?php include './form-insert.php'; ?>
+		<?php require_once './form-insert.php' ?>
 	</div>
 </body>
 
