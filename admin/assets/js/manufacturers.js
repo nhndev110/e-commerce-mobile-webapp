@@ -180,7 +180,9 @@ const App = {
       // Xử lí giá trị trả về
       const handleResponse = response => {
         // Thêm vào dữ liệu trả về phần id của nhà sản xuất sau khi thêm
-        formData['id'] = response.data?.id || null
+        if (response.statusCode === 200) {
+          formData['id'] = response.data.id
+        }
 
         StatusNotification({
           response,
@@ -219,110 +221,115 @@ const App = {
     }
   },
   handleUpdateManufacturer() {},
-  handleDeleteBtn() {
+  handleDeleteManufacturer() {
     const _this = this
 
-    controlDelete.onclick = function () {
+    // Xóa những đối tượng được tick chọn
+    controlDelete.onclick = e => {
+      let arr = []
+
+      // Xóa hàng đã được xác nhận ra khỏi DOM
       const handleSuccess = () => {
-        checkboxCheckeds.elements.forEach(element => element.remove())
+        arr.forEach(element => element.closest('tr').remove())
       }
 
-      // Show notification when success delete
+      // Hiện thị thông báo xóa thành công
       const handleDelete = res => {
         StatusNotification({
-          response: JSON.parse(res),
+          response: res,
           handleSuccess,
           subMessage: 'nhà sản xuất',
         })
         $('.loading') && $('.loading').remove()
       }
 
+      ;[...$$('.table-col-checkbox')].forEach(el => el.checked && arr.push(el))
+
+      FetchAPI({
+        url: '../manufacturers/process-delete.php',
+        data: { id: arr.map(el => el.dataset.id) },
+      })
+        .then(handleDelete)
+        .catch(err => console.error(err))
+
       // Check valid call ajax do get response data
       // (status code & status message)
-      if (
-        typeof checkboxCheckeds.ids.length === 'number' &&
-        checkboxCheckeds.ids.length > 0 &&
-        confirm('Bạn muốn xóa những nhà sản xuất bạn đã chọn ???')
-      ) {
-        FetchAPI({
-          url: '../manufacturers/process-delete.php',
-          data: { id: checkboxCheckeds.ids },
-          handleData: handleDelete,
-        })
-      } else {
-        if (typeof checkboxCheckeds.ids.length !== 'number')
-          alert('Error: datatype invalid !!')
-        if (checkboxCheckeds.ids.length <= 0)
-          alert('Bạn chưa chọn nhà sản xuất nào !!!')
-        $('.loading') && $('.loading').remove()
-      }
+      // if (
+      //   typeof checkboxCheckeds.ids.length === 'number' &&
+      //   checkboxCheckeds.ids.length > 0 &&
+      //   confirm('Bạn muốn xóa những nhà sản xuất bạn đã chọn ???')
+      // ) {
+      //   FetchAPI({
+      //     url: '../manufacturers/process-delete.php',
+      //     data: { id: checkboxCheckeds.ids },
+      //     handleData: handleDelete,
+      //   })
+      // } else {
+      //   if (typeof checkboxCheckeds.ids.length !== 'number')
+      //     alert('Error: datatype invalid !!')
+      //   if (checkboxCheckeds.ids.length <= 0)
+      //     alert('Bạn chưa chọn nhà sản xuất nào !!!')
+      //   $('.loading') && $('.loading').remove()
+      // }
     }
 
-    // $$('.btn-delete').forEach(element => {
-    //   element.onclick = function () {
-    //     Loading(
-    //       '.table tbody',
-    //       '../assets/img/loading2.gif',
-    //       'white',
-    //       '100px',
-    //       'center 0',
-    //       '16'
-    //     )
-
-    //     const btnType = this.dataset.type
-
-    //     switch (btnType) {
-    //       case 'form': {
-    //         const btnId = this.dataset.id
-
-    //         FetchAPI({
-    //           url: '../manufacturers/process-delete.php',
-    //           data: { id: btnId },
-    //           titleError: 'Thất Bại',
-    //           titleSuccess: 'Thành Công',
-    //           contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
-    //         })
-    //         break
-    //       }
-    //       case 'table': {
-    //         // Get id of button
-    //         const btnId = this.dataset.id
-
-    //         // Handle when success delete
-    //         const handleSuccess = () => this.closest('tr').remove()
-
-    //         // Show notification when success delete
-    //         const handleDelete = response => {
-    //           StatusNotification({
-    //             response: JSON.parse(response),
-    //             handleSuccess,
-    //             subMessage: 'nhà sản xuất',
-    //           })
-    //           $('.loading') && $('.loading').remove()
-    //         }
-
-    //         // Call ajax do get response data (status code & status message)
-    //         if (confirm('Bạn muốn xóa nhà sản xuất này ???'))
-    //           FetchAPI({
-    //             url: '../manufacturers/process-delete.php',
-    //             data: { id: btnId },
-    //             handleData: handleDelete,
-    //           })
-    //         else $('.loading') && $('.loading').remove()
-    //         break
-    //       }
-    //       case 'control': {
-    //         // Handle when success delete
-
-    //         break
-    //       }
-
-    //       default:
-    //         alert('Error: NOT FIND TYPE OF BUTTON DELETE')
-    //         $('.loading') && $('.loading').remove()
-    //     }
-    //   }
-    // })
+    $$('.btn-delete').forEach(element => {
+      // element.onclick = function () {
+      //   Loading(
+      //     '.table tbody',
+      //     '../assets/img/loading2.gif',
+      //     'white',
+      //     '100px',
+      //     'center 0',
+      //     '16'
+      //   )
+      //   const btnType = this.dataset.type
+      //   switch (btnType) {
+      //     case 'form': {
+      //       const btnId = this.dataset.id
+      //       FetchAPI({
+      //         url: '../manufacturers/process-delete.php',
+      //         data: { id: btnId },
+      //         titleError: 'Thất Bại',
+      //         titleSuccess: 'Thành Công',
+      //         contentSuccess: 'Bạn đã xóa 1 nhà sản xuất !',
+      //       })
+      //       break
+      //     }
+      //     case 'table': {
+      //       // Get id of button
+      //       const btnId = this.dataset.id
+      //       // Handle when success delete
+      //       const handleSuccess = () => this.closest('tr').remove()
+      //       // Show notification when success delete
+      //       const handleDelete = response => {
+      //         StatusNotification({
+      //           response: JSON.parse(response),
+      //           handleSuccess,
+      //           subMessage: 'nhà sản xuất',
+      //         })
+      //         $('.loading') && $('.loading').remove()
+      //       }
+      //       // Call ajax do get response data (status code & status message)
+      //       if (confirm('Bạn muốn xóa nhà sản xuất này ???'))
+      //         FetchAPI({
+      //           url: '../manufacturers/process-delete.php',
+      //           data: { id: btnId },
+      //           handleData: handleDelete,
+      //         })
+      //       else $('.loading') && $('.loading').remove()
+      //       break
+      //     }
+      //     case 'control': {
+      //       // Handle when success delete
+      //       break
+      //     }
+      //     default:
+      //       alert('Error: NOT FIND TYPE OF BUTTON DELETE')
+      //       $('.loading') && $('.loading').remove()
+      //   }
+      // }
+    })
   },
   start() {
     const _this = this
@@ -335,7 +342,7 @@ const App = {
 
     _this.handleReloadManufacturer()
 
-    // _this.handleDeleteBtn()
+    _this.handleDeleteManufacturer()
 
     // _this.handleCheckbox()
   },
