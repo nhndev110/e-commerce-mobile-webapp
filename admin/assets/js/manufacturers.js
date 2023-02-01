@@ -226,31 +226,31 @@ const App = {
 
     // Xóa những đối tượng được tick chọn
     controlDelete.onclick = e => {
-      let arr = []
+      // Khái báo mảng và gán giá trị là những phần tử đã được tick chọn
+      const selectedMarkArr = [...$$('.table-col-checkbox')].filter(
+        el => el.checked
+      )
 
       // Xóa hàng đã được xác nhận ra khỏi DOM
       const handleSuccess = () => {
-        arr.forEach(element => element.closest('tr').remove())
+        selectedMarkArr.forEach(el => el.closest('tr').remove())
       }
 
-      // Hiện thị thông báo xóa thành công
-      const handleDelete = res => {
+      // Hiện thị thông báo xóa thành công và xóa phần loading...
+      const showNotification = res => {
         StatusNotification({
           response: res,
-          handleSuccess,
           subMessage: 'nhà sản xuất',
-        })
+        }).then(handleSuccess)
+
         $('.loading') && $('.loading').remove()
       }
 
-      ;[...$$('.table-col-checkbox')].forEach(el => el.checked && arr.push(el))
-
-      FetchAPI({
-        url: '../manufacturers/process-delete.php',
-        data: { id: arr.map(el => el.dataset.id) },
-      })
-        .then(handleDelete)
-        .catch(err => console.error(err))
+      if (selectedMarkArr.length > 0)
+        FetchAPI({
+          url: './process-delete.php',
+          data: { id: selectedMarkArr.map(el => el.dataset.id) },
+        }).then(showNotification)
 
       // Check valid call ajax do get response data
       // (status code & status message)

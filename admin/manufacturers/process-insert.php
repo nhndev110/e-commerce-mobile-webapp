@@ -4,7 +4,7 @@ require_once "../check-super-admin-login.php";
 
 try {
   if (empty($_POST['name']) || empty($_POST['address']) || empty($_POST['phone']) || empty($_POST['image']))
-    throw new Exception("Vui lòng nhập đầy đủ các thông tin", 400);
+    throw new Error("Vui lòng nhập đầy đủ các thông tin", 400);
 
   $name = $_POST['name'];
   $address = $_POST['address'];
@@ -18,7 +18,7 @@ try {
 
   $error = mysqli_error($connect);
   if (!empty($error))
-    throw new Exception($error, 500);
+    throw new Error($error, 500);
 
   echo json_encode([
     "status" => "success",
@@ -32,7 +32,7 @@ try {
       "image" => $image,
     ],
   ]);
-} catch (Exception $e) {
+} catch (Error $e) {
   echo json_encode([
     "status" => "error",
     "statusCode" => $e->getCode(),

@@ -1,19 +1,20 @@
 'use strict'
 
-export default function FetchAPI({
+const FetchAPI = ({
   url = '',
   method = 'POST',
   data = {},
-  contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
-}) {
-  return new Promise((resolve, reject) => {
+  contentType = 'application/json',
+}) => {
+  return new Promise((res, rej) => {
     fetch(url, {
       method,
       mode: 'cors',
       headers: {
         'Content-Type': contentType,
       },
-      body: new URLSearchParams(data),
+      // body: new URLSearchParams(data),
+      body: JSON.stringify(data),
     })
       .then(res => {
         if (!res.ok) {
@@ -21,7 +22,9 @@ export default function FetchAPI({
         }
         return res.json()
       })
-      .then(data => resolve(data))
-      .catch(err => reject(err))
+      .then(data => res(data))
+      .catch(err => rej(err))
   })
 }
+
+export default FetchAPI

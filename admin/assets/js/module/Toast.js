@@ -1,10 +1,5 @@
 // Create Toast Message
-export default function Toast({
-  title = '',
-  msg = '',
-  type = 'info',
-  duration = 3000,
-}) {
+const Toast = ({ title = '', msg = '', type = 'info', duration = 3000 }) => {
   let main = document.getElementById('toast-container')
   if (!main) {
     main = document.createElement('div')
@@ -28,7 +23,7 @@ export default function Toast({
   }, duration + 600)
 
   // ======= User Remove =======
-  toast.onclick = (e) => {
+  toast.onclick = e => {
     if (e.target.closest('.toast__close')) {
       main.removeChild(toast)
       clearTimeout(autoRemoveId)
@@ -53,3 +48,5 @@ export default function Toast({
 		`
   main.appendChild(toast)
 }
+
+export default Toast
