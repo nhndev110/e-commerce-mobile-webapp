@@ -1,15 +1,17 @@
 'use strict'
 
-const FetchAPI = ({
-  url = '',
-  method = 'POST',
-  data = {},
-  contentType = 'application/json',
-}) => {
+const FetchAPI = (url, requestInit) => {
+  const {
+    method = 'POST',
+    mode = 'cors',
+    data = {},
+    contentType = 'application/json',
+  } = requestInit
+
   return new Promise((res, rej) => {
     fetch(url, {
       method,
-      mode: 'cors',
+      mode,
       headers: {
         'Content-Type': contentType,
       },

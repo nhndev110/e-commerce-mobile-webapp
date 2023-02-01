@@ -5,9 +5,6 @@ require_once "../check-super-admin-login.php";
 $_POST = json_decode(file_get_contents('php://input'), true);
 
 try {
-	echo json_encode($_POST);
-	die();
-
 	if (empty($_POST['id']))
 		throw new Error("ID EMPTY", 400);
 

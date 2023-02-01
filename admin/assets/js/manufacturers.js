@@ -136,11 +136,14 @@ const App = {
     }
   },
   handleCreateManufacturer() {
-    controlCreate.onclick = e => {
+    controlCreate.onclick = () => {
+      // Hiện modal
       modalContainer.style.display = 'block'
 
+      // Khai báo biến chưa các phần tử input trong modal
       const formInput = $$('.form-insert .form-input')
 
+      // Khai báo biến chứa dữ liệu của các ô input
       let formData = {}
 
       // Xử lí sau khi thêm nhà sản xuất thành công
@@ -184,97 +187,104 @@ const App = {
           formData['id'] = response.data.id
         }
 
+        // Hiển thị thông báo
         StatusNotification({
           response,
-          handleSuccess,
           subMessage: 'nhà sản xuất',
-        })
+        }).then(handleSuccess)
 
+        // Xóa phần loading...
         $('.loading') && $('.loading').remove()
       }
 
       // Gửi dữ liệu của các ô input để thêm nhà sản xuất
-      const handleDataModal = () => {
+      const handleModal = () => {
+        formInput.forEach(el => {
+          el.onblur = ev => {
+            if (!ev.target.value) {
+              ev.target.style.border = '1px solid red'
+            } else {
+              ev.target.style.border = '1px solid #d4d4d4'
+            }
+          }
+        })
+
         $('.btn-submit').onclick = () => {
-          Loading(
-            '#wrapper',
-            '../assets/img/loading2.gif',
-            'black',
-            '100px',
-            'center'
-          )
-
-          formInput.forEach(e => (formData[e.name] = e.value))
-
-          FetchAPI({
-            url: './process-insert.php',
-            data: formData,
+          let isTrue = true
+          formInput.forEach(e => {
+            if (!e.value) {
+              alert('Vui lòng nhập đầy đủ thông tin')
+              e.style.border = '1px solid red'
+              isTrue = false
+            }
+            formData[e.name] = e.value
           })
-            .then(handleResponse)
-            .catch(err => console.log(err))
+
+          if (isTrue) {
+            Loading(
+              '#wrapper',
+              '../assets/img/loading2.gif',
+              'black',
+              '100px',
+              'center'
+            )
+
+            FetchAPI('./process-insert.php', {
+              data: formData,
+            })
+              .then(handleResponse)
+              .catch(err => console.log(err))
+          }
+        }
+
+        $('.btn-reset').onclick = () => {
+          formInput.forEach(el => {
+            el.value = null
+            el.style.border = '1px solid #d4d4d4'
+          })
         }
       }
 
-      $('.btn-reset').onclick = () => formInput.forEach(e => (e.value = null))
-
-      Modal({ handleModal: handleDataModal })
+      Modal().then(handleModal)
     }
   },
   handleUpdateManufacturer() {},
   handleDeleteManufacturer() {
-    const _this = this
-
     // Xóa những đối tượng được tick chọn
-    controlDelete.onclick = e => {
+    controlDelete.onclick = () => {
       // Khái báo mảng và gán giá trị là những phần tử đã được tick chọn
       const selectedMarkArr = [...$$('.table-col-checkbox')].filter(
         el => el.checked
       )
 
-      // Xóa hàng đã được xác nhận ra khỏi DOM
-      const handleSuccess = () => {
-        selectedMarkArr.forEach(el => el.closest('tr').remove())
+      // Kiểm tra xem có select mark checkbox nào không
+      if (selectedMarkArr.length > 0) {
+        // Xóa hàng đã được xác nhận ra khỏi DOM
+        const handleSuccess = () => {
+          selectedMarkArr.forEach(el => el.closest('tr').remove())
+        }
+
+        // Hiện thị thông báo xóa thành công và xóa phần loading...
+        const showNotification = res => {
+          StatusNotification({
+            response: res,
+            subMessage: 'nhà sản xuất',
+          }).then(handleSuccess)
+
+          $('.loading') && $('.loading').remove()
+        }
+
+        // Xác nhận xem có chắc chắn xóa không ?
+        if (confirm('Bạn muốn xóa những nhà sản xuất bạn đã chọn ???')) {
+          FetchAPI('./process-delete.php', {
+            data: { id: selectedMarkArr.map(el => el.dataset.id) },
+          }).then(showNotification)
+        }
       }
-
-      // Hiện thị thông báo xóa thành công và xóa phần loading...
-      const showNotification = res => {
-        StatusNotification({
-          response: res,
-          subMessage: 'nhà sản xuất',
-        }).then(handleSuccess)
-
-        $('.loading') && $('.loading').remove()
-      }
-
-      if (selectedMarkArr.length > 0)
-        FetchAPI({
-          url: './process-delete.php',
-          data: { id: selectedMarkArr.map(el => el.dataset.id) },
-        }).then(showNotification)
-
-      // Check valid call ajax do get response data
-      // (status code & status message)
-      // if (
-      //   typeof checkboxCheckeds.ids.length === 'number' &&
-      //   checkboxCheckeds.ids.length > 0 &&
-      //   confirm('Bạn muốn xóa những nhà sản xuất bạn đã chọn ???')
-      // ) {
-      //   FetchAPI({
-      //     url: '../manufacturers/process-delete.php',
-      //     data: { id: checkboxCheckeds.ids },
-      //     handleData: handleDelete,
-      //   })
-      // } else {
-      //   if (typeof checkboxCheckeds.ids.length !== 'number')
-      //     alert('Error: datatype invalid !!')
-      //   if (checkboxCheckeds.ids.length <= 0)
-      //     alert('Bạn chưa chọn nhà sản xuất nào !!!')
-      //   $('.loading') && $('.loading').remove()
-      // }
     }
 
     $$('.btn-delete').forEach(element => {
-      // element.onclick = function () {
+      // element.onclick = (e) => {
       //   Loading(
       //     '.table tbody',
       //     '../assets/img/loading2.gif',
@@ -341,6 +351,8 @@ const App = {
     _this.handleCreateManufacturer()
 
     _this.handleReloadManufacturer()
+
+    _this.handleUpdateManufacturer()
 
     _this.handleDeleteManufacturer()
 

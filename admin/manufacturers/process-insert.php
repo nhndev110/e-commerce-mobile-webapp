@@ -2,6 +2,8 @@
 
 require_once "../check-super-admin-login.php";
 
+$_POST = json_decode(file_get_contents('php://input'), true);
+
 try {
   if (empty($_POST['name']) || empty($_POST['address']) || empty($_POST['phone']) || empty($_POST['image']))
     throw new Error("Vui lòng nhập đầy đủ các thông tin", 400);
@@ -12,8 +14,7 @@ try {
   $image = $_POST['image'];
 
   require_once '../connect.php';
-  $sql = "INSERT INTO manufacturers (name, address, phone, image)
-    VALUE ('$name', '$address', '$phone', '$image')";
+  $sql = "INSERT INTO manufacturers (name, address, phone, image) VALUE ('$name', '$address', '$phone', '$image')";
   mysqli_query($connect, $sql);
 
   $error = mysqli_error($connect);
