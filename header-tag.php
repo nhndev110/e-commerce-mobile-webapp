@@ -15,18 +15,18 @@
 <meta property="og:title" content="nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng" />
 <meta property="og:description" content="Hệ thống 100 cửa hàng bán lẻ điện thoại, máy tính laptop, smartwatch, smarthome, thiết bị IT, phụ kiện chính hãng - Giá tốt, trả góp 0%, giao miễn phí." />
 <meta property="og:url" content="https://nhndev110.lovestoblog.com/" />
-<meta property="og:image" content="https://nhndev110.lovestoblog.com/assets/img/logo.png" />
-<meta property="og:image:secure_url" content="https://nhndev110.lovestoblog.com/assets/img/logo.png" />
+<meta property="og:image" content="./assets/img/logo.png" />
+<meta property="og:image:secure_url" content="./assets/img/logo.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="400" />
 <meta property="og:image:height" content="300" />
 <!--  -->
 <meta itemprop="name" content="nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng" />
 <meta itemprop="description" content="Hệ thống 100 cửa hàng bán lẻ điện thoại, máy tính laptop, smartwatch, smarthome, thiết bị IT, phụ kiện chính hãng - Giá tốt, trả góp 0%, giao miễn phí." />
-<meta itemprop="image" content="https://nhndev110.lovestoblog.com/assets/img/logo.png" />
+<meta itemprop="image" content="./assets/img/logo.png" />
 <!--  -->
 <link rel="canonical" href="https://nhndev110.lovestoblog.com/" />
-<link rel="icon" type="image/x-icon" href="https://nhndev110.lovestoblog.com/assets/img/logo.png" />
+<link rel="icon" type="image/x-icon" href="./assets/img/logo.png" />
 <!--  -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

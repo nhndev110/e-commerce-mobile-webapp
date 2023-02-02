@@ -24,7 +24,7 @@ try {
   echo json_encode([
     "status" => "success",
     "statusCode" => 200,
-    "message" => "Bạn đã thêm 1",
+    "message" => "Bạn đã thêm thành công !",
     "data" => [
       "id" => mysqli_insert_id($connect),
       "name" => $name,

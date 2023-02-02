@@ -188,10 +188,7 @@ const App = {
         }
 
         // Hiển thị thông báo
-        StatusNotification({
-          response,
-          subMessage: 'nhà sản xuất',
-        }).then(handleSuccess)
+        StatusNotification({ response }).then(handleSuccess)
 
         // Xóa phần loading...
         $('.loading') && $('.loading').remove()
@@ -266,10 +263,7 @@ const App = {
 
         // Hiện thị thông báo xóa thành công và xóa phần loading...
         const showNotification = res => {
-          StatusNotification({
-            response: res,
-            subMessage: 'nhà sản xuất',
-          }).then(handleSuccess)
+          StatusNotification({ response: res }).then(handleSuccess)
 
           $('.loading') && $('.loading').remove()
         }

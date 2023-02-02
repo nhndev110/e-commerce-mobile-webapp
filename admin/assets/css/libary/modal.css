@@ -47,6 +47,7 @@
   align-items: center;
   flex-shrink: 0;
   padding: var(--modal-padding);
+  border-bottom: 1px solid #ddd;
 }
 .modal-header .modal-title {
   font-size: 20px;
@@ -76,4 +77,5 @@
   align-items: center;
   justify-content: flex-end;
   padding: var(--modal-padding);
+  border-top: 1px solid #ddd;
 }

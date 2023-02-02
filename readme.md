@@ -25,3 +25,6 @@ với mọi phương thức đều dùng được
                                           Authorization,
                                           X-Requested-With');
 ```
+
+PHPMailer 6.7.1
+Bootstrap 5.3.0

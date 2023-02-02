@@ -27,17 +27,16 @@
 								<label class="form-label">Link Ảnh:</label>
 								<input class="form-input" placeholder="Link Ảnh Đại Diện Của Nhà Sản Xuất" type="text" name="image" autocomplete="off">
 							</div>
+							<button type="button" class="btn btn-outline-gray btn-reset">
+								Nhập Lại
+							</button>
+							<button type="button" class="btn btn-dark btn-submit" data-style="create">
+								Thêm
+							</button>
 						</form>
 					</div>
 				</main>
-				<footer class="modal-footer">
-					<button type="button" class="btn btn-outline-gray btn-reset">
-						Nhập Lại
-					</button>
-					<button type="button" class="btn btn-dark btn-submit" data-style="create">
-						Thêm
-					</button>
-				</footer>
+				<footer class="modal-footer"></footer>
 			</div>
 		</div>
 	</div>
