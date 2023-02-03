@@ -27,4 +27,5 @@ với mọi phương thức đều dùng được
 ```
 
 PHPMailer 6.7.1
-Bootstrap 5.3.0
+Bootstrap 5.2.3 dist
+Bootstrap icons 1.10.3
