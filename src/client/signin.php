@@ -1,10 +1,13 @@
 <?php
+
+//require_once './config/database.php';
+//$connect = new App\Database\Database();
+//$products = $connect->all("products");
+
 if (isset($_COOKIE['remember'])) {
   $token = $_COOKIE['remember'];
   require_once "./admin/connect.php";
-  $sql = "select * from customers
-    where token = '$token'
-    limit 1";
+  $sql = "select * from customers where token = '$token' limit 1";
   $arr_result = mysqli_query($connect, $sql);
   $num_row = mysqli_num_rows($arr_result);
   if ($num_row == 1) {
@@ -29,7 +32,8 @@ if (isset($_COOKIE['remember'])) {
             <label>Email</label>
           </div>
           <div class="form-floating mb-3">
-            <input class="form-control" type="password" name="password" placeholder="Mật Khẩu" autocomplete="on" spellcheck="false">
+            <input class="form-control" type="password" name="password" placeholder="Mật Khẩu"
+                   autocomplete="on" spellcheck="false">
             <label>Mật Khẩu</label>
           </div>
           <div class="d-flex align-items-center mb-3">
@@ -46,10 +50,10 @@ if (isset($_COOKIE['remember'])) {
   </div>
 </div>
 
-<?php require './footer-tag.php' ?>
+<?php // require './footer-tag.php' ?>
 <script>
-  $(document).ready(function() {
-    $('#signin-form').submit(function(e) {
+  $(document).ready(function () {
+    $('#signin-form').submit(function (e) {
       e.preventDefault();
       $.ajax({
         url: './process-signin.php',

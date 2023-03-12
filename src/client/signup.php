@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<?php require './footer-tag.php' ?>
+<?php // require './footer-tag.php' ?>
 <script>
   $(document).ready(function() {
     $('#signup-form').submit(function(e) {
