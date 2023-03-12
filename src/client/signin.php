@@ -1,7 +1,7 @@
 <?php
 if (isset($_COOKIE['remember'])) {
   $token = $_COOKIE['remember'];
-  require "./admin/connect.php";
+  require_once "./admin/connect.php";
   $sql = "select * from customers
     where token = '$token'
     limit 1";

@@ -34,29 +34,3 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="./assets/css/style.css">
 <!--  -->
-<?php
-if (isset($_GET['page']))
-    $page = $_GET['page'];
-else
-    $page = 'home';
-?>
-<?php if ($page == 'home') { ?>
-    <link rel="stylesheet" href="./assets/css/home.css">
-    <title>nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng</title>
-<?php } elseif ($page == 'products') { ?>
-    <link rel="stylesheet" href="./assets/css/products.css">
-    <title>nhndev110 - Tất cả sản phẩm</title>
-<?php } elseif ($page == 'cart') { ?>
-    <link rel="stylesheet" href="./assets/css/cart.css">
-    <script src="./assets/js/cart.js" defer></script>
-    <title>nhndev110 - Giỏ Hàng</title>
-<?php } elseif ($page == 'user') { ?>
-    <link rel="stylesheet" href="./assets/css/user.css">
-    <title>nhndev110 - <?= $_SESSION["name"] ?></title>
-<?php } elseif ($page == 'product-detail') { ?>
-    <link rel="stylesheet" href="./assets/css/product-detail.css">
-    <title>Điện Thoại <?= $product['name'] ?></title>
-    <script src="./assets/js/view-product.js" defer></script>
-<?php } else { ?>
-    <?php header('location: ./404.html') ?>
-<?php } ?>

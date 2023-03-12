@@ -1,31 +1,9 @@
-- Khi truyền dữ liệu dạng json bằng fetch thì chuyển
-  Content-Type: application/x-www-form-urlencoded và phần
-  body khởi tạo một đối tượng URLSearchParams:
-  body: new URLSearchParams(data)
+# nhndev110 - Ecommerce Mobile Selling Website
 
-- Ngoài ra có thể dùng:
+## Library & Framework
+- [PHPMailer v6.7.1](https://github.com/PHPMailer/PHPMailer)
+- [Bootstrap v5.2.3](https://getbootstrap.com/docs/5.2/)
+- [Bootstrap icons v1.10.3](https://icons.getbootstrap.com/)
+- [Klein router v2.1.2](https://github.com/klein/klein.php)
+- [php-dotenv v5.5.0](https://github.com/vlucas/phpdotenv)
 
-```php
-  $_POST = json_decode(file_get_contents('php://input'), true);
-```
-
-với mọi phương thức đều dùng được
-
-------------- Cấu hình của 1 api -------------
-
-```php
-  header('Access-Control-Allow-Origin: *');
-  header('Content-Type: application/json');
-  header('Access-Control-Allow-Methods: POST');
-  header("Access-Control-Allow-Credentials: true");
-  header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,
-                                          Access-Control-Allow-Credentials,
-                                          Content-Type,
-                                          Access-Control-Allow-Methods,
-                                          Authorization,
-                                          X-Requested-With');
-```
-
-PHPMailer 6.7.1
-Bootstrap 5.2.3 dist
-Bootstrap icons 1.10.3
