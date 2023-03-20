@@ -13,11 +13,11 @@
       <?php if (empty($_SESSION['name']) || empty($_SESSION['id'])) { ?>
         <li class="section-guest">
           <button type="button" class="btn btn-light set-signin" data-bs-toggle="modal" data-bs-target="#modal-signin">Đăng Nhập</button>
-          <?php require './signin.php' ?>
+          <?php require_once './src/client/signin.php' ?>
         </li>
         <li class="section-guest">
           <button type="button" class="btn btn-outline-light set-signup" data-bs-toggle="modal" data-bs-target="#modal-signup">Đăng Kí</button>
-          <?php require './signup.php' ?>
+          <?php require_once './src/client/signup.php' ?>
         </li>
       <?php } else { ?>
         <li>
@@ -38,10 +38,10 @@
           <ul class="subnav">
             <li><a href="./index.php?page=user"><?= $_SESSION['name'] ?></a></li>
             <hr>
-            <li><a href="./signout.php">item1</a></li>
-            <li><a href="./signout.php">item2</a></li>
+            <li><a href="./src/client/signout.php">item1</a></li>
+            <li><a href="./src/client/signout.php">item2</a></li>
             <hr>
-            <li><a href="./signout.php">Đăng Xuất</a></li>
+            <li><a href="./src/client/signout.php">Đăng Xuất</a></li>
           </ul>
         </li>
       <?php } ?>

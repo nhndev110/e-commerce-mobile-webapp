@@ -1,6 +1,5 @@
 <?php
 	//	require_once './config/database.php';
-	//
 	//	$connect  = new App\Database\Database();
 	//	$products = $connect->select("products");
 
