@@ -32,5 +32,6 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="https://unpkg.com/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" />
+<script defer src="https://unpkg.com/jquery@3.6.1/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="./assets/css/style.css">
-<!--  -->
+
