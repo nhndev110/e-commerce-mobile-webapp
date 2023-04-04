@@ -4,10 +4,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require './PHPMailer/src/Exception.php';
-require './PHPMailer/src/PHPMailer.php';
-require './PHPMailer/src/SMTP.php';
-require './PHPMailer/src/POP3.php';
+require './PHPMailer/app/Exception.php';
+require './PHPMailer/app/PHPMailer.php';
+require './PHPMailer/app/SMTP.php';
+require './PHPMailer/app/POP3.php';
 
 function sendMail($email, $name, $title, $content) {
     $mail = new PHPMailer(true);

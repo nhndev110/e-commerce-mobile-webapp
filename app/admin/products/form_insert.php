@@ -4,7 +4,7 @@
 <html lang="vi">
 
 <head>
-    <?php require '../../header-tag.php' ?>
+    <?php require '../../header_tag.php' ?>
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>Thêm Sản Phẩm</title>
 </head>

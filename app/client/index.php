@@ -7,7 +7,7 @@ if (empty($_SESSION['quantity_product_in_cart'])) {
 <html lang="vi">
 
 <head>
-    <?php require_once './src/client/header-tag.php' ?>
+    <?php require_once './src/client/header_tag.php' ?>
 </head>
 
 <body>
