@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database;
+namespace App\Config;
 
 use Dotenv\Dotenv;
 
@@ -15,6 +15,8 @@ class Database
   private string $password;
   private string $database;
 
+  private $connect;
+
   public function __construct()
   {
     $this->localhost = $_ENV['DB_HOST'];
@@ -26,25 +28,32 @@ class Database
 
   public function DBConnect()
   {
-    $connect = mysqli_connect($this->localhost, $this->username, $this->password, $this->database);
-    mysqli_set_charset($connect, 'utf8mb4');
+    $this->connect = mysqli_connect($this->localhost, $this->username, $this->password, $this->database);
+    mysqli_set_charset($this->connect, 'utf8mb4');
 
-    $error = mysqli_error($connect);
-    if (empty($error)) {
-      return $connect;
-    } else {
+    $error = mysqli_error($this->connect);
+    if (!empty($error)) {
       return $error;
     }
   }
 
-  public function all($table)
+  public function executeQuery($sql)
   {
-    $sql = "SELECT * FROM {$table}";
-    $result = mysqli_query($this->DBConnect(), $sql);
+    $result = mysqli_query($this->connect, $sql);
     if (mysqli_num_rows($result) > 0) {
       return $result;
     } else {
       return null;
     }
+  }
+
+  public function executeUpdate($sql)
+  {
+    mysqli_query($this->connect, $sql);
+  }
+
+  public function close()
+  {
+    mysqli_close($this->connect);
   }
 }

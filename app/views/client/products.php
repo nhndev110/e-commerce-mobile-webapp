@@ -1,10 +1,6 @@
 <?php
-require_once "./admin/connect.php";
-$products_sql = "select * from products";
-$products_arr = mysqli_query($connect, $products_sql);
-
-$manufacturers_sql = "select * from manufacturers";
-$manufacturers_arr = mysqli_query($connect, $manufacturers_sql);
+$products_arr = $this->sharedData()->get('product_list');
+$manufacturers_arr = $this->sharedData()->get('manufacturer_list');
 ?>
 <h1 hidden>nhndev110 - Tất cả sản phẩm</h1>
 <div id="main-content">
@@ -65,4 +61,3 @@ $manufacturers_arr = mysqli_query($connect, $manufacturers_sql);
     </div>
   </div>
 </div>
-<?php mysqli_close($connect) ?>
