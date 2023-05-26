@@ -1,10 +1,14 @@
 <?php
-require_once "./admin/connect.php";
-$products_sql = "select * from products";
-$products_arr = mysqli_query($connect, $products_sql);
 
-$manufacturers_sql = "select * from manufacturers";
-$manufacturers_arr = mysqli_query($connect, $manufacturers_sql);
+// require_once "./admin/connect.php";
+// $products_sql = "select * from products";
+// $products_arr = mysqli_query($connect, $products_sql);
+// print_r($this->sharedData()->get('product_list'));
+
+print_r($request->paramsPost('product_list'));
+
+// $manufacturers_sql = "select * from manufacturers";
+// $manufacturers_arr = mysqli_query($connect, $manufacturers_sql);
 ?>
 <h1 hidden>nhndev110 - Tất cả sản phẩm</h1>
 <div id="main-content">

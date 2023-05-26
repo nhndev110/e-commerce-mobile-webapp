@@ -3,10 +3,14 @@
 namespace App\Config;
 
 use Dotenv\Dotenv;
+use mysqli;
+use mysqli_sql_exception;
+use mysqli_driver;
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
-$dotenv = Dotenv::createImmutable(dirname(__DIR__));
+require_once BASEPATH . '/vendor/autoload.php';
+$dotenv = Dotenv::createImmutable(BASEPATH);
 $dotenv->load();
+
 
 class Database
 {
@@ -23,23 +27,39 @@ class Database
     $this->username = $_ENV['DB_USER'];
     $this->password = $_ENV['DB_PASS'];
     $this->database = $_ENV['DB_DATABASE'];
-    $this->DBConnect();
+
+    $driver = new mysqli_driver();
+
+    if ($_ENV['APP_DEBUG'] == "false") {
+      $driver->report_mode = MYSQLI_REPORT_OFF;
+    } else {
+      $driver->report_mode = MYSQLI_REPORT_ALL;
+    }
   }
 
   public function DBConnect()
   {
-    $this->connect = mysqli_connect($this->localhost, $this->username, $this->password, $this->database);
-    mysqli_set_charset($this->connect, 'utf8mb4');
+    try {
+      $this->connect = new mysqli($this->localhost, $this->username, $this->password, $this->database);
+      $this->connect->set_charset('utf8mb4');
 
-    $error = mysqli_error($this->connect);
-    if (!empty($error)) {
-      return $error;
+      echo print_r($this->connect);
+      die();
+
+
+      if ($this->connect->connect_error) {
+        error_log($this->connect->connect_error);
+      }
+    } catch (mysqli_sql_exception $e) {
+      error_log($e->__toString());
     }
   }
 
   public function executeQuery($sql)
   {
-    $result = mysqli_query($this->connect, $sql);
+    $result = $this->connect->query($sql);
+    var_dump($result);
+    die();
     if (mysqli_num_rows($result) > 0) {
       return $result;
     } else {
