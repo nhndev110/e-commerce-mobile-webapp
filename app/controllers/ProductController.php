@@ -17,11 +17,9 @@ class ProductController extends BaseController
 
 			$sql = "SELECT * FROM products";
 			$products = $connect->executeQuery($sql);
-			var_dump($products);
-
-			$connect->close();
 
 			return $products;
+			$connect->close();
 		} catch (mysqli_sql_exception $e) {
 			error_log($e->__toString());
 		}

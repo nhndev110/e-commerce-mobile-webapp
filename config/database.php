@@ -5,7 +5,6 @@ namespace App\Config;
 use Dotenv\Dotenv;
 use mysqli;
 use mysqli_sql_exception;
-use mysqli_driver;
 
 require_once BASEPATH . '/vendor/autoload.php';
 $dotenv = Dotenv::createImmutable(BASEPATH);
@@ -27,25 +26,21 @@ class Database
     $this->username = $_ENV['DB_USER'];
     $this->password = $_ENV['DB_PASS'];
     $this->database = $_ENV['DB_DATABASE'];
-
-    $driver = new mysqli_driver();
-
-    if ($_ENV['APP_DEBUG'] == "false") {
-      $driver->report_mode = MYSQLI_REPORT_OFF;
-    } else {
-      $driver->report_mode = MYSQLI_REPORT_ALL;
-    }
   }
 
   public function DBConnect()
   {
+    if ($_ENV['APP_DEBUG'] == "false") {
+      mysqli_report(MYSQLI_REPORT_OFF);
+      echo "{$_ENV['APP_DEBUG']} == false : " . ($_ENV['APP_DEBUG'] == false);
+    } else {
+      mysqli_report(MYSQLI_REPORT_ALL);
+      echo "{$_ENV['APP_DEBUG']} == true";
+    }
+
     try {
       $this->connect = new mysqli($this->localhost, $this->username, $this->password, $this->database);
       $this->connect->set_charset('utf8mb4');
-
-      echo print_r($this->connect);
-      die();
-
 
       if ($this->connect->connect_error) {
         error_log($this->connect->connect_error);
@@ -57,14 +52,20 @@ class Database
 
   public function executeQuery($sql)
   {
+    echo $sql;
     $result = $this->connect->query($sql);
-    var_dump($result);
-    die();
-    if (mysqli_num_rows($result) > 0) {
-      return $result;
-    } else {
-      return null;
+
+    foreach ($result as $each) {
+      echo $each['name'] . '<br>';
     }
+
+    $result->free();
+
+    // if (mysqli_num_rows($result) > 0) {
+    //   return $result;
+    // } else {
+    //   return null;
+    // }
   }
 
   public function executeUpdate($sql)
@@ -74,6 +75,6 @@ class Database
 
   public function close()
   {
-    mysqli_close($this->connect);
+    $this->connect->close();
   }
 }

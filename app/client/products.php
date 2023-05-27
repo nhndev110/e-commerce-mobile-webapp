@@ -5,7 +5,7 @@
 // $products_arr = mysqli_query($connect, $products_sql);
 // print_r($this->sharedData()->get('product_list'));
 
-print_r($request->paramsPost('product_list'));
+// print_r($request->paramsPost('product_list'));
 
 // $manufacturers_sql = "select * from manufacturers";
 // $manufacturers_arr = mysqli_query($connect, $manufacturers_sql);
