@@ -1,28 +1,4 @@
 <?php
-<<<<<<< HEAD
-//	require_once './config/database.php';
-//	$connect  = new App\Database\Database();
-//	$products = $connect->select("products");
-
-require_once __DIR__ . '/vendor/autoload.php';
-
-require_once './app/controllers/HomeController.php';
-
-$klein = new \Klein\Klein();
-
-use App\Controller\HomeController;
-
-$klein->respond('GET', '/', function ($req, $res, $service) {
-  $service->render('./app/views/client/index.php', [
-      'title' => 'nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng'
-  ]);
-});
-
-$klein->respond('GET', '/products', function () {
-
-=======
-
-require_once BASEPATH . '/vendor/autoload.php';
 
 require_once './app/controllers/BaseController.php';
 require_once './app/controllers/HomeController.php';
@@ -36,26 +12,16 @@ use App\Controllers\HomeController;
 use App\Controllers\ProductController;
 use App\Controllers\ManufacturerController;
 
-$klein->respond('GET', '/', function ($req, $res, $service) {
-  $service->render('./app/views/client/index.php', [
-    'title' => 'nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng'
-  ]);
+$klein->respond('GET', '/', function ($req, $res, $ser) {
+  (new HomeController)->index($ser);
 });
 
-$klein->respond('GET', '/products', function ($req, $res, $service) {
-  $product_list = (new ProductController)->all();
-  // echo json_encode($product_list);
-  die();
-
-  $manufacturer_list = (new ManufacturerController)->all();
-
-  $service->render('./app/views/client/products.php', [
-    'title' => 'nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng',
-    'product_list' => $product_list,
-    'manufacturer_list' => $manufacturer_list,
-  ]);
->>>>>>> 0d828607a5595c3dbe39b0efb1c8ffa7dcd98c39
+$klein->with('/products', function () use ($klein) {
+  $klein->respond('GET', '/?', function ($req, $res, $ser) {
+    (new ProductController)->index($ser);
+  });
 });
+
 
 $klein->dispatch();
 

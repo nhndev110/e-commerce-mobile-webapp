@@ -1,0 +1,36 @@
+<?php
+  if (empty($_SESSION['quantity_product_in_cart'])) {
+    $_SESSION['quantity_product_in_cart'] = 0;
+  }
+
+  $data = $this->sharedData()->get('data');
+  $style_css = $this->sharedData()->get('style_css');
+?>
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <title><?= $this->escape($this->title) ?></title>
+  <?php require_once './app/views/client/header_tag.php' ?>
+  <?php require_once './app/views/client/css_general.php' ?>
+  <?php if(!empty($style_css)) : ?>
+    <link rel="stylesheet" href="<?= "{$style_css}?" . time() ?>">
+  <?php endif; ?>
+</head>
+
+<body>
+  <div id="wrapper">
+    <?php require_once './app/views/client/header.phtml' ?>
+    <?php
+      if (!empty($data)) {
+        $this->render($this->sharedData()->get('main_content'), ['data' => $data]);
+      } else {
+        $this->render($this->sharedData()->get('main_content'));
+      }
+    ?>
+    <?php require_once './app/views/client/footer.phtml' ?>
+  </div>
+  <?php require_once './app/views/client/footer-tag.phtml' ?>
+</body>
+
+</html>

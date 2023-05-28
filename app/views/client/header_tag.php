@@ -6,8 +6,7 @@ $description = 'Hệ thống 100 cửa hàng bán lẻ điện thoại, máy tí
 ?>
 <meta name="title" content="<?= $title ?>"/>
 <meta name="description" content="<?= $description ?>"/>
-<meta name="keywords"
-      content="nhndev110, điện thoại di dộng, máy tính bảng, dien thoai chinh hang, may tinh xach tay, laptop chinh hang, phu kien laptop, điện thoại, dien thoai di dong,may tinh bang"/>
+<meta name="keywords" content="nhndev110, điện thoại di dộng, máy tính bảng, dien thoai chinh hang, may tinh xach tay, laptop chinh hang, phu kien laptop, điện thoại, dien thoai di dong,may tinh bang"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta content="INDEX,FOLLOW" name="robots"/>
 <meta name="revisit-after" content="1 days"/>

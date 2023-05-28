@@ -1,6 +1,13 @@
 <?php
-$products_arr = $this->sharedData()->get('product_list');
-$manufacturers_arr = $this->sharedData()->get('manufacturer_list');
+  $data = $this->sharedData()->get('data');
+
+  if (!empty($data)) {
+    $products_arr = $data['product_list'];
+    $manufacturers_arr = $data['manufacturer_list'];
+  } else {
+    $products_arr = [];
+    $manufacturers_arr = [];
+  }
 ?>
 <h1 hidden>nhndev110 - Tất cả sản phẩm</h1>
 <div id="main-content">
@@ -32,7 +39,7 @@ $manufacturers_arr = $this->sharedData()->get('manufacturer_list');
         <div class="product-info">
           <a class="product__link" href="./index.php?page=product-detail&id=<?= $each_product['id'] ?>">
             <div class="product__image">
-              <img class="product__img" src="./admin/products/photos/<?= $each_product['photo'] ?>" alt="<?= $tmp_product_name ?>" title="<?= $tmp_product_name ?>">
+              <img class="product__img" src="./public/client/imgs_product/<?= $each_product['photo'] ?>" alt="<?= $tmp_product_name ?>" title="<?= $tmp_product_name ?>">
             </div>
             <div class="product__body">
               <h3 class="product__name" title="<?= $tmp_product_name ?>">
