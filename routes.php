@@ -16,6 +16,8 @@ $klein->respond('GET', '/', function ($req, $res, $ser) {
   (new HomeController)->index($ser);
 });
 
+// $klein->respond('GET', '/', [ProductController::class, 'index']);
+
 $klein->with('/products', function () use ($klein) {
   $klein->respond('GET', '/?', function ($req, $res, $ser) {
     (new ProductController)->index($ser);
