@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class HomeController extends BaseController
 {
-  public function index($ser)
+  public function index($ser): void
   {
     $ser->render('./app/views/client/index.phtml', [
       'title' => 'nhndev110 - Điện thoại, laptop, tablet, phụ kiện chính hãng',

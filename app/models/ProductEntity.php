@@ -11,7 +11,7 @@ class ProductEntity
   private string $description;
   private int $manufacturer_id;
 
-  public function __construct($id, $name, $photo, $price, $description, $manufacturer_id)
+  public function __construct(int $id, string $name, string $photo, float $price, string $description, int $manufacturer_id)
   {
     $this->id              = $id;
     $this->name            = $name;
@@ -23,7 +23,8 @@ class ProductEntity
 
   /**
    * Get the value of id
-   */ 
+   * @return int
+   */
   public function getId(): int
   {
     return $this->id;
@@ -33,8 +34,8 @@ class ProductEntity
    * Set the value of id
    *
    * @return  self
-   */ 
-  public function setId($id): object
+   */
+  public function setId(int $id): object
   {
     $this->id = $id;
 
@@ -43,7 +44,7 @@ class ProductEntity
 
   /**
    * Get the value of name
-   */ 
+   */
   public function getName(): string
   {
     return $this->name;
@@ -53,8 +54,8 @@ class ProductEntity
    * Set the value of name
    *
    * @return  self
-   */ 
-  public function setName($name): object
+   */
+  public function setName(string $name): object
   {
     $this->name = $name;
 
@@ -63,7 +64,7 @@ class ProductEntity
 
   /**
    * Get the value of photo
-   */ 
+   */
   public function getPhoto(): string
   {
     return $this->photo;
@@ -73,8 +74,8 @@ class ProductEntity
    * Set the value of photo
    *
    * @return  self
-   */ 
-  public function setPhoto($photo): object
+   */
+  public function setPhoto(string $photo): object
   {
     $this->photo = $photo;
 
@@ -83,7 +84,7 @@ class ProductEntity
 
   /**
    * Get the value of price
-   */ 
+   */
   public function getPrice(): float
   {
     return $this->price;
@@ -93,8 +94,8 @@ class ProductEntity
    * Set the value of price
    *
    * @return  self
-   */ 
-  public function setPrice($price): object
+   */
+  public function setPrice(float $price): object
   {
     $this->price = $price;
 
@@ -103,7 +104,7 @@ class ProductEntity
 
   /**
    * Get the value of description
-   */ 
+   */
   public function getDescription(): string
   {
     return $this->description;
@@ -113,8 +114,8 @@ class ProductEntity
    * Set the value of description
    *
    * @return  self
-   */ 
-  public function setDescription($description): object
+   */
+  public function setDescription(string $description): object
   {
     $this->description = $description;
 
@@ -123,8 +124,8 @@ class ProductEntity
 
   /**
    * Get the value of manufacturer_id
-   */ 
-  public function getManufacturer_id(): int
+   */
+  public function getManufacturerId(): int
   {
     return $this->manufacturer_id;
   }
@@ -133,8 +134,8 @@ class ProductEntity
    * Set the value of manufacturer_id
    *
    * @return  self
-   */ 
-  public function setManufacturer_id($manufacturer_id): object
+   */
+  public function setManufacturerId(int $manufacturer_id): object
   {
     $this->manufacturer_id = $manufacturer_id;
 

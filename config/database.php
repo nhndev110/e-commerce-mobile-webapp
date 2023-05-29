@@ -6,7 +6,6 @@ use Dotenv\Dotenv;
 use mysqli;
 use mysqli_sql_exception;
 
-require_once BASEPATH . '/vendor/autoload.php';
 $dotenv = Dotenv::createImmutable(BASEPATH);
 $dotenv->load();
 
@@ -18,7 +17,7 @@ class Database
   private string $password;
   private string $database;
 
-  private $connect;
+  private object $connect;
 
   public function __construct()
   {
@@ -28,7 +27,7 @@ class Database
     $this->database  = $_ENV['DB_DATABASE'];
   }
 
-  public function DBConnect()
+  public function DBConnect(): void
   {
     try {
       $this->connect = new mysqli($this->localhost, $this->username, $this->password, $this->database);
@@ -42,7 +41,11 @@ class Database
     }
   }
 
-  public function executeQuery($sql)
+  /**
+   * @param string $sql
+   * @return array
+   */
+  public function executeQuery(string $sql): array
   {
     $res  = $this->connect->query($sql);
     $data = [];
@@ -57,12 +60,12 @@ class Database
     return $data;
   }
 
-  public function executeUpdate($sql)
+  public function executeUpdate(string $sql): void
   {
     mysqli_query($this->connect, $sql);
   }
 
-  public function close()
+  public function close(): void
   {
     $this->connect->close();
   }

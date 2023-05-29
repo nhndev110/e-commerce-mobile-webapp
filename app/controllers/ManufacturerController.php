@@ -10,7 +10,7 @@ use mysqli_sql_exception;
 
 class ManufacturerController extends BaseController
 {
-	public function all()
+	public function index(): void
 	{
 		try {
 			$connect = new Database();
@@ -19,11 +19,9 @@ class ManufacturerController extends BaseController
 			$sql = "SELECT * FROM manufacturers";
 			$manufacturers = $connect->executeQuery($sql);
 
-			// echo json_encode($manufacturers);
-
 			$connect->close();
 
-			return $manufacturers;
+			// return $manufacturers;
 		} catch (mysqli_sql_exception $e) {
 			error_log($e->__toString());
 		}
