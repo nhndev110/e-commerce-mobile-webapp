@@ -13,11 +13,11 @@
       <?php if (empty($_SESSION['name']) || empty($_SESSION['id'])) { ?>
         <li class="section-guest">
           <button type="button" class="btn btn-light set-signin" data-bs-toggle="modal" data-bs-target="#modal-signin">Đăng Nhập</button>
-          <?php require_once './app/views/client/signin.php' ?>
+          <?php require_once './app/views/client/signin.phtml' ?>
         </li>
         <li class="section-guest">
           <button type="button" class="btn btn-outline-light set-signup" data-bs-toggle="modal" data-bs-target="#modal-signup">Đăng Kí</button>
-          <?php require_once './app/client/signup.php' ?>
+          <?php require_once './app/views/client/signup.phtml' ?>
         </li>
       <?php } else { ?>
         <li>

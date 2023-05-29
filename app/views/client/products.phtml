@@ -1,13 +1,13 @@
 <?php
-  $data = $this->sharedData()->get('data');
+$data = $this->sharedData()->get('data');
 
-  if (!empty($data)) {
-    $products_arr = $data['product_list'];
-    $manufacturers_arr = $data['manufacturer_list'];
-  } else {
-    $products_arr = [];
-    $manufacturers_arr = [];
-  }
+if (!empty($data)) {
+  $products_arr = $data['product_list'];
+  $manufacturers_arr = $data['manufacturer_list'];
+} else {
+  $products_arr = [];
+  $manufacturers_arr = [];
+}
 ?>
 <h1 hidden>nhndev110 - Tất cả sản phẩm</h1>
 <div id="main-content">
