@@ -6,29 +6,45 @@ class View
 {
   protected array $view_data;
 
-  protected string $view_file;
+  protected string $file_path;
 
-  public function __construct(string $view_file)
+  protected function __construct()
   {
-    $this->view_data = array();
-    $this->view_file = $view_file;
+    $this->view_data = [];
+    $this->file_path = '';
   }
 
-  public function assign(string $key, array|string|int $value): void
+  protected function setFilePath(string $file_path): object
+  {
+    $this->file_path = $file_path;
+
+    return $this;
+  }
+
+  protected function setViewData(array $view_data): object
+  {
+    $this->view_data = $view_data;
+
+    return $this;
+  }
+
+  protected function assign(string $key, array $value): void
   {
     $this->view_data[$key] = $value;
   }
 
-  public function render(array $data): void
+  protected function render(string $file_path, array $data = []): void
   {
     if (!empty($data)) {
       $this->view_data = $data;
+      extract($this->view_data);
     }
 
-    extract($this->view_data);
+    $this->file_path = $file_path;
+
     ob_start();
-    include $this->view_file;
+    require_once $this->file_path;
     ob_end_flush();
-    ob_end_clean();
+    // ob_end_clean();
   }
 }
