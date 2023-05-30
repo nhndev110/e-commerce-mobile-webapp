@@ -1,29 +1,24 @@
 <?php
 
-require_once './app/controllers/BaseController.php';
 require_once './app/controllers/HomeController.php';
 require_once './app/controllers/ProductController.php';
 require_once './app/controllers/ManufacturerController.php';
 
 $klein = new \Klein\Klein();
 
-use App\Controllers\BaseController;
 use App\Controllers\HomeController;
 use App\Controllers\ProductController;
 use App\Controllers\ManufacturerController;
 
-$klein->respond('GET', '/', function ($req, $res, $ser) {
-  (new HomeController)->index($ser);
+$klein->with('/', function () use ($klein) {
+  $homeController = new HomeController();
+  $klein->respond('GET', '/?', [$homeController, 'index']);
 });
-
-// $klein->respond('GET', '/', [ProductController::class, 'index']);
 
 $klein->with('/products', function () use ($klein) {
-  $klein->respond('GET', '/?', function ($req, $res, $ser) {
-    (new ProductController)->index($ser);
-  });
+  $productController = new ProductController();
+  $klein->respond('GET', '/?', [$productController, 'index']);
 });
-
 
 $klein->dispatch();
 
