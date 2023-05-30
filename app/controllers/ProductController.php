@@ -10,7 +10,14 @@ use mysqli_sql_exception;
 
 class ProductController extends BaseController
 {
-	public function index($ser): void
+	private object $base_controller;
+
+	public function __construct()
+	{
+		$this->base_controller = new BaseController();
+	}
+
+	public function index(): void
 	{
 		try {
 			// $connect = new Database();
