@@ -1,4 +1,3 @@
-
 - Khi truyền dữ liệu dạng json bằng fetch thì chuyển
   Content-Type: application/x-www-form-urlencoded và phần
   body khởi tạo một đối tượng URLSearchParams:
@@ -25,4 +24,37 @@ với mọi phương thức đều dùng được
                                           Access-Control-Allow-Methods,
                                           Authorization,
                                           X-Requested-With');
+```
+
+```
+project/
+├── app/
+│   ├── Config/
+│   ├── Controllers/
+│   ├── Models/
+│   └── Views/
+├── public/
+│   ├── css/
+│   ├── js/
+│   ├── images/
+│   └── index.php
+├── resources/
+│   ├── css/
+│   ├── js/
+│   ├── images/
+│   └── index.php
+├── routes/
+│   └── web.php
+├── storage/
+│   ├── app/
+│   ├── framework/
+│   └── logs/
+├── tests/
+├── vendor/
+├── .env
+├── .env.example
+├── .gitignore
+├── .htaccess
+├── composer.json
+└── composer.lock
 ```
