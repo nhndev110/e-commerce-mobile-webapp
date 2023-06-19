@@ -2,21 +2,14 @@
 
 namespace App\Controllers;
 
-require_once './app/core/View.php';
+require_once BASE_PATH . './app/core/View.php';
 
 use App\Core\View;
 
-class BaseController extends View
+class BaseController
 {
-  protected object $view;
-
-  protected function __construct()
+  protected function view(string $file_path, array $data = [])
   {
-    $this->view = new View();
-  }
-
-  protected function renderView(string $file_path, array $data)
-  {
-    $this->view->render($file_path, $data);
+    (new View($file_path, $data))->convertToFilePath()->renderView();
   }
 }

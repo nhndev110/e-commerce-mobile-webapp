@@ -8,13 +8,6 @@ use App\Models\ProductModel;
 
 class ProductController extends BaseController
 {
-	private object $base_controller;
-
-	public function __construct()
-	{
-		$this->base_controller = new BaseController();
-	}
-
 	public function index(): void
 	{
 		// $connect = new Database();
