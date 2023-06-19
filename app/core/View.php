@@ -4,47 +4,43 @@ namespace App\Core;
 
 class View
 {
-  protected array $view_data;
+  private string $file_path;
 
-  protected string $file_path;
+  private array $view_data;
 
-  protected function __construct()
-  {
-    $this->view_data = [];
-    $this->file_path = '';
-  }
-
-  protected function setFilePath(string $file_path): object
+  public function __construct(string $file_path, array $view_data = [])
   {
     $this->file_path = $file_path;
-
-    return $this;
-  }
-
-  protected function setViewData(array $view_data): object
-  {
     $this->view_data = $view_data;
 
     return $this;
   }
 
-  protected function assign(string $key, array $value): void
+  public function assign(string $file_path, array $view_data = [])
   {
-    $this->view_data[$key] = $value;
+    $this->__construct($file_path, $view_data)->convertToFilePath()->renderView();
   }
 
-  protected function render(string $file_path, array $data = []): void
+  public function convertToFilePath(): object
   {
-    if (!empty($data)) {
-      $this->view_data = $data;
-      extract($this->view_data);
-    }
+    if (substr_count($this->file_path, '.') > 0)
+      $this->file_path = str_replace('.', '/', $this->file_path);
 
-    $this->file_path = $file_path;
+    $this->file_path = BASE_PATH . '/app/views/' . $this->file_path . '.phtml';
+
+    if (!file_exists($this->file_path))
+      die("File not found: $this->file_path");
+
+    return $this;
+  }
+
+  public function renderView(): void
+  {
+    if (!empty($this->view_data))
+      extract($this->view_data);
 
     ob_start();
     require_once $this->file_path;
     ob_end_flush();
-    // ob_end_clean();
   }
 }
