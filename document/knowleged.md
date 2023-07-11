@@ -11,6 +11,12 @@
 
 với mọi phương thức đều dùng được
 
+------------- SCSS / SASS -------------
+
+```bash
+sass --no-source-map --watch .\resources\assets\client\scss\style.scss:.\resources\assets\client\css\style.min.css --style compressed
+```
+
 ------------- Cấu hình của 1 api -------------
 
 ```php

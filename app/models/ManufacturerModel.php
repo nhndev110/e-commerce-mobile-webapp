@@ -1,26 +1,30 @@
 <?php
 
-namespace App\Models;
+namespace app\models;
 
-use App\Config\Database;
-use mysqli_sql_exception;
+use app\core\BaseModel;
 
-class ManufacturerModel
+class ManufacturerModel extends BaseModel
 {
-  public function all()
+  protected string $table = "manufacturers";
+
+  public function __construct()
   {
-    try {
-      $connect = new Database();
-      $connect->DBConnect();
+    parent::__construct($this->table);
+  }
 
-      $sql = "SELECT * FROM manufacturers";
-      $manufacturers = $connect->executeQuery($sql);
+  public function getAllManufacturers()
+  {
+    $data = [];
 
-      $connect->close();
+    $manufacturers_list = parent::getAllData();
 
-      return $manufacturers;
-    } catch (mysqli_sql_exception $e) {
-      error_log($e->__toString());
+    if (!empty($manufacturers_list)) {
+      foreach ($manufacturers_list as $manufacturer) {
+        $data[] = new ManufacturerEntity($manufacturer['id'], $manufacturer['name'], $manufacturer['address'], $manufacturer['phone'], $manufacturer['image']);
+      }
     }
+
+    return $data;
   }
 }

@@ -31,7 +31,7 @@ $_SESSION['id'] = $id;
 
 require './mail.php';
 $title = "BẠN ĐÃ ĐĂNG KÝ THÀNH CÔNG";
-$content = "<h2>Xin chào bạn <span style='color: green;'>${name}</span> !!!</h2>
+$content = "<h2>Xin chào bạn <span style='color: green;'>{$name}</span> !!!</h2>
 <p>Bạn đã đăng ký thành công shop của chúng tôi !!!</p>
 <p>Chúc bạn có những trải nghiệm tốt nhất do sản phẩm của chúng tôi mang lại</p>";
 sendMail($email, $name, $title, $content);

@@ -1,30 +1,37 @@
 <?php
 
-namespace App\Models;
+namespace app\models;
 
-require_once './config/database.php';
-require_once './app/models/ProductEntity.php';
+use app\core\BaseModel;
+use app\models\ProductEntity;
 
-use App\Config\Database;
-use App\Models\ProductEntity;
-
-class ProductModel
+class ProductModel extends BaseModel
 {
-  public function all(): array
-  {
-    $connect = new Database();
-    $connect->DBConnect();
+  protected string $table = "products";
 
-    $sql_select_products = "SELECT * FROM products";
-    $product_list        = $connect->executeQuery($sql_select_products);
+  public function __construct()
+  {
+    parent::__construct($this->table);
+  }
+
+  public function getAllProducts(): array
+  {
+    $products_list = parent::getAllData();
 
     $data = [];
 
-    foreach ($product_list as $product) {
-      $data[] = new ProductEntity($product['id'], $product['name'], $product['photo'], $product['price'], $product['description'], $product['manufacturer_id']);
+    foreach ($products_list as $product) {
+      $data[] = new ProductEntity($product['id'], $product['name'], $product['image'], $product['price'], $product['description'], $product['manufacturer_id']);
     }
 
-    $connect->close();
+    return $data;
+  }
+
+  public function getProduct(int $id)
+  {
+    $product = parent::getData($id);
+
+    $data = new ProductEntity($product['id'], $product['name'], $product['image'], $product['price'], $product['description'], $product['manufacturer_id']);
 
     return $data;
   }

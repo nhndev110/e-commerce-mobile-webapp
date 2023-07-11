@@ -1,49 +1,28 @@
 <?php
 
-namespace App\Controllers;
+namespace app\controllers;
 
-require_once './app/models/ProductModel.php';
-
-use App\Models\ProductModel;
+use app\core\BaseController;
+use app\services\ProductService;
+use app\services\ManufacturerService;
 
 class ProductController extends BaseController
 {
-	public function index(): void
+	public static function index(): void
 	{
-		// $connect = new Database();
-		// $connect->DBConnect();
+		view('clients/pages/products_list', [
+			'data'      => [
+				'products_list'      => ProductService::getProductsData(),
+				'manufacturers_list' => ManufacturerService::getManufacturersData(),
+			],
+		]);
+	}
 
-		// $sql_select_products = "SELECT * FROM products";
-		// $products            = $connect->executeQuery($sql_select_products);
-
-		// $sql_select_manufacturers = "SELECT * FROM manufacturers";
-		// $manufacturers            = $connect->executeQuery($sql_select_manufacturers);
-
-		// $connect->close();
-
-		$result = (new ProductModel)->all();
-		$data = [];
-		foreach ($result as $product) {
-			$data[] = [
-				'name' => $product->getName(),
-				'photo' => $product->getPhoto(),
-				'price' => $product->getPrice(),
-				'description' => $product->getDescription(),
-				'manufacturer_id' => $product->getManufacturerId(),
-			];
-		}
-
-		echo json_encode($data);
-		die();
-
-		// $ser->render('./app/views/client/index.phtml', [
-		// 	'title'     => 'nhndev110 - Tất cả sản phẩm',
-		// 	'style_css' => './public/client/css/products.css',
-		// 	'data'      => [
-		// 		'product_list'      => $products,
-		// 		'manufacturer_list' => $manufacturers,
-		// 	],
-		// 	'main_content' => './app/views/client/products.phtml',
-		// ]);
+	public static function show($req, $res)
+	{
+		view('clients/pages/product_detail', [
+			'data' => ProductService::getProductData($req->id),
+		])
+			->clearCache('clients/pages/product_detail.tpl');
 	}
 }
