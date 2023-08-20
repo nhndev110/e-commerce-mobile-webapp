@@ -1,0 +1,233 @@
+// ============= Header Section =============
+.header {
+  position: relative;
+  background-color: $white;
+  z-index: 1000;
+  user-select: none;
+  -webkit-user-select: none;
+  font-size: 1.5rem;
+
+  & hr {
+    border: 1px solid rgba(39, 39, 42, 0.122);
+  }
+
+  // ============= Header Top Section =============
+  &__top {
+    color: $primary-txt-color;
+    background-color: #ffe880;
+
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      .nav-item + .nav-item {
+        margin-left: 12px;
+      }
+
+      .nav-link {
+        display: inline-block;
+        line-height: $header-top-height;
+      }
+    }
+  }
+
+  // ============= Header Main Section =============
+  &__main {
+    height: $header-main-height;
+    color: $secondary-txt-color;
+    margin: 8px 0;
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &__brand {
+        display: inline-block;
+        height: $header-main-height;
+        padding: 8px 0;
+      }
+
+      &__search {
+        display: flex;
+        align-items: center;
+        width: 65%;
+        border: 2px solid $opacity-color;
+        padding: 8px 12px;
+        border-radius: 42px;
+        transition: 0.3s;
+
+        &:focus-within {
+          border-color: $secondary-color;
+        }
+
+        .icon-search {
+          font-size: 20px;
+        }
+
+        .input-search {
+          background-color: transparent;
+          flex: 1 1 0%;
+          height: 24px;
+
+          &::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+          }
+        }
+
+        .btn-search {
+          color: $primary-color;
+          background-color: transparent;
+          display: flex;
+          align-items: center;
+          font-weight: 600;
+
+          &::before {
+            content: "";
+            display: inline-block;
+            width: 1px;
+            height: 22px;
+            background-color: $secondary-color;
+            margin-right: 8px;
+          }
+        }
+      }
+
+      &__cart {
+        color: $accent-txt-color;
+
+        .icon-cart {
+          font-size: 24px;
+        }
+      }
+
+      &__user {
+        display: flex;
+        align-items: center;
+
+        .icon-user {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  // ============= Header Category Section =============
+  &__category {
+    color: $secondary-txt-color;
+
+    .nav {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: nowrap;
+      flex-direction: row;
+      position: relative;
+
+      & > .nav-item {
+        & + .nav-item {
+          margin-left: 8px;
+        }
+
+        & > .nav-link {
+          position: relative;
+          display: inline-block;
+          line-height: $header-category-height;
+          padding: 0 4px;
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 12px;
+            display: inline-block;
+            height: 2px;
+            width: 0;
+            background-color: $primary-color;
+            transition: 0.3s ease;
+          }
+        }
+
+        &:hover > .subnav {
+          display: flex;
+        }
+
+        &:hover .nav-link::after {
+          width: 100%;
+        }
+      }
+
+      > .nav-item > .subnav {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        font-weight: 400;
+        background-color: $white;
+        border-radius: 4px;
+        padding: 12px;
+        box-shadow: 1px 1px 2px 2px $opacity-color;
+        overflow: hidden;
+
+        > .subnav-item {
+          & + .subnav-item {
+          }
+
+          h4 {
+            font-weight: 700;
+          }
+
+          ul {
+            font-size: 1.4rem;
+
+            li a {
+              display: flex;
+              padding: 6px 0;
+            }
+          }
+
+          &-1 {
+            width: 33%;
+          }
+
+          &-2 {
+            width: 15%;
+          }
+
+          &-3 {
+            width: 29%;
+
+            ul li a {
+              display: flex;
+
+              img {
+                display: inline-block;
+                width: 80px;
+                height: 80px;
+              }
+            }
+          }
+
+          &-4 {
+            width: 23%;
+          }
+
+          // & > .nav-link {
+          //   display: inline-block;
+          //   color: $primary-txt-color;
+          //   padding: 12px 8px;
+          //   width: 100%;
+          // }
+
+          &:hover .nav-link {
+            color: $accent-txt-color;
+          }
+        }
+      }
+    }
+  }
+}
