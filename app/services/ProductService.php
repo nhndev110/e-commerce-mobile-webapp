@@ -8,9 +8,8 @@ class ProductService
 {
   public static function getProductsData(): array
   {
-    $data = [];
-
     $list_products = (new ProductModel())->getAllProducts();
+
     if (!empty($list_products)) {
       foreach ($list_products as $product) {
         $data[] = [
