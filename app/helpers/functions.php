@@ -2,16 +2,21 @@
 
 use app\core\ViewEngine;
 
-function view(string $file_path, array $data = [])
+function view(string $filePath, array $data = [])
 {
-  $file_path = ViewEngine::convertToFileView($file_path);
+  $filePath = ViewEngine::convertToFileView($filePath);
   $view = new ViewEngine();
-  if ($file_path != "") {
+  if ($filePath != "") {
 
     if ($data) $view->assign($data);
 
-    $view->display($file_path);
+    $view->display($filePath);
   }
 
   return $view;
+}
+
+function asset(string $filePath)
+{
+  return APP_URL . $filePath . '?' . time();
 }
