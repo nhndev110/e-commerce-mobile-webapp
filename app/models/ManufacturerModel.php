@@ -15,13 +15,19 @@ class ManufacturerModel extends BaseModel
 
   public function getAllManufacturers()
   {
-    $data = [];
-
     $manufacturers_list = parent::getAllData();
+
+    $data = [];
 
     if (!empty($manufacturers_list)) {
       foreach ($manufacturers_list as $manufacturer) {
-        $data[] = new ManufacturerEntity($manufacturer['id'], $manufacturer['name'], $manufacturer['address'], $manufacturer['phone'], $manufacturer['image']);
+        $data[] = new ManufacturerEntity(
+          $manufacturer['id'],
+          $manufacturer['name'],
+          $manufacturer['address'],
+          $manufacturer['phone'],
+          $manufacturer['image']
+        );
       }
     }
 

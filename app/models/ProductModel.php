@@ -14,14 +14,23 @@ class ProductModel extends BaseModel
     parent::__construct($this->table);
   }
 
-  public function getAllProducts(): array
+  public function getAllProducts()
   {
     $products_list = parent::getAllData();
 
     $data = [];
 
-    foreach ($products_list as $product) {
-      $data[] = new ProductEntity($product['id'], $product['name'], $product['image'], $product['price'], $product['description'], $product['manufacturer_id']);
+    if (!empty($products_list)) {
+      foreach ($products_list as $product) {
+        $data[] = new ProductEntity(
+          $product['id'],
+          $product['name'],
+          $product['image'],
+          $product['price'],
+          $product['description'],
+          $product['manufacturer_id']
+        );
+      }
     }
 
     return $data;
@@ -31,7 +40,14 @@ class ProductModel extends BaseModel
   {
     $product = parent::getData($id);
 
-    $data = new ProductEntity($product['id'], $product['name'], $product['image'], $product['price'], $product['description'], $product['manufacturer_id']);
+    $data = new ProductEntity(
+      $product['id'],
+      $product['name'],
+      $product['image'],
+      $product['price'],
+      $product['description'],
+      $product['manufacturer_id']
+    );
 
     return $data;
   }
