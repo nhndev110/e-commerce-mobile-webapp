@@ -7,12 +7,29 @@ class ProductEntity
   private int $id;
   private string $name;
   private string $image;
-  private float $price;
+  private int $price;
   private string $description;
   private int $manufacturer_id;
 
-  public function __construct(int $id, string $name, string $image, float $price, string $description, int $manufacturer_id)
-  {
+  /**
+   * 
+   * @param int $id
+   * @param string $name
+   * @param string $image
+   * @param int $price
+   * @param string $description
+   * @param int $manufacturer_id
+   * 
+   * @return void
+   */
+  public function __construct(
+    int $id,
+    string $name,
+    string $image,
+    int $price,
+    string $description,
+    int $manufacturer_id
+  ) {
     $this->id              = $id;
     $this->name            = $name;
     $this->image           = $image;
@@ -65,7 +82,7 @@ class ProductEntity
   /**
    * Get the value of price
    */
-  public function getPrice(): float
+  public function getPrice(): int
   {
     return $this->price;
   }
@@ -75,7 +92,7 @@ class ProductEntity
    *
    * @return  $this
    */
-  public function setPrice(float $price): object
+  public function setPrice(int $price): object
   {
     $this->price = $price;
 
