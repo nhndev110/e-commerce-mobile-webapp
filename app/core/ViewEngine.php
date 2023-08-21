@@ -11,18 +11,18 @@ class ViewEngine extends Smarty
   {
     parent::__construct();
 
-    $this->setTemplateDir(BASE_PATH . "/resources/views/");
-    $this->setConfigDir(BASE_PATH . "/storage/templates/configs/");
-    $this->setCompileDir(BASE_PATH . "/storage/templates/templates_c/");
-    $this->setCacheDir(BASE_PATH . "/storage/templates/cache/");
+    $this->setTemplateDir(APP_PATH . "/resources/views/");
+    $this->setConfigDir(APP_PATH . "/storage/templates/configs/");
+    $this->setCompileDir(APP_PATH . "/storage/templates/templates_c/");
+    $this->setCacheDir(APP_PATH . "/storage/templates/cache/");
 
     $this->caching = Smarty::CACHING_LIFETIME_CURRENT;
-    $this->assign('app_name', 'Ecommerce MOBILE SELLING Website');
+    $this->assign('app_name', 'E commerce MOBILE SELLING Website');
   }
 
   public static function convertToFileView(string $file_path): string
   {
-    $file_path = BASE_PATH . '/resources/views/' . $file_path . '.tpl';
+    $file_path = APP_PATH . '/resources/views/' . $file_path . '.tpl';
 
     if (!file_exists($file_path))
       throw new Exception("File not found {$file_path}");
