@@ -8,6 +8,6 @@ class HomeController extends BaseController
 {
   public static function index(): void
   {
-    view('clients/pages/home');
+    view('pages/home');
   }
 }
