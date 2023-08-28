@@ -1,0 +1,19 @@
+$fonts: "Inter", Helvetica, Arial, sans-serif;
+
+$header-top-height: 40px;
+$header-main-height: 56px;
+$header-category-height: 56px;
+$header-height: $header-top-height + $header-main-height + 24px + 2px + $header-category-height;
+
+$primary-color: #0a68ff;
+$secondary-color: #808089;
+$opacity-color: rgba(39, 39, 42, 0.122);
+
+$white: #ffffff;
+$black: #000000;
+
+$primary-bg-color: #f5f5fa;
+
+$primary-txt-color: #27272a;
+$secondary-txt-color: $secondary-color;
+$accent-txt-color: $primary-color;
