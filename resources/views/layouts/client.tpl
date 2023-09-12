@@ -40,16 +40,18 @@
     <!--  -->
     <link rel="canonical" href="{$url}" />
     <link rel="icon" href="{$path_logo}" type="image/png" />
-    <!--  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!--  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha256-2TnSHycBDAm2wpZmgdi0z81kykGPJAkiUY+Wf97RbvY=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10.2.0/swiper-bundle.min.css" integrity="sha256-VKTOFh4rb/lZu9Rktyy6vmg79KTu/kFrOTgSWFLJmOU=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" integrity="sha256-2IJPcGfN/qOK/sfp/68HISUmaCQgbWnvHxEtchU6UF4=" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Libs -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10.2.0/swiper-bundle.min.css" integrity="sha256-VKTOFh4rb/lZu9Rktyy6vmg79KTu/kFrOTgSWFLJmOU=" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-0upsHgyryiDRjpJLJaHNAYfDi6fDP2CrBuGwQCubzbU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10.2.0/swiper-bundle.min.js" integrity="sha256-W1EevMnQZKpkTdbA7fyzCVlU8ZMk+xDZoU+kfQHd70M=" crossorigin="anonymous"></script>
     {nocache}
-    <link rel="stylesheet" href={asset("assets/css/style.min.css")} />
+    <link rel="stylesheet" href={asset("assets/css/theme.min.css")} />
+    {* <link rel="stylesheet" href={asset("assets/css/style.min.css")} /> *}
     {/nocache}
     {block name=head_tags}{/block}
   </head>
@@ -57,7 +59,7 @@
   <body>
     <div id="wrapper">
       {include file="blocks/header.tpl"}
-      <main class="main">
+      <main class="main mt-4">
         <div class="container">
           <aside id="sidebar">
             {block name=sidebar}{/block}
@@ -69,9 +71,6 @@
       </main>
       {include file="blocks/footer.tpl"}
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-0upsHgyryiDRjpJLJaHNAYfDi6fDP2CrBuGwQCubzbU=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10.2.0/swiper-bundle.min.js" integrity="sha256-W1EevMnQZKpkTdbA7fyzCVlU8ZMk+xDZoU+kfQHd70M=" crossorigin="anonymous"></script>
   </body>
 
   </html>

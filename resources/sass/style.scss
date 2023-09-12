@@ -1,0 +1,26 @@
+// @use "custom" as *;
+// @use "utils/variables" as *;
+
+// @use "customize" as *;
+
+// * {
+//   box-sizing: inherit;
+// }
+
+// html {
+//   font-weight: 500;
+//   font-family: $fonts;
+//   box-sizing: border-box;
+// }
+
+// body {
+//   background-color: $primary-bg-color;
+// }
+
+// @use "sections/header" as *;
+
+// .main {
+//   margin-top: 16px;
+// }
+
+// @use "sections/footer" as *;

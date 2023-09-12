@@ -1,0 +1,24 @@
+@use "utils/variables" as *;
+
+.nav-link {
+  fill: $link-color;
+
+  &:hover {
+    fill: $link-hover-color;
+  }
+}
+
+.header {
+  background-color: $header-bg;
+  user-select: none;
+
+  &__top {
+    background-color: $header-top-bg;
+  }
+
+  &__category {
+    color: $header-category-color;
+  }
+}
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
