@@ -1,0 +1,98 @@
+// START GRAY-COLOR-VARIABLES
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+// END GRAY-COLOR-VARIABLES
+
+// START COLOR-VARIABLES
+$blue: #0a68ff;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffe880;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
+// END COLOR-VARIABLES
+
+// START CONTAINER-MAX-WIDTHS
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px,
+  xxl: 1320px
+);
+// END CONTAINER-MAX-WIDTHS
+
+// START MY CUSTOMIZE
+// ==== START CUSTOMIZE MY HEADER
+$header-top-height: 40px;
+$header-top-bg: $gray-100;
+
+$header-main-height: 56px;
+
+$header-category-height: 56px;
+$header-category-color: $black;
+
+$header-bg: $white;
+$header-height: $header-top-height + $header-main-height + 24px + 2px + $header-category-height;
+// ==== END CUSTOMIZE MY HEADER
+// END MY CUSTOMIZE
+
+// START CUSTOMIZE FONT-VARIABLES
+$font-family-sans-serif: "Inter", sans-serif;
+// END CUSTOMIZE FONT-VARIABLES
+
+// START DISPLAY-HEADINGS
+$display-font-sizes: (
+  1: 3.5rem,
+  2: 3rem,
+  3: 2.5rem,
+  4: 2rem,
+  5: 1.09375rem,
+  6: 0.875rem
+);
+$display-font-weight: 600;
+// END DISPLAY-HEADINGS
+
+// START CUSTOMIZE THEME-COLOR-VARIABLES
+$primary: $blue;
+$secondary: $yellow;
+// END CUSTOMIZE THEME-COLOR-VARIABLES
+
+// START CUSTOMIZE BODY
+$body-bg: $gray-100;
+// END CUSTOMIZE BODY
+
+// START CUSTOMIZE LINKS
+$link-color: $gray-700;
+$link-hover-color: $gray-900;
+$link-decoration: none;
+// END CUSTOMIZE LINKS
+
+// START CUSTOMIZE NAV-VARIABLES
+$nav-link-transition:
+  color 0.15s ease-in-out,
+  background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out,
+  fill 0.15s ease-in-out;
+// END CUSTOMIZE NAV-VARIABLES
+
+// START CUSTOMIZE FORM-INPUT-VARIABLES
+$input-bg: $white;
+// END CUSTOMIZE FORM-INPUT-VARIABLES
+
+// START CARD-VARIABLES
+// $card-cap-padding-y:
+// END CARD-VARIABLES

@@ -1,0 +1,179 @@
+/* ======== RESET ======== */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+button {
+  font-family: var(--global-font-text);
+  outline: none;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: initial;
+}
+
+a:hover {
+  color: initial;
+}
+
+ul,
+ol,
+dl {
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  margin: 4px 0;
+  border: 1px solid var(--color-opacity);
+}
+
+/* ======== COMMON ATTRIBUTES ======== */
+body {
+  font-family: var(--global-font-text);
+  background-color: #f8f9fa;
+  /* overflow-y: scroll !important; */
+  /* padding: 0 !important; */
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.clear {
+  clear: both;
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.row {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0 -8px;
+}
+
+.col {
+  padding: 0 8px;
+}
+
+.col-2 {
+  width: 50%;
+}
+
+.col-3 {
+  width: calc(100% / 3);
+}
+
+.col-4 {
+  width: 25%;
+}
+
+.col-5 {
+  width: 20%;
+}
+
+#content {
+  margin-top: calc(var(--header-height) + 16px);
+}
+
+main#main {
+  margin-top: calc(var(--header-height) + 16px);
+}
+
+/* ======== BUTTON ======== */
+.btn {
+  box-shadow: none;
+  border-radius: 8px;
+}
+
+.btn:focus {
+  color: var(--bs-btn-color);
+  background-color: var(--bs-btn-bg);
+  border-color: var(--bs-btn-active-bg);
+  box-shadow: none;
+}
+
+.btn:hover {
+  color: var(--bs-btn-color);
+  background-color: var(--bs-btn-bg);
+  border-color: var(--bs-btn-active-bg);
+}
+
+.btn-light,
+.btn-light:hover,
+.btn-light:focus {
+  color: #fff;
+  background-color: var(--bg-opacity-light);
+  border-color: var(--bg-opacity-light);
+}
+
+/* ======== ANIMATION ======== */
+@keyframes fadeInTop {
+  0% {
+    opacity: 0;
+    top: calc(100% - 20px);
+  }
+  100% {
+    opacity: 1;
+    top: 100%;
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(calc(100% + 15px));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(calc(100% + 15px));
+  }
+}

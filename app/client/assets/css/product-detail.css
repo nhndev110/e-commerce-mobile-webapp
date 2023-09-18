@@ -1,0 +1,45 @@
+h1 {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 18px;
+    font-size: 600;
+}
+
+.box-info__box-price {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+
+.box-info__box-price .product__price--show {
+    font-size: 22px;
+    color: var(--main-color);
+    margin-right: 16px;
+}
+
+.box-info__box-price .product__price--through {
+    font-size: 16px;
+    text-decoration: line-through;
+    color: var(--color-opacity);
+}
+
+.list-linked .item-linked {
+    font-size: 14px;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid var(--color-opacity);
+    border-radius: 6px;
+}
+
+.box-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-btn button + button {
+    margin-left: 8px;
+}
