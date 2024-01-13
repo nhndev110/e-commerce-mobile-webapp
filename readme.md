@@ -1,4 +1,4 @@
-# E-commerce Mobile Website | NHNdev110
+# E-commerce Mobile Website | NHNDEV110
 
 ## Library & Framework
 - [PHPMailer v6.7.1](https://github.com/PHPMailer/PHPMailer)
